@@ -61,3 +61,24 @@ def check_straight_line(coordinates: List[List[int]]) -> bool:
             return False
 
     return True
+
+
+# 1309. Decrypt String from Alphabet to Integer Mapping
+def freq_alphabets(s: str) -> str:
+    result = []
+    s_list = list(s)
+    s_list.reverse()
+
+    i = 0
+    while i < len(s_list):
+        if s_list[i] != '#':
+            result.append(chr(int(s_list[i]) + 96))
+            i += 1
+        else:
+            chars = s_list[i+1:i+3]
+            chars.reverse()
+            result.append(chr(int(''.join(chars)) + 96))
+            i += 3
+
+    result.reverse()
+    return ''.join(result)

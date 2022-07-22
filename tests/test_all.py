@@ -36,6 +36,22 @@ class Test0001to0500(unittest.TestCase):
 
 
 class Test0501to1000(unittest.TestCase):
+    def test_709(self):
+        self.assertEqual(to_lower_case("Hello"), "hello")
+        self.assertEqual(to_lower_case("here"), "here")
+        self.assertEqual(to_lower_case("LOVELY"), "lovely")
+
+    def test_797(self):
+        self.assertCountEqual(all_paths_source_target([[1, 2], [3], [3], []]),
+                              [[0, 1, 3], [0, 2, 3]])
+        self.assertCountEqual(all_paths_source_target([[4, 3, 1], [3, 2, 4], [3], [4], []]),
+                              [[0, 4], [0, 3, 4], [0, 1, 3, 4], [0, 1, 2, 3, 4], [0, 1, 4]])
+
+    def test_953(self):
+        self.assertTrue(is_alien_sorted(words=["hello", "leetcode"], order="hlabcdefgijkmnopqrstuvwxyz"))
+        self.assertFalse(is_alien_sorted(words=["word", "world", "row"], order="worldabcefghijkmnpqstuvxyz"))
+        self.assertFalse(is_alien_sorted(words=["apple", "app"], order="abcdefghijklmnopqrstuvwxyz"))
+
     def test_976(self):
         self.assertEqual(largest_perimeter([2, 1, 2]), 5)
         self.assertEqual(largest_perimeter([1, 2, 1]), 0)
@@ -54,6 +70,10 @@ class Test1001to1500(unittest.TestCase):
     def test_1281(self):
         self.assertEqual(subtract_product_and_sum(234), 15)
         self.assertEqual(subtract_product_and_sum(4421), 21)
+
+    def test_1309(self):
+        self.assertEqual(freq_alphabets("10#11#12"), "jkab")
+        self.assertEqual(freq_alphabets("1326#"), "acz")
 
     def test_1437(self):
         self.assertEqual(k_length_apart([1, 0, 0, 0, 1, 0, 0, 1], 2), True)

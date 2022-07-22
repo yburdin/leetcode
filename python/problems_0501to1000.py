@@ -8,3 +8,51 @@ def largest_perimeter(nums: List[int]) -> int:
         if nums[i] + nums[i+1] > nums[i+2]:
             return nums[i] + nums[i+1] + nums[i+2]
     return 0
+
+
+# 709. To Lower Case
+def to_lower_case(s: str) -> str:
+    return s.lower()
+
+
+# 953. Verifying an Alien Dictionary
+def is_alien_sorted(words: List[str], order: str) -> bool:
+    for i in range(len(words) - 1):
+        if not compare_two_words(words[i], words[i+1], order=order):
+            return False
+    return True
+
+
+def compare_two_words(word1: str, word2: str, order: str) -> bool:
+    for i, c in enumerate(word1):
+        if i >= len(word2):
+            return False
+        if c != word2[i]:
+            return order.index(c) < order.index(word2[i])
+    return True
+
+
+# 797. All Paths From Source to Target
+def all_paths_source_target(graph: List[List[int]]) -> List[List[int]]:
+    target = len(graph) - 1
+    paths = []
+
+    points_to_visit = graph[0]
+    stack = []
+    for point in points_to_visit:
+        if point == target:
+            paths.append([0, point])
+        else:
+            stack.append([[0, point], graph[point]])
+
+    while len(stack) > 0:
+        possible_path = stack.pop(0)
+        previous_points, next_points = possible_path
+
+        for point in next_points:
+            if point == target:
+                paths.append(previous_points + [point])
+            else:
+                stack.append([previous_points + [point], graph[point]])
+
+    return paths
