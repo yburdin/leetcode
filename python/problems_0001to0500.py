@@ -1,5 +1,5 @@
 from typing import List
-from math import factorial
+from math import factorial, sqrt
 
 
 # 119. Pascal's Triangle II
@@ -80,3 +80,10 @@ def next_greater_element(nums1: List[int], nums2: List[int]) -> List[int]:
 # 389. Find the Difference
 def find_the_difference(s: str, t: str) -> str:
     return chr(sum([ord(x) for x in t]) - sum([ord(x) for x in s]))
+
+
+# 70. Climbing Stairs
+def climb_stairs(n: int) -> int:
+    n += 1
+    phi = (1 + sqrt(5)) / 2
+    return int((phi ** n - (-phi) ** (-n)) / (2 * phi - 1))

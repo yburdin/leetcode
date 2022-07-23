@@ -34,6 +34,12 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(next_greater_element([4, 1, 2], [1, 3, 4, 2]), [-1, 3, -1])
         self.assertEqual(next_greater_element([2, 4], [1, 2, 3, 4]), [3, -1])
 
+    def test_070(self):
+        self.assertEqual(climb_stairs(2), 2)
+        self.assertEqual(climb_stairs(3), 3)
+        self.assertEqual(climb_stairs(4), 5)
+        self.assertEqual(climb_stairs(5), 8)
+
 
 class Test0501to1000(unittest.TestCase):
     def test_709(self):
