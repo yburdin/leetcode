@@ -87,3 +87,11 @@ def climb_stairs(n: int) -> int:
     n += 1
     phi = (1 + sqrt(5)) / 2
     return int((phi ** n - (-phi) ** (-n)) / (2 * phi - 1))
+
+
+# 28. Implement strStr()
+def str_str(haystack: str, needle: str) -> int:
+    for i in range(len(haystack) - len(needle) + 1):
+        if haystack[i:i+len(needle)] == needle:
+            return i
+    return -1

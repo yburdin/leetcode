@@ -40,6 +40,11 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(climb_stairs(4), 5)
         self.assertEqual(climb_stairs(5), 8)
 
+    def test_028(self):
+        self.assertEqual(str_str(haystack="hello", needle="ll"), 2)
+        self.assertEqual(str_str(haystack="aaaaa", needle="bba"), -1)
+        self.assertEqual(str_str(haystack="a", needle="a"), 0)
+
 
 class Test0501to1000(unittest.TestCase):
     def test_709(self):
