@@ -1,4 +1,10 @@
-from typing import List
+from typing import List, Optional
+
+
+class ListNode:
+    def __init__(self, val=0, next_=None):
+        self.val = val
+        self.next = next_
 
 
 # 976. Largest Perimeter Triangle
@@ -56,3 +62,11 @@ def all_paths_source_target(graph: List[List[int]]) -> List[List[int]]:
                 stack.append([previous_points + [point], graph[point]])
 
     return paths
+
+
+# 876. Middle of the Linked List
+def middle_node(head: Optional[ListNode]) -> Optional[ListNode]:
+    arr = [head]
+    while arr[-1].next:
+        arr.append(arr[-1].next)
+    return arr[len(arr) // 2]
