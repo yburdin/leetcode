@@ -33,6 +33,17 @@ class Test0001to0500(unittest.TestCase):
     def test_496(self):
         self.assertEqual(next_greater_element([4, 1, 2], [1, 3, 4, 2]), [-1, 3, -1])
         self.assertEqual(next_greater_element([2, 4], [1, 2, 3, 4]), [3, -1])
+        
+    def test_070(self):
+        self.assertEqual(climb_stairs(2), 2)
+        self.assertEqual(climb_stairs(3), 3)
+        self.assertEqual(climb_stairs(4), 5)
+        self.assertEqual(climb_stairs(5), 8)
+
+    def test_028(self):
+        self.assertEqual(str_str(haystack="hello", needle="ll"), 2)
+        self.assertEqual(str_str(haystack="aaaaa", needle="bba"), -1)
+        self.assertEqual(str_str(haystack="a", needle="a"), 0)
 
     def test_232(self):
         my_queue = MyQueue()
@@ -51,6 +62,7 @@ class Test0001to0500(unittest.TestCase):
         self.assertTrue(contains_duplicate([1, 2, 3, 1]))
         self.assertFalse(contains_duplicate([1, 2, 3, 4]))
         self.assertTrue(contains_duplicate([1,1,1,3,3,4,3,2,4,2]))
+        
 
 class Test0501to1000(unittest.TestCase):
     def test_709(self):
