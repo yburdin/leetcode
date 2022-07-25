@@ -170,3 +170,12 @@ def merge_alternately(word1: str, word2: str) -> str:
 # 1678. Goal Parser Interpretation
 def interpret(command: str) -> str:
     return command.replace('()', 'o').replace('(al)', 'al')
+
+
+# 1603. Design Parking System
+class ParkingSystem:
+    def __init__(self, big: int, medium: int, small: int):
+        pass
+
+    def add_car(self, car_type: int) -> bool:
+        pass

@@ -199,6 +199,13 @@ class Test1501to2000(unittest.TestCase):
         self.assertEqual(count_triples(5), 2)
         self.assertEqual(count_triples(10), 4)
 
+    def test_1603(self):
+        parking_system = ParkingSystem(1, 1, 0)
+        self.assertTrue(parking_system.add_car(1))
+        self.assertTrue(parking_system.add_car(2))
+        self.assertFalse(parking_system.add_car(3))
+        self.assertFalse(parking_system.add_car(1))
+
 
 class Test2001to2500(unittest.TestCase):
     def test_2053(self):
