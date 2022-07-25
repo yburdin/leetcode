@@ -33,7 +33,7 @@ class Test0001to0500(unittest.TestCase):
     def test_496(self):
         self.assertEqual(next_greater_element([4, 1, 2], [1, 3, 4, 2]), [-1, 3, -1])
         self.assertEqual(next_greater_element([2, 4], [1, 2, 3, 4]), [3, -1])
-
+        
     def test_070(self):
         self.assertEqual(climb_stairs(2), 2)
         self.assertEqual(climb_stairs(3), 3)
@@ -45,6 +45,24 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(str_str(haystack="aaaaa", needle="bba"), -1)
         self.assertEqual(str_str(haystack="a", needle="a"), 0)
 
+    def test_232(self):
+        my_queue = MyQueue()
+        my_queue.push(1)
+        my_queue.push(2)
+        self.assertEqual(my_queue.peek(), 1)
+        self.assertEqual(my_queue.pop(), 1)
+        self.assertFalse(my_queue.empty())
+
+    def test_242(self):
+        self.assertTrue(is_anagram(s="anagram", t="nagaram"))
+        self.assertFalse(is_anagram(s="rat", t="car"))
+        self.assertFalse(is_anagram(s="ac", t="bb"))
+
+    def test_217(self):
+        self.assertTrue(contains_duplicate([1, 2, 3, 1]))
+        self.assertFalse(contains_duplicate([1, 2, 3, 4]))
+        self.assertTrue(contains_duplicate([1,1,1,3,3,4,3,2,4,2]))
+        
 
 class Test0501to1000(unittest.TestCase):
     def test_709(self):
@@ -67,6 +85,10 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(largest_perimeter([2, 1, 2]), 5)
         self.assertEqual(largest_perimeter([1, 2, 1]), 0)
         self.assertEqual(largest_perimeter([2, 6, 2, 5, 4, 15, 1]), 15)
+
+    def test_876(self):
+        self.assertEqual(linked_list_to_list(middle_node(list_to_linked_list([1, 2, 3, 4, 5]))), [3, 4, 5])
+        self.assertEqual(linked_list_to_list(middle_node(list_to_linked_list([1, 2, 3, 4, 5, 6]))), [4, 5, 6])
 
 
 class Test1001to1500(unittest.TestCase):
@@ -94,6 +116,16 @@ class Test1001to1500(unittest.TestCase):
     def test_1491(self):
         self.assertEqual(average([4000, 3000, 1000, 2000]), 2500.)
         self.assertEqual(average([1000, 2000, 3000]), 2000.)
+
+    def test_1290(self):
+        self.assertEqual(get_decimal_value(list_to_linked_list([1, 0, 1])), 5)
+        self.assertEqual(get_decimal_value(list_to_linked_list([0])), 0)
+        self.assertEqual(get_decimal_value(list_to_linked_list([1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0])), 18880)
+
+    def test_1356(self):
+        self.assertEqual(sort_by_bits([0, 1, 2, 3, 4, 5, 6, 7, 8]), [0, 1, 2, 4, 8, 3, 5, 6, 7])
+        self.assertEqual(sort_by_bits([1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1]),
+                         [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024])
 
 
 class Test1501to2000(unittest.TestCase):
@@ -178,6 +210,23 @@ class Test2001to2500(unittest.TestCase):
         self.assertEqual(time_required_to_buy([2, 3, 2], 2), 6)
         self.assertEqual(time_required_to_buy([5, 1, 1, 1], 0), 8)
         self.assertEqual(time_required_to_buy([84, 49, 5, 24, 70, 77, 87, 8], 3), 154)
+
+
+def list_to_linked_list(nodes: List[int]) -> ListNode:
+    result = ListNode(val=nodes.pop(-1), next_=None)
+    while len(nodes) > 0:
+        result = ListNode(val=nodes.pop(-1), next_=result)
+
+    return result
+
+
+def linked_list_to_list(head: ListNode) -> List:
+    result = [head.val]
+    while head.next:
+        result.append(head.next.val)
+        head = head.next
+
+    return result
 
 
 if __name__ == '__main__':

@@ -80,8 +80,8 @@ def next_greater_element(nums1: List[int], nums2: List[int]) -> List[int]:
 # 389. Find the Difference
 def find_the_difference(s: str, t: str) -> str:
     return chr(sum([ord(x) for x in t]) - sum([ord(x) for x in s]))
-
-
+    
+  
 # 70. Climbing Stairs
 def climb_stairs(n: int) -> int:
     n += 1
@@ -95,3 +95,44 @@ def str_str(haystack: str, needle: str) -> int:
         if haystack[i:i+len(needle)] == needle:
             return i
     return -1
+
+
+# 232. Implement Queue using Stacks
+class MyQueue:
+    def __init__(self):
+        self.s1 = []
+        self.s2 = []
+
+    def push(self, x):
+        self.s1.append(x)
+
+    def pop(self):
+        self.peek()
+        return self.s2.pop()
+
+    def peek(self):
+        if not self.s2:
+            while self.s1:
+                self.s2.append(self.s1.pop())
+        return self.s2[-1]
+
+    def empty(self):
+        return not self.s1 and not self.s2
+
+
+# 242. Valid Anagram
+def is_anagram(s: str, t: str) -> bool:
+    s_dict = {char: s.count(char) for char in set(s)}
+    t_dict = {char: t.count(char) for char in set(t)}
+    return s_dict == t_dict
+
+
+# 217. Contains Duplicate
+def contains_duplicate(nums: List[int]) -> bool:
+    unique = set()
+    for num in nums:
+        if num in unique:
+            return True
+        else:
+            unique.add(num)
+    return False

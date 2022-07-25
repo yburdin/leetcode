@@ -2,6 +2,12 @@ from typing import List
 from math import atan
 
 
+class ListNode:
+    def __init__(self, val=0, next_=None):
+        self.val = val
+        self.next = next_
+
+
 # 1491. Average Salary Excluding the Minimum and Maximum Salary
 def average(salary: List[int]) -> float:
     salary.sort()
@@ -82,3 +88,29 @@ def freq_alphabets(s: str) -> str:
 
     result.reverse()
     return ''.join(result)
+
+
+# 1290. Convert Binary Number in a Linked List to Integer
+def get_decimal_value(head: ListNode) -> int:
+    num = head.val
+    while head.next:
+        num = num * 2 + head.next.val
+        head = head.next
+    return num
+
+
+# 1356. Sort Integers by The Number of 1 Bits
+def sort_by_bits(arr: List[int]) -> List[int]:
+    bit_dict = {}
+    for item in arr:
+        bits = bin(item).count('1')
+        if bits in bit_dict:
+            bit_dict[bits].append(item)
+        else:
+            bit_dict[bits] = [item]
+
+    result = []
+    for key in sorted(bit_dict.keys()):
+        result += sorted(bit_dict[key])
+
+    return result
