@@ -175,7 +175,11 @@ def interpret(command: str) -> str:
 # 1603. Design Parking System
 class ParkingSystem:
     def __init__(self, big: int, medium: int, small: int):
-        pass
+        self.parking_dict = {1: big, 2: medium, 3: small}
 
     def add_car(self, car_type: int) -> bool:
-        pass
+        if self.parking_dict[car_type] > 0:
+            self.parking_dict[car_type] -= 1
+            return True
+        else:
+            return False

@@ -62,7 +62,13 @@ class Test0001to0500(unittest.TestCase):
         self.assertTrue(contains_duplicate([1, 2, 3, 1]))
         self.assertFalse(contains_duplicate([1, 2, 3, 4]))
         self.assertTrue(contains_duplicate([1,1,1,3,3,4,3,2,4,2]))
-        
+
+    def test_303(self):
+        num_array = NumArray([-2, 0, 3, -5, 2, -1])
+        self.assertEqual(num_array.sum_range(0, 2), 1)
+        self.assertEqual(num_array.sum_range(2, 5), -1)
+        self.assertEqual(num_array.sum_range(0, 5), -3)
+
 
 class Test0501to1000(unittest.TestCase):
     def test_709(self):
@@ -89,6 +95,11 @@ class Test0501to1000(unittest.TestCase):
     def test_876(self):
         self.assertEqual(linked_list_to_list(middle_node(list_to_linked_list([1, 2, 3, 4, 5]))), [3, 4, 5])
         self.assertEqual(linked_list_to_list(middle_node(list_to_linked_list([1, 2, 3, 4, 5, 6]))), [4, 5, 6])
+
+    def test_896(self):
+        self.assertTrue(is_monotonic([1, 2, 2, 3]))
+        self.assertTrue(is_monotonic([6, 5, 4, 4]))
+        self.assertFalse(is_monotonic([1, 3, 2]))
 
 
 class Test1001to1500(unittest.TestCase):

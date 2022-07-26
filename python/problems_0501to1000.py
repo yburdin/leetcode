@@ -70,3 +70,12 @@ def middle_node(head: Optional[ListNode]) -> Optional[ListNode]:
     while arr[-1].next:
         arr.append(arr[-1].next)
     return arr[len(arr) // 2]
+
+
+# 896. Monotonic Array
+def is_monotonic(nums: List[int]) -> bool:
+    sign = (nums[-1] - nums[0]) > 0
+    for i, num in enumerate(nums):
+        if i < len(nums) - 1 and num != nums[i+1] and ((nums[i+1] - num > 0) is not sign):
+            return False
+    return True

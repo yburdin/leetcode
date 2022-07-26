@@ -136,3 +136,12 @@ def contains_duplicate(nums: List[int]) -> bool:
         else:
             unique.add(num)
     return False
+
+
+# 303. Range Sum Query - Immutable
+class NumArray:
+    def __init__(self, nums: List[int]):
+        self.nums = nums
+
+    def sum_range(self, left: int, right: int) -> int:
+        return sum(self.nums[left:right+1])
