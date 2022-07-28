@@ -145,3 +145,51 @@ class NumArray:
 
     def sum_range(self, left: int, right: int) -> int:
         return sum(self.nums[left:right+1])
+
+
+# 459. Repeated Substring Pattern
+def repeated_substring_pattern(s: str) -> bool:
+    max_substring_len = len(s) // 2 + 1
+
+    for substring_len in range(1, max_substring_len):
+        if len(s) % substring_len == 0:
+            substring = s[:substring_len]
+            substring_list = [substring == s[substring_len*i:substring_len*(i+1)] for i in range(len(s) // substring_len)]
+            if all(substring_list):
+                return True
+    return False
+
+
+# 66. Plus One
+def plus_one(digits: List[int]) -> List[int]:
+    i = -1
+    digit = digits[i] + 1
+    digits[i] = digit % 10
+    residual = digit // 10
+
+    while residual > 0:
+        i -= 1
+        try:
+            digit = digits[i] + 1
+            digits[i] = digit % 10
+            residual = digit // 10
+        except IndexError:
+            return [1] + digits
+
+    return digits
+
+
+# 150. Evaluate Reverse Polish Notation
+def eval_rpn(tokens: List[str]) -> int:
+    operations = '+-*/'
+    stack = []
+
+    for token in tokens:
+        if token not in operations:
+            stack.append(token)
+        else:
+            operand1 = stack.pop(-2)
+            operand2 = stack.pop(-1)
+            stack.append(int(eval(f'{operand1}{token}{operand2}')))
+
+    return int(stack[0])

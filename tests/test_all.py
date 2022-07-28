@@ -69,6 +69,22 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(num_array.sum_range(2, 5), -1)
         self.assertEqual(num_array.sum_range(0, 5), -3)
 
+    def test_459(self):
+        self.assertTrue(repeated_substring_pattern("abab"))
+        self.assertFalse(repeated_substring_pattern("aba"))
+        self.assertTrue(repeated_substring_pattern("abcabcabcabc"))
+        self.assertFalse(repeated_substring_pattern("aabaaba"))
+
+    def test_066(self):
+        self.assertEqual(plus_one([1, 2, 3]), [1, 2, 4])
+        self.assertEqual(plus_one([4, 3, 2, 1]), [4, 3, 2, 2])
+        self.assertEqual(plus_one([9]), [1, 0])
+
+    def test_150(self):
+        self.assertEqual(eval_rpn(["2", "1", "+", "3", "*"]), 9)
+        self.assertEqual(eval_rpn(["4", "13", "5", "/", "+"]), 6)
+        self.assertEqual(eval_rpn(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]), 22)
+
 
 class Test0501to1000(unittest.TestCase):
     def test_709(self):
@@ -228,6 +244,10 @@ class Test2001to2500(unittest.TestCase):
         self.assertEqual(time_required_to_buy([2, 3, 2], 2), 6)
         self.assertEqual(time_required_to_buy([5, 1, 1, 1], 0), 8)
         self.assertEqual(time_required_to_buy([84, 49, 5, 24, 70, 77, 87, 8], 3), 154)
+
+    def test_2221(self):
+        self.assertEqual(triangular_sum([1, 2, 3, 4, 5]), 8)
+        self.assertEqual(triangular_sum([5]), 5)
 
 
 def list_to_linked_list(nodes: List[int]) -> ListNode:
