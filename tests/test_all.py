@@ -85,6 +85,10 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(eval_rpn(["4", "13", "5", "/", "+"]), 6)
         self.assertEqual(eval_rpn(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]), 22)
 
+    def test_043(self):
+        self.assertEqual(multiply('2', '3'), '6')
+        self.assertEqual(multiply('123', '456'), '56088')
+
 
 class Test0501to1000(unittest.TestCase):
     def test_709(self):
