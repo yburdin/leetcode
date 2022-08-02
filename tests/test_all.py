@@ -89,6 +89,15 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(multiply('2', '3'), '6')
         self.assertEqual(multiply('123', '456'), '56088')
 
+    def test_067(self):
+        self.assertEqual(add_binary(a="11", b="1"), "100")
+        self.assertEqual(add_binary(a="1010", b="1011"), "10101")
+
+    def test_058(self):
+        self.assertEqual(length_of_last_word("Hello World"), 5)
+        self.assertEqual(length_of_last_word("   fly me   to   the moon  "), 4)
+        self.assertEqual(length_of_last_word("luffy is still joyboy"), 6)
+
 
 class Test0501to1000(unittest.TestCase):
     def test_709(self):
@@ -120,6 +129,20 @@ class Test0501to1000(unittest.TestCase):
         self.assertTrue(is_monotonic([1, 2, 2, 3]))
         self.assertTrue(is_monotonic([6, 5, 4, 4]))
         self.assertFalse(is_monotonic([1, 3, 2]))
+
+    def test_989(self):
+        self.assertEqual(add_to_array_form(num=[1, 2, 0, 0], k=34), [1, 2, 3, 4])
+        self.assertEqual(add_to_array_form(num=[2, 7, 4], k=181), [4, 5, 5])
+        self.assertEqual(add_to_array_form(num=[2, 1, 5], k=806), [1, 0, 2, 1])
+        self.assertEqual(add_to_array_form(num=[0], k=23), [2, 3])
+        self.assertEqual(add_to_array_form(num=[0], k=10000), [1, 0, 0, 0, 0])
+
+    def test_739(self):
+        self.assertEqual(daily_temperatures(temperatures=[73, 74, 75, 71, 69, 72, 76, 73]), [1, 1, 4, 2, 1, 1, 0, 0])
+        self.assertEqual(daily_temperatures(temperatures=[30, 40, 50, 60]), [1, 1, 1, 0])
+        self.assertEqual(daily_temperatures(temperatures=[30, 60, 90]), [1, 1, 0])
+        self.assertEqual(daily_temperatures(temperatures=[89, 62, 70, 58, 47, 47, 46, 76, 100, 70]),
+                         [8, 1, 5, 4, 3, 2, 1, 1, 0, 0])
 
 
 class Test1001to1500(unittest.TestCase):

@@ -79,3 +79,67 @@ def is_monotonic(nums: List[int]) -> bool:
         if i < len(nums) - 1 and num != nums[i+1] and ((nums[i+1] - num > 0) is not sign):
             return False
     return True
+
+
+# 989. Add to Array-Form of Integer
+def add_to_array_form(num: List[int], k: int) -> List[int]:
+    stack, digit = divmod(num[-1] + k, 10)
+    result = [digit]
+    order = 1
+
+    while stack > 0 or order < len(num):
+        if order < len(num):
+            stack, digit = divmod(num[-1-order] + stack, 10)
+            result.append(digit)
+            order += 1
+        else:
+            stack, digit = divmod(stack, 10)
+            result.append(digit)
+            order += 1
+
+    result.reverse()
+
+    return result
+
+
+# 739. Daily Temperatures
+def daily_temperatures_slow(temperatures: List[int]) -> List[int]:
+    result = []
+
+    for day, temperature in enumerate(temperatures):
+        if day < len(temperatures):
+            temp_set = set(temperatures[day+1:])
+            min_days = 1000
+            day_found = False
+
+            if len(temp_set) > 0:
+                for temp in range(temperature + 1, max(temp_set)+1):
+                    if temp in temp_set:
+                        day_found = True
+                        temp_index = temperatures[day+1:].index(temp) + 1
+                        if temp_index == 1:
+                            min_days = 1
+                            break
+                        else:
+                            min_days = min(min_days, temp_index)
+
+                if day_found:
+                    result.append(min_days)
+                else:
+                    result.append(0)
+            else:
+                result.append(0)
+
+    return result
+
+
+def daily_temperatures(temperatures: List[int]) -> List[int]:
+    ans = [0] * len(temperatures)
+    stack = []
+    for i, t in enumerate(temperatures):
+        while stack and temperatures[stack[-1]] < t:
+            cur = stack.pop()
+            ans[cur] = i - cur
+        stack.append(i)
+
+    return ans

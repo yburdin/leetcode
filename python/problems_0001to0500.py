@@ -219,3 +219,33 @@ def multiply(num1: str, num2: str) -> str:
         answer.pop()
 
     return ''.join(str(digit) for digit in reversed(answer))
+
+
+# 67. Add Binary
+def add_binary(a: str, b: str) -> str:
+    len_dif = abs(len(b) - len(a))
+    if len(a) < len(b):
+        a = '0' * len_dif + a
+    else:
+        b = '0' * len_dif + b
+
+    result = ''
+    stack = 0
+
+    for order, digit in enumerate(a[::-1]):
+        stack, result_digit = divmod(int(digit) + int(b[::-1][order]) + stack, 2)
+        result += f'{result_digit}'
+
+    if stack > 0:
+        result += f'{stack}'
+
+    return result[::-1]
+
+
+# 58. Length of Last Word
+def length_of_last_word(s: str) -> int:
+    words = s.split(' ')
+    for word in words[::-1]:
+        if len(word) > 0:
+            return len(word)
+    return 0
