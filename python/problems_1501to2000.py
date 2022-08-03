@@ -183,3 +183,23 @@ class ParkingSystem:
             return True
         else:
             return False
+
+
+# 1886. Determine Whether Matrix Can Be Obtained By Rotation
+def find_rotation(mat: List[List[int]], target: List[List[int]]) -> bool:
+    size = len(mat)
+    eye_matrix = [[0 if column_n != size - row_n - 1 else 1 for column_n in range(size)]
+                  for row_n in range(size)]
+
+    for _ in range(4):
+        transpose_mat = [[mat[i][j] for i in range(size)] for j in range(size)]
+        result_mat = [[sum([transpose_mat[i][r] * eye_matrix[r][j] for r in range(size)])
+                       for j in range(size)]
+                      for i in range(size)]
+
+        if result_mat == target:
+            return True
+        else:
+            mat = result_mat
+
+    return False
