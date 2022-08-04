@@ -154,7 +154,8 @@ def repeated_substring_pattern(s: str) -> bool:
     for substring_len in range(1, max_substring_len):
         if len(s) % substring_len == 0:
             substring = s[:substring_len]
-            substring_list = [substring == s[substring_len*i:substring_len*(i+1)] for i in range(len(s) // substring_len)]
+            substring_list = [substring == s[substring_len*i:substring_len*(i+1)]
+                              for i in range(len(s) // substring_len)]
             if all(substring_list):
                 return True
     return False
@@ -261,3 +262,21 @@ def rotate(matrix: List[List[int]]) -> None:
             matrix[n - 1 - i][n - j - 1] = matrix[j][n - 1 - i]
             matrix[j][n - 1 - i] = matrix[i][j]
             matrix[i][j] = tmp
+
+
+# 54. Spiral Matrix
+def spiral_order(matrix: List[List[int]]) -> List[int]:
+    result = []
+    while len(matrix) > 0:
+        result.extend(matrix.pop(0))
+        if len(matrix) > 0 and len(matrix[0]) > 0:
+            result.extend([row.pop(-1) for row in matrix])
+        if len(matrix) > 0:
+            last_row = matrix.pop(-1)
+            last_row.reverse()
+            result.extend(last_row)
+        if len(matrix) > 0 and len(matrix[0]) > 0:
+            first_column = [row.pop(0) for row in matrix]
+            first_column.reverse()
+            result.extend(first_column)
+    return result

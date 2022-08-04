@@ -107,6 +107,12 @@ class Test0001to0500(unittest.TestCase):
         rotate(matrix)
         self.assertEqual(matrix, [[15, 13, 2, 5], [14, 3, 4, 1], [12, 6, 8, 9], [16, 7, 10, 11]])
 
+    def test_054(self):
+        self.assertEqual(spiral_order([[1, 2, 3], [4, 5, 6], [7, 8, 9]]), [1, 2, 3, 6, 9, 8, 7, 4, 5])
+        self.assertEqual(spiral_order([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]),
+                         [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7])
+        self.assertEqual(spiral_order([[7], [9], [6]]), [7, 9, 6])
+
 
 class Test0501to1000(unittest.TestCase):
     def test_709(self):
@@ -152,6 +158,12 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(add_to_array_form(num=[2, 1, 5], k=806), [1, 0, 2, 1])
         self.assertEqual(add_to_array_form(num=[0], k=23), [2, 3])
         self.assertEqual(add_to_array_form(num=[0], k=10000), [1, 0, 0, 0, 0])
+
+    def test_973(self):
+        self.assertCountEqual(k_closest(points=[[1, 3], [-2, 2]], k=1), [[-2, 2]])
+        self.assertCountEqual(k_closest(points=[[3, 3], [5, -1], [-2, 4]], k=2), [[3, 3], [-2, 4]])
+        self.assertCountEqual(k_closest([[0, 1], [1, 0]], 2), [[0, 1], [1, 0]])
+        self.assertCountEqual(k_closest([[6, 10], [-3, 3], [-2, 5], [0, 2]], 3), [[0, 2], [-3, 3], [-2, 5]])
 
 
 class Test1001to1500(unittest.TestCase):

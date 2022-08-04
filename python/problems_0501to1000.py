@@ -143,3 +143,15 @@ def daily_temperatures(temperatures: List[int]) -> List[int]:
         stack.append(i)
 
     return ans
+
+
+# 973. K Closest Points to Origin
+def k_closest(points: List[List[int]], k: int) -> List[List[int]]:
+    result = []
+    distances = [abs(complex(*point)) for point in points]
+    max_dist = sorted(distances)[k-1]
+    for point in points:
+        if abs(complex(*point)) <= max_dist:
+            result.append(point)
+
+    return result
