@@ -203,3 +203,22 @@ def find_rotation(mat: List[List[int]], target: List[List[int]]) -> bool:
             mat = result_mat
 
     return False
+
+
+# 1630. Arithmetic Subarrays
+def check_arithmetic_subarrays(nums: List[int], l: List[int], r: List[int]) -> List[bool]:
+    answer = []
+    for query in range(len(r)):
+        l_i = l[query]
+        r_i = r[query]+1
+
+        sub_array = nums[l_i:r_i]
+        answer.append(is_arithmetic(sorted(sub_array)))
+    return answer
+
+
+def is_arithmetic(array: List[int]) -> bool:
+    for i in range(len(array) - 1):
+        if array[i + 1] - array[i] != array[1] - array[0]:
+            return False
+    return True

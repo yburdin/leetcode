@@ -287,6 +287,16 @@ class Test1501to2000(unittest.TestCase):
         self.assertFalse(find_rotation(mat=[[0, 1], [1, 1]], target=[[1, 0], [0, 1]]))
         self.assertTrue(find_rotation(mat=[[0, 0, 0], [0, 1, 0], [1, 1, 1]], target=[[1, 0, 0], [1, 1, 0], [1, 0, 0]]))
 
+    def test_1630(self):
+        self.assertEqual(
+            check_arithmetic_subarrays(nums=[4, 6, 5, 9, 3, 7], l=[0, 0, 2], r=[2, 3, 5]
+                                       ), [True, False, True])
+        self.assertEqual(
+            check_arithmetic_subarrays(nums=[-12, -9, -3, -12, -6, 15, 20, -25, -20, -15, -10],
+                                       l=[0, 1, 6, 4, 8, 7],
+                                       r=[4, 4, 9, 7, 9, 10]
+                                       ), [False, True, False, False, True, True])
+
 
 class Test2001to2500(unittest.TestCase):
     def test_2053(self):
