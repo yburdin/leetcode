@@ -155,3 +155,60 @@ def k_closest(points: List[List[int]], k: int) -> List[List[int]]:
             result.append(point)
 
     return result
+
+
+# 503. Next Greater Element II
+def next_greater_elements_slow(nums: List[int]) -> List[int]:
+    result = [-1] * len(nums)
+
+    p2 = len(nums) - 1
+    while p2 >= 0:
+        p1 = (p2 + 1) % len(nums)
+        p2_num = nums[p2]
+
+        while p1 != p2:
+            p1_num = nums[p1]
+            if p1_num > p2_num:
+                result[p2] = p1_num
+                break
+            else:
+                p1 = (p1 + 1) % len(nums)
+        p2 -= 1
+
+    return result
+
+
+def next_greater_elements(nums: List[int]) -> List[int]:
+    result = [-1] * len(nums)
+    stack = []
+
+    for _ in range(2):
+        for n, num in enumerate(nums):
+            while stack and num > nums[stack[-1]]:
+                result[stack.pop()] = num
+            stack.append(n)
+
+    return result
+
+
+# 556. Next Greater Element III
+def next_greater_element_iii(n: int) -> int:
+    n_str = str(n)
+
+    p1 = len(n_str) - 2
+
+    while p1 > -1 and int(n_str[p1]) >= int(n_str[p1 + 1]):
+        p1 -= 1
+
+    if p1 != -1:
+        tail = [int(digit) for digit in n_str[p1+1:]]
+        for n in range(len(tail) - 1, -1, -1):
+            digit = tail[n]
+            if digit > int(n_str[p1]):
+                tail[n] = int(n_str[p1])
+                result = n_str[:p1] + str(digit) + ''.join([str(k) for k in sorted(tail)])
+
+                if int(result) < 2 ** 31:
+                    return int(result)
+
+    return -1

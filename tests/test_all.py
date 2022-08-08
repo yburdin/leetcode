@@ -165,6 +165,22 @@ class Test0501to1000(unittest.TestCase):
         self.assertCountEqual(k_closest([[0, 1], [1, 0]], 2), [[0, 1], [1, 0]])
         self.assertCountEqual(k_closest([[6, 10], [-3, 3], [-2, 5], [0, 2]], 3), [[0, 2], [-3, 3], [-2, 5]])
 
+    def test_503(self):
+        self.assertEqual(next_greater_elements([1, 2, 1]), [2, -1, 2])
+        self.assertEqual(next_greater_elements([1, 2, 3, 4, 3]), [2, 3, 4, -1, 4])
+        self.assertEqual(next_greater_elements([5, 4, 3, 2, 1]), [-1, 5, 5, 5, 5])
+        self.assertEqual(next_greater_elements([1, 5, 3, 6, 8]), [5, 6, 6, 8, -1])
+
+    def test_556(self):
+        self.assertEqual(next_greater_element_iii(234157641), 234161457)
+        self.assertEqual(next_greater_element_iii(12), 21)
+        self.assertEqual(next_greater_element_iii(21), -1)
+        self.assertEqual(next_greater_element_iii(364), 436)
+        self.assertEqual(next_greater_element_iii(346), 364)
+        self.assertEqual(next_greater_element_iii(1488), 1848)
+        self.assertEqual(next_greater_element_iii(1312), 1321)
+        self.assertEqual(next_greater_element_iii(2147483486), -1)
+
 
 class Test1001to1500(unittest.TestCase):
     def test_1232(self):
