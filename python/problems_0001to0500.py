@@ -280,3 +280,57 @@ def spiral_order(matrix: List[List[int]]) -> List[int]:
             first_column.reverse()
             result.extend(first_column)
     return result
+
+
+# 49. Group Anagrams
+def group_anagrams_slow(strs: List[str]) -> List[List[str]]:
+    result = [[strs.pop()]]
+
+    while len(strs) > 0:
+        current_word = strs.pop()
+
+        is_anagram_ = False
+        for anagram in result:
+            if sorted(current_word) == sorted(anagram[0]):
+                anagram.append(current_word)
+                is_anagram_ = True
+                break
+
+        if not is_anagram_:
+            result.append([current_word])
+
+    return result
+
+
+def group_anagrams_accepted(strs: List[str]) -> List[List[str]]:
+    anagram_dict = {}
+
+    while len(strs) > 0:
+        word = strs.pop()
+        word_ord = sum([ord(char) for char in word])
+        if word_ord not in anagram_dict.keys():
+            anagram_dict[word_ord] = {0: [word]}
+        else:
+            is_ord_anagram = False
+            for key in anagram_dict[word_ord]:
+                if sorted(anagram_dict[word_ord][key][0]) == sorted(word):
+                    anagram_dict[word_ord][key].append(word)
+                    is_ord_anagram = True
+                    break
+            if not is_ord_anagram:
+                anagram_dict[word_ord][len(anagram_dict[word_ord])] = [word]
+
+    result = []
+    for ord_key in anagram_dict:
+        for anagram_key in anagram_dict[ord_key]:
+            result.append(anagram_dict[ord_key][anagram_key])
+
+    return result
+
+
+def group_anagrams(strs: List[str]) -> List[List[str]]:
+    d = {}
+    for w in strs:
+        key = tuple(sorted(w))
+        d[key] = d.get(key, []) + [w]
+    return list(d.values())

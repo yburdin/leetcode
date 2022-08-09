@@ -113,6 +113,22 @@ class Test0001to0500(unittest.TestCase):
                          [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7])
         self.assertEqual(spiral_order([[7], [9], [6]]), [7, 9, 6])
 
+    def test_049(self):
+        input_strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+        output = [["bat"], ["nat", "tan"], ["ate", "eat", "tea"]]
+        anagrams = [sorted(anagram) for anagram in group_anagrams(input_strs)]
+        self.assertCountEqual(anagrams, output)
+
+        self.assertCountEqual(group_anagrams([""]),
+                              [[""]])
+        self.assertCountEqual(group_anagrams(["a"]),
+                              [["a"]])
+
+        input_strs = ["cab", "tin", "pew", "duh", "may", "ill", "buy", "bar", "max", "doc"]
+        output = [["max"], ["buy"], ["doc"], ["may"], ["ill"], ["duh"], ["tin"], ["bar"], ["pew"], ["cab"]]
+        anagrams = [sorted(anagram) for anagram in group_anagrams(input_strs)]
+        self.assertCountEqual(sorted(anagrams), sorted(output))
+
 
 class Test0501to1000(unittest.TestCase):
     def test_709(self):
