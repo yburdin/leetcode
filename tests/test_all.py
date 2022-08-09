@@ -16,6 +16,37 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(multiply('2', '3'), '6')
         self.assertEqual(multiply('123', '456'), '56088')
 
+    def test_048(self):
+        matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        rotate(matrix)
+        self.assertEqual(matrix, [[7, 4, 1], [8, 5, 2], [9, 6, 3]])
+
+        matrix = [[5, 1, 9, 11], [2, 4, 8, 10], [13, 3, 6, 7], [15, 14, 12, 16]]
+        rotate(matrix)
+        self.assertEqual(matrix, [[15, 13, 2, 5], [14, 3, 4, 1], [12, 6, 8, 9], [16, 7, 10, 11]])
+
+    def test_049(self):
+        input_strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+        output = [["bat"], ["nat", "tan"], ["ate", "eat", "tea"]]
+        anagrams = [sorted(anagram) for anagram in group_anagrams(input_strs)]
+        self.assertCountEqual(anagrams, output)
+
+        self.assertCountEqual(group_anagrams([""]),
+                              [[""]])
+        self.assertCountEqual(group_anagrams(["a"]),
+                              [["a"]])
+
+        input_strs = ["cab", "tin", "pew", "duh", "may", "ill", "buy", "bar", "max", "doc"]
+        output = [["max"], ["buy"], ["doc"], ["may"], ["ill"], ["duh"], ["tin"], ["bar"], ["pew"], ["cab"]]
+        anagrams = [sorted(anagram) for anagram in group_anagrams(input_strs)]
+        self.assertCountEqual(sorted(anagrams), sorted(output))
+
+    def test_054(self):
+        self.assertEqual(spiral_order([[1, 2, 3], [4, 5, 6], [7, 8, 9]]), [1, 2, 3, 6, 9, 8, 7, 4, 5])
+        self.assertEqual(spiral_order([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]),
+                         [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7])
+        self.assertEqual(spiral_order([[7], [9], [6]]), [7, 9, 6])
+
     def test_058(self):
         self.assertEqual(length_of_last_word("Hello World"), 5)
         self.assertEqual(length_of_last_word("   fly me   to   the moon  "), 4)
@@ -88,6 +119,10 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(to_hex(26), '1a')
         self.assertEqual(to_hex(-1), 'ffffffff')
 
+    def test_438(self):
+        self.assertEqual(find_anagrams(s="cbaebabacd", p="abc"), [0, 6])
+        self.assertEqual(find_anagrams(s="abab", p="ab"), [0, 1, 2])
+
     def test_459(self):
         self.assertTrue(repeated_substring_pattern("abab"))
         self.assertFalse(repeated_substring_pattern("aba"))
@@ -98,47 +133,32 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(next_greater_element([4, 1, 2], [1, 3, 4, 2]), [-1, 3, -1])
         self.assertEqual(next_greater_element([2, 4], [1, 2, 3, 4]), [3, -1])
 
-    def test_048(self):
-        matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-        rotate(matrix)
-        self.assertEqual(matrix, [[7, 4, 1], [8, 5, 2], [9, 6, 3]])
-
-        matrix = [[5, 1, 9, 11], [2, 4, 8, 10], [13, 3, 6, 7], [15, 14, 12, 16]]
-        rotate(matrix)
-        self.assertEqual(matrix, [[15, 13, 2, 5], [14, 3, 4, 1], [12, 6, 8, 9], [16, 7, 10, 11]])
-
-    def test_054(self):
-        self.assertEqual(spiral_order([[1, 2, 3], [4, 5, 6], [7, 8, 9]]), [1, 2, 3, 6, 9, 8, 7, 4, 5])
-        self.assertEqual(spiral_order([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]),
-                         [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7])
-        self.assertEqual(spiral_order([[7], [9], [6]]), [7, 9, 6])
-
-    def test_049(self):
-        input_strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
-        output = [["bat"], ["nat", "tan"], ["ate", "eat", "tea"]]
-        anagrams = [sorted(anagram) for anagram in group_anagrams(input_strs)]
-        self.assertCountEqual(anagrams, output)
-
-        self.assertCountEqual(group_anagrams([""]),
-                              [[""]])
-        self.assertCountEqual(group_anagrams(["a"]),
-                              [["a"]])
-
-        input_strs = ["cab", "tin", "pew", "duh", "may", "ill", "buy", "bar", "max", "doc"]
-        output = [["max"], ["buy"], ["doc"], ["may"], ["ill"], ["duh"], ["tin"], ["bar"], ["pew"], ["cab"]]
-        anagrams = [sorted(anagram) for anagram in group_anagrams(input_strs)]
-        self.assertCountEqual(sorted(anagrams), sorted(output))
-
-    def test_438(self):
-        self.assertEqual(find_anagrams(s="cbaebabacd", p="abc"), [0, 6])
-        self.assertEqual(find_anagrams(s="abab", p="ab"), [0, 1, 2])
-
 
 class Test0501to1000(unittest.TestCase):
+    def test_503(self):
+        self.assertEqual(next_greater_elements([1, 2, 1]), [2, -1, 2])
+        self.assertEqual(next_greater_elements([1, 2, 3, 4, 3]), [2, 3, 4, -1, 4])
+        self.assertEqual(next_greater_elements([5, 4, 3, 2, 1]), [-1, 5, 5, 5, 5])
+        self.assertEqual(next_greater_elements([1, 5, 3, 6, 8]), [5, 6, 6, 8, -1])
+
+    def test_556(self):
+        self.assertEqual(next_greater_element_iii(234157641), 234161457)
+        self.assertEqual(next_greater_element_iii(12), 21)
+        self.assertEqual(next_greater_element_iii(21), -1)
+        self.assertEqual(next_greater_element_iii(364), 436)
+        self.assertEqual(next_greater_element_iii(346), 364)
+        self.assertEqual(next_greater_element_iii(1488), 1848)
+        self.assertEqual(next_greater_element_iii(1312), 1321)
+        self.assertEqual(next_greater_element_iii(2147483486), -1)
+
     def test_709(self):
         self.assertEqual(to_lower_case("Hello"), "hello")
         self.assertEqual(to_lower_case("here"), "here")
         self.assertEqual(to_lower_case("LOVELY"), "lovely")
+
+    def test_713(self):
+        self.assertEqual(num_subarray_product_less_than_k(nums=[10, 5, 2, 6], k=100), 8)
+        self.assertEqual(num_subarray_product_less_than_k(nums=[1, 2, 3], k=0), 0)
 
     def test_739(self):
         self.assertEqual(daily_temperatures(temperatures=[73, 74, 75, 71, 69, 72, 76, 73]), [1, 1, 4, 2, 1, 1, 0, 0])
@@ -167,6 +187,12 @@ class Test0501to1000(unittest.TestCase):
         self.assertFalse(is_alien_sorted(words=["word", "world", "row"], order="worldabcefghijkmnpqstuvxyz"))
         self.assertFalse(is_alien_sorted(words=["apple", "app"], order="abcdefghijklmnopqrstuvwxyz"))
 
+    def test_973(self):
+        self.assertCountEqual(k_closest(points=[[1, 3], [-2, 2]], k=1), [[-2, 2]])
+        self.assertCountEqual(k_closest(points=[[3, 3], [5, -1], [-2, 4]], k=2), [[3, 3], [-2, 4]])
+        self.assertCountEqual(k_closest([[0, 1], [1, 0]], 2), [[0, 1], [1, 0]])
+        self.assertCountEqual(k_closest([[6, 10], [-3, 3], [-2, 5], [0, 2]], 3), [[0, 2], [-3, 3], [-2, 5]])
+
     def test_976(self):
         self.assertEqual(largest_perimeter([2, 1, 2]), 5)
         self.assertEqual(largest_perimeter([1, 2, 1]), 0)
@@ -178,32 +204,6 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(add_to_array_form(num=[2, 1, 5], k=806), [1, 0, 2, 1])
         self.assertEqual(add_to_array_form(num=[0], k=23), [2, 3])
         self.assertEqual(add_to_array_form(num=[0], k=10000), [1, 0, 0, 0, 0])
-
-    def test_973(self):
-        self.assertCountEqual(k_closest(points=[[1, 3], [-2, 2]], k=1), [[-2, 2]])
-        self.assertCountEqual(k_closest(points=[[3, 3], [5, -1], [-2, 4]], k=2), [[3, 3], [-2, 4]])
-        self.assertCountEqual(k_closest([[0, 1], [1, 0]], 2), [[0, 1], [1, 0]])
-        self.assertCountEqual(k_closest([[6, 10], [-3, 3], [-2, 5], [0, 2]], 3), [[0, 2], [-3, 3], [-2, 5]])
-
-    def test_503(self):
-        self.assertEqual(next_greater_elements([1, 2, 1]), [2, -1, 2])
-        self.assertEqual(next_greater_elements([1, 2, 3, 4, 3]), [2, 3, 4, -1, 4])
-        self.assertEqual(next_greater_elements([5, 4, 3, 2, 1]), [-1, 5, 5, 5, 5])
-        self.assertEqual(next_greater_elements([1, 5, 3, 6, 8]), [5, 6, 6, 8, -1])
-
-    def test_556(self):
-        self.assertEqual(next_greater_element_iii(234157641), 234161457)
-        self.assertEqual(next_greater_element_iii(12), 21)
-        self.assertEqual(next_greater_element_iii(21), -1)
-        self.assertEqual(next_greater_element_iii(364), 436)
-        self.assertEqual(next_greater_element_iii(346), 364)
-        self.assertEqual(next_greater_element_iii(1488), 1848)
-        self.assertEqual(next_greater_element_iii(1312), 1321)
-        self.assertEqual(next_greater_element_iii(2147483486), -1)
-
-    def test_713(self):
-        self.assertEqual(num_subarray_product_less_than_k(nums=[10, 5, 2, 6], k=100), 8)
-        self.assertEqual(num_subarray_product_less_than_k(nums=[1, 2, 3], k=0), 0)
 
 
 class Test1001to1500(unittest.TestCase):
@@ -273,6 +273,16 @@ class Test1501to2000(unittest.TestCase):
         self.assertFalse(parking_system.add_car(3))
         self.assertFalse(parking_system.add_car(1))
 
+    def test_1630(self):
+        self.assertEqual(
+            check_arithmetic_subarrays(nums=[4, 6, 5, 9, 3, 7], l=[0, 0, 2], r=[2, 3, 5]
+                                       ), [True, False, True])
+        self.assertEqual(
+            check_arithmetic_subarrays(nums=[-12, -9, -3, -12, -6, 15, 20, -25, -20, -15, -10],
+                                       l=[0, 1, 6, 4, 8, 7],
+                                       r=[4, 4, 9, 7, 9, 10]
+                                       ), [False, True, False, False, True, True])
+
     def test_1672(self):
         self.assertEqual(maximum_wealth([[1, 2, 3], [3, 2, 1]]), 6)
         self.assertEqual(maximum_wealth([[1, 5], [7, 3], [3, 5]]), 10)
@@ -317,25 +327,15 @@ class Test1501to2000(unittest.TestCase):
             count_points([[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]], [[1, 2, 2], [2, 2, 2], [4, 3, 2], [4, 3, 3]]),
             [2, 3, 2, 4])
 
-    def test_1925(self):
-        self.assertEqual(count_triples(5), 2)
-        self.assertEqual(count_triples(10), 4)
-
     def test_1886(self):
         self.assertTrue(find_rotation(mat=[[0, 0, 0], [0, 1, 0], [1, 1, 1]], target=[[1, 1, 1], [0, 1, 0], [0, 0, 0]]))
         self.assertTrue(find_rotation(mat=[[0, 1], [1, 0]], target=[[1, 0], [0, 1]]))
         self.assertFalse(find_rotation(mat=[[0, 1], [1, 1]], target=[[1, 0], [0, 1]]))
         self.assertTrue(find_rotation(mat=[[0, 0, 0], [0, 1, 0], [1, 1, 1]], target=[[1, 0, 0], [1, 1, 0], [1, 0, 0]]))
 
-    def test_1630(self):
-        self.assertEqual(
-            check_arithmetic_subarrays(nums=[4, 6, 5, 9, 3, 7], l=[0, 0, 2], r=[2, 3, 5]
-                                       ), [True, False, True])
-        self.assertEqual(
-            check_arithmetic_subarrays(nums=[-12, -9, -3, -12, -6, 15, 20, -25, -20, -15, -10],
-                                       l=[0, 1, 6, 4, 8, 7],
-                                       r=[4, 4, 9, 7, 9, 10]
-                                       ), [False, True, False, False, True, True])
+    def test_1925(self):
+        self.assertEqual(count_triples(5), 2)
+        self.assertEqual(count_triples(10), 4)
 
 
 class Test2001to2500(unittest.TestCase):
