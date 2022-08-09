@@ -129,6 +129,10 @@ class Test0001to0500(unittest.TestCase):
         anagrams = [sorted(anagram) for anagram in group_anagrams(input_strs)]
         self.assertCountEqual(sorted(anagrams), sorted(output))
 
+    def test_438(self):
+        self.assertEqual(find_anagrams(s="cbaebabacd", p="abc"), [0, 6])
+        self.assertEqual(find_anagrams(s="abab", p="ab"), [0, 1, 2])
+
 
 class Test0501to1000(unittest.TestCase):
     def test_709(self):
@@ -196,6 +200,10 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(next_greater_element_iii(1488), 1848)
         self.assertEqual(next_greater_element_iii(1312), 1321)
         self.assertEqual(next_greater_element_iii(2147483486), -1)
+
+    def test_713(self):
+        self.assertEqual(num_subarray_product_less_than_k(nums=[10, 5, 2, 6], k=100), 8)
+        self.assertEqual(num_subarray_product_less_than_k(nums=[1, 2, 3], k=0), 0)
 
 
 class Test1001to1500(unittest.TestCase):

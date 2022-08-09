@@ -334,3 +334,41 @@ def group_anagrams(strs: List[str]) -> List[List[str]]:
         key = tuple(sorted(w))
         d[key] = d.get(key, []) + [w]
     return list(d.values())
+
+
+# 438. Find All Anagrams in a String
+def find_anagrams_slow(s: str, p: str) -> List[int]:
+    result = []
+    for start_index in range(len(s) - len(p) + 1):
+        if sorted(s[start_index:start_index+len(p)]) == sorted(p):
+            result.append(start_index)
+
+    return result
+
+
+def find_anagrams(s: str, p: str) -> List[int]:
+    result = []
+    hashmap = {}
+
+    if len(p) > len(s):
+        return []
+
+    for ch in p:
+        hashmap[ch] = hashmap.get(ch, 0) + 1
+
+    for i in range(len(p) - 1):
+        if s[i] in hashmap:
+            hashmap[s[i]] -= 1
+
+    # slide the window with stride 1
+    for i in range(-1, len(s) - len(p) + 1):
+        if i > -1 and s[i] in hashmap:
+            hashmap[s[i]] += 1
+        if i + len(p) < len(s) and s[i + len(p)] in hashmap:
+            hashmap[s[i + len(p)]] -= 1
+
+        # check whether we encountered an anagram
+        if all(v == 0 for v in hashmap.values()):
+            result.append(i + 1)
+
+    return result

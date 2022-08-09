@@ -212,3 +212,19 @@ def next_greater_element_iii(n: int) -> int:
                     return int(result)
 
     return -1
+
+
+# 713. Subarray Product Less Than K
+def num_subarray_product_less_than_k(nums: List[int], k: int) -> int:
+    if k <= 1:
+        return 0
+
+    prod = 1
+    ans = left = 0
+    for right, val in enumerate(nums):
+        prod *= val
+        while prod >= k:
+            prod /= nums[left]
+            left += 1
+        ans += right - left + 1
+    return ans
