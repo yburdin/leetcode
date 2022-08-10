@@ -228,3 +228,16 @@ def num_subarray_product_less_than_k(nums: List[int], k: int) -> int:
             left += 1
         ans += right - left + 1
     return ans
+
+
+# 910. Smallest Range II
+def smallest_range_ii(nums: List[int], k: int) -> int:
+    nums.sort()
+    first_num, last_num = nums[0], nums[-1]
+    result = last_num - first_num
+    for i in range(len(nums) - 1):
+        a, b = nums[i], nums[i+1]
+        possible_result = max(last_num - k, a + k) - min(first_num + k, b - k)
+        result = min(result, possible_result)
+
+    return result

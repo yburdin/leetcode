@@ -372,3 +372,18 @@ def find_anagrams(s: str, p: str) -> List[int]:
             result.append(i + 1)
 
     return result
+
+
+# 304. Range Sum Query 2D - Immutable
+class NumMatrix:
+
+    def __init__(self, matrix: List[List[int]]):
+        self.matrix = matrix
+        self.sums = [[0 for _ in range(len(self.matrix[0]) + 1)] for _ in range(len(self.matrix) + 1)]
+        for row in range(len(self.matrix)):
+            for col in range(len(self.matrix[0])):
+                self.sums[row+1][col+1] = sum([sum(row_[:col+1]) for row_ in self.matrix[:row+1]])
+
+    def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
+        result = self.sums[row2+1][col2+1] - self.sums[row1][col2+1] - self.sums[row2+1][col1] + self.sums[row1][col1]
+        return result

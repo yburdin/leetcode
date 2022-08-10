@@ -133,6 +133,25 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(next_greater_element([4, 1, 2], [1, 3, 4, 2]), [-1, 3, -1])
         self.assertEqual(next_greater_element([2, 4], [1, 2, 3, 4]), [3, -1])
 
+    def test_304(self):
+        num_matrix = NumMatrix([[3, 0, 1, 4, 2], [5, 6, 3, 2, 1], [1, 2, 0, 1, 5], [4, 1, 0, 1, 7], [1, 0, 3, 0, 5]])
+        param_1 = num_matrix.sumRegion(2, 1, 4, 3)
+        param_2 = num_matrix.sumRegion(1, 1, 2, 2)
+        param_3 = num_matrix.sumRegion(1, 2, 2, 4)
+
+        self.assertEqual(param_1, 8)
+        self.assertEqual(param_2, 11)
+        self.assertEqual(param_3, 12)
+
+        num_matrix = NumMatrix([[-4, -5]])
+        param_1 = num_matrix.sumRegion(0, 0, 0, 0)
+        param_2 = num_matrix.sumRegion(0, 0, 0, 1)
+        param_3 = num_matrix.sumRegion(0, 1, 0, 1)
+
+        self.assertEqual(param_1, -4)
+        self.assertEqual(param_2, -9)
+        self.assertEqual(param_3, -5)
+
 
 class Test0501to1000(unittest.TestCase):
     def test_503(self):
@@ -204,6 +223,11 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(add_to_array_form(num=[2, 1, 5], k=806), [1, 0, 2, 1])
         self.assertEqual(add_to_array_form(num=[0], k=23), [2, 3])
         self.assertEqual(add_to_array_form(num=[0], k=10000), [1, 0, 0, 0, 0])
+
+    def test_910(self):
+        self.assertEqual(smallest_range_ii(nums=[1], k=0), 0)
+        self.assertEqual(smallest_range_ii(nums=[0, 10], k=2), 6)
+        self.assertEqual(smallest_range_ii(nums=[1, 3, 6], k=3), 3)
 
 
 class Test1001to1500(unittest.TestCase):
