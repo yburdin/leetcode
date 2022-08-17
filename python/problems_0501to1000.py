@@ -1,4 +1,5 @@
 from typing import List, Optional
+import string
 
 
 class ListNode:
@@ -241,3 +242,39 @@ def smallest_range_ii(nums: List[int], k: int) -> int:
         result = min(result, possible_result)
 
     return result
+
+
+# 804. Unique Morse Code Words
+def unique_morse_representations(words: List[str]) -> int:
+    morse_map = dict(zip(string.ascii_lowercase,
+                         [".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--",
+                          "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--",
+                          "--.."]))
+
+    words_in_morse = [''.join([morse_map[char] for char in word]) for word in words]
+
+    return len(set(words_in_morse))
+
+
+# 860. Lemonade Change
+def lemonade_change(bills: List[int]) -> bool:
+    current_cash = {5: 0,
+                    10: 0,
+                    20: 0}
+
+    for bill in bills:
+        current_cash[bill] += 1
+
+        if bill == 10:
+            current_cash[5] -= 1
+        if bill == 20:
+            if current_cash[10] > 0:
+                current_cash[10] -= 1
+                current_cash[5] -= 1
+            else:
+                current_cash[5] -= 3
+
+        if any([value < 0 for value in current_cash.values()]):
+            return False
+
+    return True

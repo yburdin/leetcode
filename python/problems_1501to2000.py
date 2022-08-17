@@ -1,4 +1,5 @@
 from typing import List
+import heapq
 
 
 # 1523. Count Odd Numbers in an Interval Range
@@ -222,3 +223,16 @@ def is_arithmetic(array: List[int]) -> bool:
         if array[i + 1] - array[i] != array[1] - array[0]:
             return False
     return True
+
+
+# 1845. Seat Reservation Manager
+class SeatManager:
+
+    def __init__(self, n: int):
+        self.heap = list(range(1, n + 1))
+
+    def reserve(self) -> int:
+        return heapq.heappop(self.heap)
+
+    def unreserve(self, seat_number: int) -> None:
+        heapq.heappush(self.heap, seat_number)

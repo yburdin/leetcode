@@ -229,6 +229,14 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(smallest_range_ii(nums=[0, 10], k=2), 6)
         self.assertEqual(smallest_range_ii(nums=[1, 3, 6], k=3), 3)
 
+    def test_804(self):
+        self.assertEqual(unique_morse_representations(["gin", "zen", "gig", "msg"]), 2)
+        self.assertEqual(unique_morse_representations(["a"]), 1)
+
+    def test_860(self):
+        self.assertTrue(lemonade_change([5, 5, 5, 10, 20]))
+        self.assertFalse(lemonade_change([5, 5, 10, 10, 20]))
+
 
 class Test1001to1500(unittest.TestCase):
     def test_1232(self):
@@ -360,6 +368,33 @@ class Test1501to2000(unittest.TestCase):
     def test_1925(self):
         self.assertEqual(count_triples(5), 2)
         self.assertEqual(count_triples(10), 4)
+
+    def test_1845(self):
+        seat_manager = SeatManager(5)  # Initializes a SeatManager with 5 seats.
+
+        # All seats are available, so return the lowest numbered seat, which is 1.
+        self.assertEqual(seat_manager.reserve(), 1)
+
+        # The available seats are [2,3,4,5], so return the lowest of them, which is 2.
+        self.assertEqual(seat_manager.reserve(), 2)
+
+        # Unreserve seat 2, so now the available seats are [2,3,4,5].
+        seat_manager.unreserve(2)
+
+        # The available seats are [2,3,4,5], so return the lowest of them, which is 2.
+        self.assertEqual(seat_manager.reserve(), 2)
+
+        # The available seats are [3,4,5], so return the lowest of them, which is 3.
+        self.assertEqual(seat_manager.reserve(), 3)
+
+        # The available seats are [4,5], so return the lowest of them, which is 4.
+        self.assertEqual(seat_manager.reserve(), 4)
+
+        # The only available seat is seat 5, so return 5.
+        self.assertEqual(seat_manager.reserve(), 5)
+
+        # Unreserve seat 5, so now the available seats are [5].
+        seat_manager.unreserve(5)
 
 
 class Test2001to2500(unittest.TestCase):
