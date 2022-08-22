@@ -387,3 +387,13 @@ class NumMatrix:
     def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
         result = self.sums[row2+1][col2+1] - self.sums[row1][col2+1] - self.sums[row2+1][col1] + self.sums[row1][col1]
         return result
+
+
+# 342. Power of Four
+def is_power_of_four(n: int) -> bool:
+    x = 0
+    while 4 ** x <= n:
+        if 4 ** x == n:
+            return True
+        x += 1
+    return False

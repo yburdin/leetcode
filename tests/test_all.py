@@ -152,6 +152,11 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(param_2, -9)
         self.assertEqual(param_3, -5)
 
+    def test_342(self):
+        self.assertTrue(is_power_of_four(16))
+        self.assertTrue(is_power_of_four(1))
+        self.assertFalse(is_power_of_four(5))
+
 
 class Test0501to1000(unittest.TestCase):
     def test_503(self):
