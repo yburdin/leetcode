@@ -1,5 +1,4 @@
 from typing import List
-import heapq
 
 
 # 1523. Count Odd Numbers in an Interval Range
@@ -173,19 +172,6 @@ def interpret(command: str) -> str:
     return command.replace('()', 'o').replace('(al)', 'al')
 
 
-# 1603. Design Parking System
-class ParkingSystem:
-    def __init__(self, big: int, medium: int, small: int):
-        self.parking_dict = {1: big, 2: medium, 3: small}
-
-    def add_car(self, car_type: int) -> bool:
-        if self.parking_dict[car_type] > 0:
-            self.parking_dict[car_type] -= 1
-            return True
-        else:
-            return False
-
-
 # 1886. Determine Whether Matrix Can Be Obtained By Rotation
 def find_rotation(mat: List[List[int]], target: List[List[int]]) -> bool:
     size = len(mat)
@@ -223,16 +209,3 @@ def is_arithmetic(array: List[int]) -> bool:
         if array[i + 1] - array[i] != array[1] - array[0]:
             return False
     return True
-
-
-# 1845. Seat Reservation Manager
-class SeatManager:
-
-    def __init__(self, n: int):
-        self.heap = list(range(1, n + 1))
-
-    def reserve(self) -> int:
-        return heapq.heappop(self.heap)
-
-    def unreserve(self, seat_number: int) -> None:
-        heapq.heappush(self.heap, seat_number)

@@ -97,29 +97,6 @@ def str_str(haystack: str, needle: str) -> int:
     return -1
 
 
-# 232. Implement Queue using Stacks
-class MyQueue:
-    def __init__(self):
-        self.s1 = []
-        self.s2 = []
-
-    def push(self, x):
-        self.s1.append(x)
-
-    def pop(self):
-        self.peek()
-        return self.s2.pop()
-
-    def peek(self):
-        if not self.s2:
-            while self.s1:
-                self.s2.append(self.s1.pop())
-        return self.s2[-1]
-
-    def empty(self):
-        return not self.s1 and not self.s2
-
-
 # 242. Valid Anagram
 def is_anagram(s: str, t: str) -> bool:
     s_dict = {char: s.count(char) for char in set(s)}
@@ -136,15 +113,6 @@ def contains_duplicate(nums: List[int]) -> bool:
         else:
             unique.add(num)
     return False
-
-
-# 303. Range Sum Query - Immutable
-class NumArray:
-    def __init__(self, nums: List[int]):
-        self.nums = nums
-
-    def sum_range(self, left: int, right: int) -> int:
-        return sum(self.nums[left:right+1])
 
 
 # 459. Repeated Substring Pattern
@@ -372,21 +340,6 @@ def find_anagrams(s: str, p: str) -> List[int]:
             result.append(i + 1)
 
     return result
-
-
-# 304. Range Sum Query 2D - Immutable
-class NumMatrix:
-
-    def __init__(self, matrix: List[List[int]]):
-        self.matrix = matrix
-        self.sums = [[0 for _ in range(len(self.matrix[0]) + 1)] for _ in range(len(self.matrix) + 1)]
-        for row in range(len(self.matrix)):
-            for col in range(len(self.matrix[0])):
-                self.sums[row+1][col+1] = sum([sum(row_[:col+1]) for row_ in self.matrix[:row+1]])
-
-    def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
-        result = self.sums[row2+1][col2+1] - self.sums[row1][col2+1] - self.sums[row2+1][col1] + self.sums[row1][col1]
-        return result
 
 
 # 342. Power of Four

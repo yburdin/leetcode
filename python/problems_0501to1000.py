@@ -1,11 +1,6 @@
 from typing import List, Optional
+from classes import ListNode
 import string
-
-
-class ListNode:
-    def __init__(self, val=0, next_=None):
-        self.val = val
-        self.next = next_
 
 
 # 976. Largest Perimeter Triangle

@@ -1,9 +1,14 @@
-class Node:
-    def __init__(self, val, next_node=None):
+from typing import List
+import heapq
+
+
+class ListNode:
+    def __init__(self, val=0, next_=None):
         self.val = val
-        self.next = next_node
+        self.next = next_
 
 
+# 707. Design Linked List
 class MyLinkedList:
 
     def __init__(self):
@@ -29,7 +34,7 @@ class MyLinkedList:
         Add a node of value val before the first element of the linked list.
         After the insertion, the new node will be the first node of the linked list.
         """
-        self.head = Node(val, self.head)
+        self.head = ListNode(val, self.head)
         self.size += 1
 
     def addAtTail(self, val: int) -> None:
@@ -44,7 +49,7 @@ class MyLinkedList:
             while current_node.next:
                 current_node = current_node.next
 
-            current_node.next = Node(val)
+            current_node.next = ListNode(val)
             self.size += 1
 
     def addAtIndex(self, index: int, val: int) -> None:
@@ -65,7 +70,7 @@ class MyLinkedList:
                 current_node = current_node.next
 
             next_node = current_node.next
-            current_node.next = Node(val, next_node)
+            current_node.next = ListNode(val, next_node)
             self.size += 1
 
     def deleteAtIndex(self, index: int) -> None:
@@ -83,3 +88,76 @@ class MyLinkedList:
                 current_node.next = current_node.next.next
 
             self.size -= 1
+
+
+# 303. Range Sum Query - Immutable
+class NumArray:
+    def __init__(self, nums: List[int]):
+        self.nums = nums
+
+    def sum_range(self, left: int, right: int) -> int:
+        return sum(self.nums[left:right+1])
+
+
+# 304. Range Sum Query 2D - Immutable
+class NumMatrix:
+
+    def __init__(self, matrix: List[List[int]]):
+        self.matrix = matrix
+        self.sums = [[0 for _ in range(len(self.matrix[0]) + 1)] for _ in range(len(self.matrix) + 1)]
+        for row in range(len(self.matrix)):
+            for col in range(len(self.matrix[0])):
+                self.sums[row+1][col+1] = sum([sum(row_[:col+1]) for row_ in self.matrix[:row+1]])
+
+    def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
+        result = self.sums[row2+1][col2+1] - self.sums[row1][col2+1] - self.sums[row2+1][col1] + self.sums[row1][col1]
+        return result
+
+
+# 232. Implement Queue using Stacks
+class MyQueue:
+    def __init__(self):
+        self.s1 = []
+        self.s2 = []
+
+    def push(self, x):
+        self.s1.append(x)
+
+    def pop(self):
+        self.peek()
+        return self.s2.pop()
+
+    def peek(self):
+        if not self.s2:
+            while self.s1:
+                self.s2.append(self.s1.pop())
+        return self.s2[-1]
+
+    def empty(self):
+        return not self.s1 and not self.s2
+
+
+# 1603. Design Parking System
+class ParkingSystem:
+    def __init__(self, big: int, medium: int, small: int):
+        self.parking_dict = {1: big, 2: medium, 3: small}
+
+    def add_car(self, car_type: int) -> bool:
+        if self.parking_dict[car_type] > 0:
+            self.parking_dict[car_type] -= 1
+            return True
+        else:
+            return False
+
+
+# 1845. Seat Reservation Manager
+class SeatManager:
+
+    def __init__(self, n: int):
+        self.heap = list(range(1, n + 1))
+
+    def reserve(self) -> int:
+        return heapq.heappop(self.heap)
+
+    def unreserve(self, seat_number: int) -> None:
+        heapq.heappush(self.heap, seat_number)

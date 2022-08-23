@@ -1,11 +1,6 @@
 from typing import List
 from math import atan
-
-
-class ListNode:
-    def __init__(self, val=0, next_=None):
-        self.val = val
-        self.next = next_
+from classes import ListNode
 
 
 # 1491. Average Salary Excluding the Minimum and Maximum Salary
