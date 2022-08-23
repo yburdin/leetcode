@@ -4,6 +4,7 @@ from python.problems_0501to1000 import *
 from python.problems_1001to1500 import *
 from python.problems_1501to2000 import *
 from python.problems_2001to2500 import *
+from classes import *
 
 
 class Test0001to0500(unittest.TestCase):
@@ -416,6 +417,60 @@ class Test2001to2500(unittest.TestCase):
     def test_2221(self):
         self.assertEqual(triangular_sum([1, 2, 3, 4, 5]), 8)
         self.assertEqual(triangular_sum([5]), 5)
+
+
+class TestMyLinkedList(unittest.TestCase):
+    def test_707(self):
+        with self.subTest(msg='Testcase 1'):
+            my_linked_list = MyLinkedList()
+            my_linked_list.addAtHead(1)
+            my_linked_list.addAtTail(3)
+            my_linked_list.addAtIndex(1, 2)                 # linked list becomes 1->2->3
+            self.assertEqual(my_linked_list.get(1), 2)      # return 2
+
+            my_linked_list.deleteAtIndex(1)                 # now the linked list is 1->3
+            self.assertEqual(my_linked_list.get(1), 3)      # return 3
+
+        with self.subTest(msg='Testcase 2'):
+            my_linked_list = MyLinkedList()
+            my_linked_list.addAtHead(7)
+            my_linked_list.addAtHead(2)
+            my_linked_list.addAtHead(1)
+            my_linked_list.addAtIndex(3, 0)
+            my_linked_list.deleteAtIndex(2)
+            my_linked_list.addAtHead(6)
+            my_linked_list.addAtTail(4)
+            self.assertEqual(my_linked_list.get(4), 4)
+
+            my_linked_list.addAtHead(4)
+            my_linked_list.addAtIndex(5, 0)
+            my_linked_list.addAtHead(6)
+
+        with self.subTest(msg='Testcase 3'):
+            my_linked_list = MyLinkedList()
+            my_linked_list.addAtIndex(0, 10)
+            my_linked_list.addAtIndex(0, 20)
+            my_linked_list.addAtIndex(1, 30)
+            self.assertEqual(my_linked_list.get(0), 20)
+
+        with self.subTest(msg='Testcase 4'):
+            my_linked_list = MyLinkedList()
+            my_linked_list.addAtTail(1)
+            self.assertEqual(my_linked_list.get(0), 1)
+
+        with self.subTest(msg='Testcase 5'):
+            my_linked_list = MyLinkedList()
+            my_linked_list.addAtHead(4)
+            self.assertEqual(my_linked_list.get(1), -1)
+            my_linked_list.addAtHead(1)
+            my_linked_list.addAtHead(5)
+            my_linked_list.deleteAtIndex(3)
+            my_linked_list.addAtHead(7)
+            self.assertEqual(my_linked_list.get(3), 4)
+            self.assertEqual(my_linked_list.get(3), 4)
+            self.assertEqual(my_linked_list.get(3), 4)
+            my_linked_list.addAtHead(1)
+            my_linked_list.deleteAtIndex(4)
 
 
 def list_to_linked_list(nodes: List[int]) -> ListNode:
