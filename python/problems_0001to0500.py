@@ -350,3 +350,14 @@ def is_power_of_four(n: int) -> bool:
             return True
         x += 1
     return False
+
+
+# 326. Power of Three
+def is_power_of_three(n: int) -> bool:
+    x = 0
+    while 3 ** x <= n:
+        if 3 ** x == n:
+            return True
+        x += 1
+    return False
+

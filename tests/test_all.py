@@ -243,6 +243,101 @@ class Test0501to1000(unittest.TestCase):
         self.assertTrue(lemonade_change([5, 5, 5, 10, 20]))
         self.assertFalse(lemonade_change([5, 5, 10, 10, 20]))
 
+    def test_707(self):
+        with self.subTest(msg='Testcase 1'):
+            my_linked_list = MyLinkedList()
+            my_linked_list.addAtHead(1)
+            my_linked_list.addAtTail(3)
+            my_linked_list.addAtIndex(1, 2)                 # linked list becomes 1->2->3
+            self.assertEqual(my_linked_list.get(1), 2)      # return 2
+
+            my_linked_list.deleteAtIndex(1)                 # now the linked list is 1->3
+            self.assertEqual(my_linked_list.get(1), 3)      # return 3
+
+        with self.subTest(msg='Testcase 2'):
+            my_linked_list = MyLinkedList()
+            my_linked_list.addAtHead(7)
+            my_linked_list.addAtHead(2)
+            my_linked_list.addAtHead(1)
+            my_linked_list.addAtIndex(3, 0)
+            my_linked_list.deleteAtIndex(2)
+            my_linked_list.addAtHead(6)
+            my_linked_list.addAtTail(4)
+            self.assertEqual(my_linked_list.get(4), 4)
+
+            my_linked_list.addAtHead(4)
+            my_linked_list.addAtIndex(5, 0)
+            my_linked_list.addAtHead(6)
+
+        with self.subTest(msg='Testcase 3'):
+            my_linked_list = MyLinkedList()
+            my_linked_list.addAtIndex(0, 10)
+            my_linked_list.addAtIndex(0, 20)
+            my_linked_list.addAtIndex(1, 30)
+            self.assertEqual(my_linked_list.get(0), 20)
+
+        with self.subTest(msg='Testcase 4'):
+            my_linked_list = MyLinkedList()
+            my_linked_list.addAtTail(1)
+            self.assertEqual(my_linked_list.get(0), 1)
+
+        with self.subTest(msg='Testcase 5'):
+            my_linked_list = MyLinkedList()
+            my_linked_list.addAtHead(4)
+            self.assertEqual(my_linked_list.get(1), -1)
+            my_linked_list.addAtHead(1)
+            my_linked_list.addAtHead(5)
+            my_linked_list.deleteAtIndex(3)
+            my_linked_list.addAtHead(7)
+            self.assertEqual(my_linked_list.get(3), 4)
+            self.assertEqual(my_linked_list.get(3), 4)
+            self.assertEqual(my_linked_list.get(3), 4)
+            my_linked_list.addAtHead(1)
+            my_linked_list.deleteAtIndex(4)
+
+    def test_729(self):
+        with self.subTest(msg='Testcase 1'):
+            my_calendar = MyCalendar()
+            self.assertTrue(my_calendar.book(10, 20))
+            self.assertFalse(my_calendar.book(15, 25))
+            self.assertTrue(my_calendar.book(20, 30))
+
+        with self.subTest(msg='Testcase 2'):
+            my_calendar = MyCalendar()
+            self.assertTrue(my_calendar.book(47, 50))
+            self.assertTrue(my_calendar.book(33, 41))
+            self.assertFalse(my_calendar.book(39, 45))
+            self.assertFalse(my_calendar.book(33, 42))
+            self.assertTrue(my_calendar.book(25, 32))
+            self.assertFalse(my_calendar.book(26, 35))
+            self.assertTrue(my_calendar.book(19, 25))
+            self.assertTrue(my_calendar.book(3, 8))
+            self.assertTrue(my_calendar.book(8, 13))
+            self.assertFalse(my_calendar.book(18, 27))
+
+        with self.subTest(msg='Testcase 3'):
+            my_calendar = MyCalendar()
+            self.assertTrue(my_calendar.book(97, 100))
+            self.assertTrue(my_calendar.book(33, 51))
+            self.assertFalse(my_calendar.book(89, 100))
+            self.assertFalse(my_calendar.book(83, 100))
+            self.assertTrue(my_calendar.book(75, 92))
+            self.assertFalse(my_calendar.book(76, 95))
+            self.assertTrue(my_calendar.book(19, 30))
+            self.assertTrue(my_calendar.book(53, 63))
+            self.assertFalse(my_calendar.book(8, 23))
+            self.assertFalse(my_calendar.book(18, 37))
+            self.assertFalse(my_calendar.book(87, 100))
+            self.assertFalse(my_calendar.book(83, 100))
+            self.assertFalse(my_calendar.book(54, 67))
+            self.assertFalse(my_calendar.book(35, 48))
+            self.assertFalse(my_calendar.book(58, 75))
+            self.assertFalse(my_calendar.book(70, 89))
+            self.assertFalse(my_calendar.book(13, 32))
+            self.assertFalse(my_calendar.book(44, 63))
+            self.assertFalse(my_calendar.book(51, 62))
+            self.assertTrue(my_calendar.book(2, 15))
+
 
 class Test1001to1500(unittest.TestCase):
     def test_1232(self):
@@ -417,60 +512,6 @@ class Test2001to2500(unittest.TestCase):
     def test_2221(self):
         self.assertEqual(triangular_sum([1, 2, 3, 4, 5]), 8)
         self.assertEqual(triangular_sum([5]), 5)
-
-
-class TestMyLinkedList(unittest.TestCase):
-    def test_707(self):
-        with self.subTest(msg='Testcase 1'):
-            my_linked_list = MyLinkedList()
-            my_linked_list.addAtHead(1)
-            my_linked_list.addAtTail(3)
-            my_linked_list.addAtIndex(1, 2)                 # linked list becomes 1->2->3
-            self.assertEqual(my_linked_list.get(1), 2)      # return 2
-
-            my_linked_list.deleteAtIndex(1)                 # now the linked list is 1->3
-            self.assertEqual(my_linked_list.get(1), 3)      # return 3
-
-        with self.subTest(msg='Testcase 2'):
-            my_linked_list = MyLinkedList()
-            my_linked_list.addAtHead(7)
-            my_linked_list.addAtHead(2)
-            my_linked_list.addAtHead(1)
-            my_linked_list.addAtIndex(3, 0)
-            my_linked_list.deleteAtIndex(2)
-            my_linked_list.addAtHead(6)
-            my_linked_list.addAtTail(4)
-            self.assertEqual(my_linked_list.get(4), 4)
-
-            my_linked_list.addAtHead(4)
-            my_linked_list.addAtIndex(5, 0)
-            my_linked_list.addAtHead(6)
-
-        with self.subTest(msg='Testcase 3'):
-            my_linked_list = MyLinkedList()
-            my_linked_list.addAtIndex(0, 10)
-            my_linked_list.addAtIndex(0, 20)
-            my_linked_list.addAtIndex(1, 30)
-            self.assertEqual(my_linked_list.get(0), 20)
-
-        with self.subTest(msg='Testcase 4'):
-            my_linked_list = MyLinkedList()
-            my_linked_list.addAtTail(1)
-            self.assertEqual(my_linked_list.get(0), 1)
-
-        with self.subTest(msg='Testcase 5'):
-            my_linked_list = MyLinkedList()
-            my_linked_list.addAtHead(4)
-            self.assertEqual(my_linked_list.get(1), -1)
-            my_linked_list.addAtHead(1)
-            my_linked_list.addAtHead(5)
-            my_linked_list.deleteAtIndex(3)
-            my_linked_list.addAtHead(7)
-            self.assertEqual(my_linked_list.get(3), 4)
-            self.assertEqual(my_linked_list.get(3), 4)
-            self.assertEqual(my_linked_list.get(3), 4)
-            my_linked_list.addAtHead(1)
-            my_linked_list.deleteAtIndex(4)
 
 
 def list_to_linked_list(nodes: List[int]) -> ListNode:

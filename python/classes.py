@@ -161,3 +161,22 @@ class SeatManager:
 
     def unreserve(self, seat_number: int) -> None:
         heapq.heappush(self.heap, seat_number)
+
+
+# 729. My Calendar I
+class MyCalendar:
+
+    def __init__(self):
+        self.events = []
+
+    def book(self, start: int, end: int) -> bool:
+        for event_start, event_end in self.events:
+            if event_start <= start < event_end:
+                return False
+            if event_start < end <= event_end:
+                return False
+            if start < event_start and end > event_end:
+                return False
+
+        self.events.append((start, end))
+        return True
