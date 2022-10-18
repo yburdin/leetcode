@@ -184,6 +184,13 @@ class Test0001to0500(unittest.TestCase):
         with self.subTest('Example 5'):
             self.assertEqual(unique_paths_with_obstacles([[0, 0], [1, 1], [0, 0]]), 0)
 
+    def test_038(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(count_and_say(1), '1')
+
+        with self.subTest('Example 2'):
+            self.assertEqual(count_and_say(4), '1211')
+
 
 class Test0501to1000(unittest.TestCase):
     def test_503(self):
@@ -400,6 +407,23 @@ class Test1001to1500(unittest.TestCase):
     def test_1491(self):
         self.assertEqual(average([4000, 3000, 1000, 2000]), 2500.)
         self.assertEqual(average([1000, 2000, 3000]), 2000.)
+
+    def test_1323(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(maximum_69_number(9669), 9969)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(maximum_69_number(9996), 9999)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(maximum_69_number(9999), 9999)
+
+    def test_1266(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(min_time_to_visit_all_points([[1, 1], [3, 4], [-1, 0]]), 7)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(min_time_to_visit_all_points([[3, 2], [-2, 2]]), 5)
 
 
 class Test1501to2000(unittest.TestCase):

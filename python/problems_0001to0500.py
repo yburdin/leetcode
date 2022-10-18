@@ -394,3 +394,27 @@ def unique_paths_with_obstacles(obstacle_grid: List[List[int]]) -> int:
             )
 
     return obstacle_grid[-1][-1]
+
+
+# 38. Count and Say
+def count_and_say(n: int) -> str:
+    if n == 1:
+        return '1'
+    else:
+        return say(count_and_say(n-1))
+
+
+def say(s: str) -> str:
+    result_str = ''
+    digits = [s[0], ]
+
+    for c in s[1:]:
+        if c == digits[-1][0]:
+            digits[-1] += c
+        else:
+            digits.append(c)
+
+    for digit in digits:
+        result_str += f'{len(digit)}{digit[0]}'
+
+    return result_str
