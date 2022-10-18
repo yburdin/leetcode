@@ -158,6 +158,32 @@ class Test0001to0500(unittest.TestCase):
         self.assertTrue(is_power_of_four(1))
         self.assertFalse(is_power_of_four(5))
 
+    def test_062(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(unique_paths(m=3, n=7), 28)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(unique_paths(m=3, n=2), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(unique_paths(m=57, n=2), 57)
+
+    def test_063(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(unique_paths_with_obstacles([[0, 0, 0], [0, 1, 0], [0, 0, 0]]), 2)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(unique_paths_with_obstacles([[0, 1], [0, 0]]), 1)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(unique_paths_with_obstacles([[0]]), 1)
+
+        with self.subTest('Example 4'):
+            self.assertEqual(unique_paths_with_obstacles([[1, 0]]), 0)
+
+        with self.subTest('Example 5'):
+            self.assertEqual(unique_paths_with_obstacles([[0, 0], [1, 1], [0, 0]]), 0)
+
 
 class Test0501to1000(unittest.TestCase):
     def test_503(self):

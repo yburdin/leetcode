@@ -361,3 +361,36 @@ def is_power_of_three(n: int) -> bool:
         x += 1
     return False
 
+
+# 62. Unique Paths
+def unique_paths(m: int, n: int) -> int:
+    # Количество уникальных путей равно количествую сочетаний из n по k,
+    # где n - общая длина пути, k - длина стороны прямоугольника
+
+    path_len = m + n - 2
+    side_len = max(m, n) - 1
+
+    return factorial(path_len) // factorial(path_len - side_len) // factorial(side_len)
+
+
+# 63. Unique Paths II
+def unique_paths_with_obstacles(obstacle_grid: List[List[int]]) -> int:
+    if obstacle_grid[0][0] == 1:
+        return 0
+    else:
+        obstacle_grid[0][0] = 1
+
+    for column in range(1, len(obstacle_grid[0])):
+        obstacle_grid[0][column] = obstacle_grid[0][column - 1] if obstacle_grid[0][column] == 0 else 0
+
+    for row in range(1, len(obstacle_grid)):
+        obstacle_grid[row][0] = obstacle_grid[row - 1][0] if obstacle_grid[row][0] == 0 else 0
+
+    for row in range(1, len(obstacle_grid)):
+        for column in range(1, len(obstacle_grid[0])):
+            obstacle_grid[row][column] = (
+                obstacle_grid[row - 1][column] + obstacle_grid[row][column - 1]
+                if obstacle_grid[row][column] == 0 else 0
+            )
+
+    return obstacle_grid[-1][-1]
