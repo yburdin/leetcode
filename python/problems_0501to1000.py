@@ -273,3 +273,23 @@ def lemonade_change(bills: List[int]) -> bool:
             return False
 
     return True
+
+
+# 692. Top K Frequent Words
+def top_k_frequent(words: List[str], k: int) -> List[str]:
+    words_set = set(words)
+    count_dict_by_count = {}
+
+    for word in words_set:
+        if words.count(word) in count_dict_by_count:
+            count_dict_by_count[words.count(word)].append(word)
+        else:
+            count_dict_by_count[words.count(word)] = [word]
+
+    result = []
+    frequencies = sorted(count_dict_by_count.keys())
+    while len(result) < k:
+        top_frequency = frequencies.pop()
+        result += sorted(count_dict_by_count.pop(top_frequency))
+
+    return result[:k]

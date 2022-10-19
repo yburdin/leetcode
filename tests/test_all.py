@@ -371,6 +371,16 @@ class Test0501to1000(unittest.TestCase):
             self.assertFalse(my_calendar.book(51, 62))
             self.assertTrue(my_calendar.book(2, 15))
 
+    def test_692(self):
+        with self.subTest('Example 1'):
+            self.assertCountEqual(top_k_frequent(words=["i", "love", "leetcode", "i", "love", "coding"], k=2),
+                                  ["i", "love"])
+
+        with self.subTest('Example 2'):
+            self.assertCountEqual(
+                top_k_frequent(words=["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"], k=4),
+                ["the", "is", "sunny", "day"])
+
 
 class Test1001to1500(unittest.TestCase):
     def test_1232(self):
