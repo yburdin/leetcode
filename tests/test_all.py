@@ -62,6 +62,16 @@ class Test0001to0500(unittest.TestCase):
         self.assertTrue(contains_duplicate([1, 2, 3, 1]))
         self.assertFalse(contains_duplicate([1, 2, 3, 4]))
         self.assertTrue(contains_duplicate([1,1,1,3,3,4,3,2,4,2]))
+
+    def test_016(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(int_to_roman(3), 'III')
+
+        with self.subTest('Example 2'):
+            self.assertEqual(int_to_roman(58), 'LVIII')
+
+        with self.subTest('Example 3'):
+            self.assertEqual(int_to_roman(1994), 'MCMXCIV')
         
 
 class Test0501to1000(unittest.TestCase):

@@ -136,3 +136,24 @@ def contains_duplicate(nums: List[int]) -> bool:
         else:
             unique.add(num)
     return False
+
+
+# 12. Integer to Roman
+def int_to_roman(num: int) -> str:
+    int_roman_dict = {1: 'I', 4: 'IV', 5: 'V', 9: 'IX', 10: 'X', 40: 'XL', 50: 'L', 90: 'XC',
+                      100: 'C', 400: 'CD', 500: 'D', 900: 'CM', 1000: 'M'}
+    result = ''
+
+    for val in list(int_roman_dict.keys())[::-1]:
+        if val > num:
+            continue
+
+        if num == 0:
+            return result
+
+        n = num // val
+        num %= val
+
+        result += int_roman_dict[val] * n
+
+    return result
