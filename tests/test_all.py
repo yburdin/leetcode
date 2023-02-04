@@ -7,6 +7,19 @@ from python.problems_2001to2500 import *
 
 
 class Test0001to0500(unittest.TestCase):
+    def test_06(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(convert(s="PAYPALISHIRING", num_rows=3), 'PAHNAPLSIIGYIR')
+
+        with self.subTest('Example 2'):
+            self.assertEqual(convert(s="PAYPALISHIRING", num_rows=4), 'PINALSIGYAHRPI')
+
+        with self.subTest('Example 3'):
+            self.assertEqual(convert(s="A", num_rows=1), 'A')
+
+        with self.subTest('Example 4'):
+            self.assertEqual(convert(s="ABCDE", num_rows=4), 'ABCED')
+
     def test_016(self):
         with self.subTest('Example 1'):
             self.assertEqual(int_to_roman(3), 'III')
@@ -75,6 +88,13 @@ class Test0001to0500(unittest.TestCase):
 
 
 class Test0501to1000(unittest.TestCase):
+    def test_567(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(check_inclusion(s1="ab", s2="eidbaooo"), True)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(check_inclusion(s1="ab", s2="eidboaoo"), False)
+
     def test_709(self):
         self.assertEqual(to_lower_case("Hello"), "hello")
         self.assertEqual(to_lower_case("here"), "here")
@@ -102,6 +122,20 @@ class Test0501to1000(unittest.TestCase):
 
 
 class Test1001to1500(unittest.TestCase):
+    def test_1071(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(gcd_of_strings(str1="ABCABC", str2="ABC"), 'ABC')
+
+        with self.subTest('Example 2'):
+            self.assertEqual(gcd_of_strings(str1="ABABAB", str2="ABAB"), 'AB')
+
+        with self.subTest('Example 3'):
+            self.assertEqual(gcd_of_strings(str1="LEET", str2="CODE"), '')
+
+        with self.subTest('Example 4'):
+            self.assertEqual(gcd_of_strings(str1="TAUXXTAUXXTAUXXTAUXXTAUXX",
+                                            str2="TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX"), 'TAUXX')
+
     def test_1232(self):
         self.assertEqual(check_straight_line([[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]), True)
         self.assertEqual(check_straight_line([[1, 1], [2, 2], [3, 4], [4, 5], [5, 6], [7, 7]]), False)

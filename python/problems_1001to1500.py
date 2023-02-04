@@ -114,3 +114,23 @@ def sort_by_bits(arr: List[int]) -> List[int]:
         result += sorted(bit_dict[key])
 
     return result
+
+
+# 1071. Greatest Common Divisor of Strings
+def gcd_of_strings(str1: str, str2: str) -> str:
+    substring_len = min(len(str1), len(str2))
+    while substring_len > 0:
+        if len(str1) % substring_len == 0 and len(str2) % substring_len == 0:
+            substring = str1[0:substring_len]
+
+            substring_1 = [str1[i:i+substring_len] == substring for i in range(0, len(str1), substring_len)]
+            substring_2 = [str2[i:i+substring_len] == substring for i in range(0, len(str2), substring_len)]
+
+            if all(substring_1 + substring_2):
+                return substring
+            else:
+                substring_len -= 1
+        else:
+            substring_len -= 1
+
+    return ''

@@ -70,3 +70,20 @@ def middle_node(head: Optional[ListNode]) -> Optional[ListNode]:
     while arr[-1].next:
         arr.append(arr[-1].next)
     return arr[len(arr) // 2]
+
+
+# 567. Permutation in String
+def check_inclusion(s1: str, s2: str) -> bool:
+    s2_substring = [s2[i:i+len(s1)] for i in range(len(s2) - len(s1) + 1)]
+    for substring in s2_substring:
+        s1_set = set(s1)
+        substring_set = set(substring)
+
+        if all([item in substring_set for item in s1_set]):
+            s1_dict = {key: s1.count(key) for key in s1_set}
+            substring_dict = {key: substring.count(key) for key in substring_set}
+
+            if all([s1_dict[key] == substring_dict[key] for key in s1_dict]):
+                return True
+
+    return False

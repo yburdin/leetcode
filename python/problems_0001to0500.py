@@ -157,3 +157,28 @@ def int_to_roman(num: int) -> str:
         result += int_roman_dict[val] * n
 
     return result
+
+
+# 6. Zigzag Conversion
+def convert(s: str, num_rows: int) -> str:
+    if num_rows == 1:
+        return s
+
+    rows = ['' for _ in range(num_rows)]
+    step = 2 * num_rows - 2
+    chunks = [s[i:i + step] for i in range(0, len(s), step)]
+
+    for chunk in chunks:
+        forward_string = chunk[0:num_rows]
+        backward_string = chunk[-1:num_rows - 1:-1] + ' '
+        backward_string = ' ' * (num_rows - len(backward_string)) + backward_string
+        for n in range(num_rows):
+            if n < len(forward_string) and n < len(backward_string):
+                rows[n] += forward_string[n] + backward_string[n]
+            elif n < len(forward_string):
+                rows[n] += forward_string[n]
+            elif n < len(backward_string):
+                rows[n] += backward_string[n]
+
+    result_string = ''.join(rows).replace(' ', '')
+    return result_string
