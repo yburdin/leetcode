@@ -116,6 +116,58 @@ def sort_by_bits(arr: List[int]) -> List[int]:
     return result
 
 
+# 1323. Maximum 69 Number
+def maximum_69_number(num: int) -> int:
+    num_str_list = list(f'{num}')
+    if '6' in num_str_list:
+        first_6 = num_str_list.index('6')
+        num_str_list[first_6] = '9'
+        return int(''.join(num_str_list))
+    else:
+        return num
+
+
+# 1266. Minimum Time Visiting All Points
+def min_time_to_visit_all_points_slow(points: List[List[int]]) -> int:
+    current_point = points[0]
+    steps = [current_point]
+
+    for point in points[1:]:
+        while current_point != point:
+            dx = point[0] - current_point[0]
+            dy = point[1] - current_point[1]
+            step = find_next_step(dx, dy)
+            current_point = [current_point[i] + step[i] for i in [0, 1]]
+
+            steps.append(current_point)
+
+    return len(steps) - 1
+
+
+def find_next_step(dx: int, dy: int, tol=1e-3) -> List[int]:
+    result = [0, 0]
+    for i, direction in enumerate([dx, dy]):
+        if direction > tol:
+            result[i] = 1
+        elif direction < -tol:
+            result[i] = -1
+
+    return result
+
+
+def min_time_to_visit_all_points(points: List[List[int]]) -> int:
+    result = 0
+
+    for i in range(1, len(points)):
+        p1 = points[i-1]
+        p2 = points[i]
+
+        dist = complex(*p2) - complex(*p1)
+        result += max(map(abs, (dist.real, dist.imag)))
+
+    return int(result)
+
+
 # 1071. Greatest Common Divisor of Strings
 def gcd_of_strings(str1: str, str2: str) -> str:
     substring_len = min(len(str1), len(str2))

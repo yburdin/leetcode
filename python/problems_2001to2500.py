@@ -29,3 +29,11 @@ def time_required_to_buy(tickets: List[int], k: int) -> int:
 
     return time
 
+
+# 2221. Find Triangular Sum of an Array
+def triangular_sum(nums: List[int]) -> int:
+    while len(nums) > 1:
+        new_nums = [(nums[i] + nums[i + 1]) % 10 for i in range(len(nums) - 1)]
+        nums = new_nums
+
+    return nums[0]
