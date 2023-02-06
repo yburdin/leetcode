@@ -458,6 +458,16 @@ class Test1001to1500(unittest.TestCase):
         self.assertEqual(k_length_apart([1, 0, 0, 1, 0, 1], 2), False)
         self.assertEqual(k_length_apart([1, 0, 0, 0], 1), True)
 
+    def test_1470(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(shuffle(nums=[2, 5, 1, 3, 4, 7], n=3), [2, 3, 5, 4, 1, 7])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(shuffle(nums=[1, 2, 3, 4, 4, 3, 2, 1], n=4), [1, 4, 2, 3, 3, 2, 4, 1])
+
+        with self.subTest('Example 3'):
+            self.assertEqual(shuffle(nums=[1, 1, 2, 2], n=2), [1, 2, 1, 2])
+
     def test_1491(self):
         self.assertEqual(average([4000, 3000, 1000, 2000]), 2500.)
         self.assertEqual(average([1000, 2000, 3000]), 2000.)

@@ -186,3 +186,16 @@ def gcd_of_strings(str1: str, str2: str) -> str:
             substring_len -= 1
 
     return ''
+
+
+# 1470. Shuffle the Array
+def shuffle(nums: List[int], n: int) -> List[int]:
+    xs = nums[0:n]
+    ys = nums[n:]
+    result = []
+
+    for i in range(n):
+        result.append(xs[i])
+        result.append(ys[i])
+
+    return result
