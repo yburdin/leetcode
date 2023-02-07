@@ -411,6 +411,22 @@ class Test0501to1000(unittest.TestCase):
                 top_k_frequent(words=["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"], k=4),
                 ["the", "is", "sunny", "day"])
 
+    def test_904(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(total_fruit(fruits=[1, 2, 1]), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(total_fruit(fruits=[0, 1, 2, 2]), 3)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(total_fruit(fruits=[1, 2, 3, 2, 2]), 4)
+
+        with self.subTest('Example 4'):
+            self.assertEqual(total_fruit(fruits=[3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4]), 5)
+
+        with self.subTest('Example 5'):
+            self.assertEqual(total_fruit(fruits=[0, 1, 6, 6, 4, 4, 6]), 5)
+
 
 class Test1001to1500(unittest.TestCase):
     def test_1071(self):
