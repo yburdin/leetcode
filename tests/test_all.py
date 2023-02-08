@@ -40,6 +40,13 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(multiply('2', '3'), '6')
         self.assertEqual(multiply('123', '456'), '56088')
 
+    def test_045(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(jump(nums=[2, 3, 1, 1, 4]), 2)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(jump(nums=[2, 3, 0, 1, 4]), 2)
+
     def test_048(self):
         matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
         rotate(matrix)
@@ -460,6 +467,13 @@ class Test1001to1500(unittest.TestCase):
         self.assertEqual(get_decimal_value(list_to_linked_list([0])), 0)
         self.assertEqual(get_decimal_value(list_to_linked_list([1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0])), 18880)
 
+    def test_1295(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(find_numbers(nums=[12, 345, 2, 6, 7896]), 2)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(find_numbers(nums=[555, 901, 482, 1771]), 1)
+
     def test_1309(self):
         self.assertEqual(freq_alphabets("10#11#12"), "jkab")
         self.assertEqual(freq_alphabets("1326#"), "acz")
@@ -578,6 +592,13 @@ class Test1501to2000(unittest.TestCase):
         self.assertEqual(are_almost_equal("bank", "kanb"), True)
         self.assertEqual(are_almost_equal("attack", "defend"), False)
         self.assertEqual(are_almost_equal("kelb", "kelb"), True)
+
+    def test_1816(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(truncate_sentence(s="Hello how are you Contestant", k=4), "Hello how are you")
+
+        with self.subTest('Example 1'):
+            self.assertEqual(truncate_sentence(s="What is the solution to this problem", k=4), "What is the solution")
 
     def test_1822(self):
         self.assertEqual(array_sign([-1, -2, -3, -4, 3, 2, 1]), 1)

@@ -487,3 +487,19 @@ def say(s: str) -> str:
         result_str += f'{len(digit)}{digit[0]}'
 
     return result_str
+
+
+# 45. Jump Game II
+def jump(nums: List[int]) -> int:
+    cur_end = 0
+    cur_far = 0
+    answer = 0
+
+    for i, num in enumerate(nums[:-1]):
+        cur_far = max(cur_far, i + num)
+
+        if i == cur_end:
+            answer += 1
+            cur_end = cur_far
+
+    return answer

@@ -199,3 +199,9 @@ def shuffle(nums: List[int], n: int) -> List[int]:
         result.append(ys[i])
 
     return result
+
+
+# 1295. Find Numbers with Even Number of Digits
+def find_numbers(nums: List[int]) -> int:
+    is_even_digits = [len(f'{n}') % 2 == 0 for n in nums]
+    return sum(is_even_digits)
