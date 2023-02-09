@@ -664,6 +664,16 @@ class Test2001to2500(unittest.TestCase):
         self.assertEqual(triangular_sum([1, 2, 3, 4, 5]), 8)
         self.assertEqual(triangular_sum([5]), 5)
 
+    def test_2306(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(distinct_names(ideas=["coffee", "donuts", "time", "toffee"]), 6)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(distinct_names(ideas=["lack", "back"]), 0)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(distinct_names(ideas=["bzklqtbdr", "kaqvdlp", "r", "dk"]), 12)
+
 
 def list_to_linked_list(nodes: List[int]) -> ListNode:
     result = ListNode(val=nodes.pop(-1), next_=None)
