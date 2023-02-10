@@ -450,6 +450,17 @@ class Test1001to1500(unittest.TestCase):
             self.assertEqual(gcd_of_strings(str1="TAUXXTAUXXTAUXXTAUXXTAUXX",
                                             str2="TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX"), 'TAUXX')
 
+    def test_1162(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(max_distance(grid=[[1, 0, 1], [0, 0, 0], [1, 0, 1]]), 2)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(max_distance(grid=[[1, 0, 0], [0, 0, 0], [0, 0, 0]]), 4)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(max_distance(
+                grid=[[1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]]), -1)
+
     def test_1232(self):
         self.assertEqual(check_straight_line([[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]), True)
         self.assertEqual(check_straight_line([[1, 1], [2, 2], [3, 4], [4, 5], [5, 6], [7, 7]]), False)
