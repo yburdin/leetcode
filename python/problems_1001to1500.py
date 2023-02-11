@@ -186,3 +186,57 @@ def gcd_of_strings(str1: str, str2: str) -> str:
             substring_len -= 1
 
     return ''
+
+
+# 1470. Shuffle the Array
+def shuffle(nums: List[int], n: int) -> List[int]:
+    xs = nums[0:n]
+    ys = nums[n:]
+    result = []
+
+    for i in range(n):
+        result.append(xs[i])
+        result.append(ys[i])
+
+    return result
+
+
+# 1295. Find Numbers with Even Number of Digits
+def find_numbers(nums: List[int]) -> int:
+    is_even_digits = [len(f'{n}') % 2 == 0 for n in nums]
+    return sum(is_even_digits)
+
+
+# 1162. As Far from Land as Possible
+def max_distance(grid: List[List[int]]) -> int:
+    from itertools import product
+
+    directions = ((-1, 0), (1, 0), (0, -1), (0, 1))
+
+    distance = -1
+    land_coordinates = []
+    visited_matrix = grid.copy()
+
+    for i, j in product(range(len(grid)), range(len(grid))):
+        if grid[i][j] == 1:
+            land_coordinates.append([i, j])
+
+    if len(land_coordinates) == len(grid) ** 2:
+        return -1
+
+    while land_coordinates:
+        queue_size = len(land_coordinates)
+        for _ in range(queue_size):
+            cur_i, cur_j = land_coordinates.pop(0)
+
+            for direction in directions:
+                i = cur_i + direction[0]
+                j = cur_j + direction[1]
+
+                if 0 <= i < len(grid) and 0 <= j < len(grid) and visited_matrix[i][j] == 0:
+                    visited_matrix[i][j] = 1
+                    land_coordinates.append([i, j])
+
+        distance += 1
+
+    return distance

@@ -37,3 +37,22 @@ def triangular_sum(nums: List[int]) -> int:
         nums = new_nums
 
     return nums[0]
+
+
+# 2306. Naming a Company
+def distinct_names(ideas: List[str]) -> int:
+    result = 0
+    groups = [set() for _ in range(26)]
+
+    for idea in ideas:
+        groups[ord(idea[0]) - ord('a')].add(idea[1:])
+
+    for i, group_i in enumerate(groups):
+        for j, group_j in enumerate(groups):
+            if i == j:
+                continue
+
+            num_of_mutual = len(group_i & group_j)
+            result += (len(group_i) - num_of_mutual) * (len(group_j) - num_of_mutual)
+
+    return result

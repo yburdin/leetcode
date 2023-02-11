@@ -40,6 +40,13 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(multiply('2', '3'), '6')
         self.assertEqual(multiply('123', '456'), '56088')
 
+    def test_045(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(jump(nums=[2, 3, 1, 1, 4]), 2)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(jump(nums=[2, 3, 0, 1, 4]), 2)
+
     def test_048(self):
         matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
         rotate(matrix)
@@ -438,6 +445,22 @@ class Test0501to1000(unittest.TestCase):
                 top_k_frequent(words=["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"], k=4),
                 ["the", "is", "sunny", "day"])
 
+    def test_904(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(total_fruit(fruits=[1, 2, 1]), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(total_fruit(fruits=[0, 1, 2, 2]), 3)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(total_fruit(fruits=[1, 2, 3, 2, 2]), 4)
+
+        with self.subTest('Example 4'):
+            self.assertEqual(total_fruit(fruits=[3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4]), 5)
+
+        with self.subTest('Example 5'):
+            self.assertEqual(total_fruit(fruits=[0, 1, 6, 6, 4, 4, 6]), 5)
+
 
 class Test1001to1500(unittest.TestCase):
     def test_1071(self):
@@ -453,6 +476,17 @@ class Test1001to1500(unittest.TestCase):
         with self.subTest('Example 4'):
             self.assertEqual(gcd_of_strings(str1="TAUXXTAUXXTAUXXTAUXXTAUXX",
                                             str2="TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX"), 'TAUXX')
+
+    def test_1162(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(max_distance(grid=[[1, 0, 1], [0, 0, 0], [1, 0, 1]]), 2)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(max_distance(grid=[[1, 0, 0], [0, 0, 0], [0, 0, 0]]), 4)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(max_distance(
+                grid=[[1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]]), -1)
 
     def test_1232(self):
         self.assertEqual(check_straight_line([[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]), True)
@@ -471,6 +505,13 @@ class Test1001to1500(unittest.TestCase):
         self.assertEqual(get_decimal_value(list_to_linked_list([0])), 0)
         self.assertEqual(get_decimal_value(list_to_linked_list([1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0])), 18880)
 
+    def test_1295(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(find_numbers(nums=[12, 345, 2, 6, 7896]), 2)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(find_numbers(nums=[555, 901, 482, 1771]), 1)
+
     def test_1309(self):
         self.assertEqual(freq_alphabets("10#11#12"), "jkab")
         self.assertEqual(freq_alphabets("1326#"), "acz")
@@ -484,6 +525,16 @@ class Test1001to1500(unittest.TestCase):
         self.assertEqual(k_length_apart([1, 0, 0, 0, 1, 0, 0, 1], 2), True)
         self.assertEqual(k_length_apart([1, 0, 0, 1, 0, 1], 2), False)
         self.assertEqual(k_length_apart([1, 0, 0, 0], 1), True)
+
+    def test_1470(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(shuffle(nums=[2, 5, 1, 3, 4, 7], n=3), [2, 3, 5, 4, 1, 7])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(shuffle(nums=[1, 2, 3, 4, 4, 3, 2, 1], n=4), [1, 4, 2, 3, 3, 2, 4, 1])
+
+        with self.subTest('Example 3'):
+            self.assertEqual(shuffle(nums=[1, 1, 2, 2], n=2), [1, 2, 1, 2])
 
     def test_1491(self):
         self.assertEqual(average([4000, 3000, 1000, 2000]), 2500.)
@@ -580,6 +631,13 @@ class Test1501to2000(unittest.TestCase):
         self.assertEqual(are_almost_equal("attack", "defend"), False)
         self.assertEqual(are_almost_equal("kelb", "kelb"), True)
 
+    def test_1816(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(truncate_sentence(s="Hello how are you Contestant", k=4), "Hello how are you")
+
+        with self.subTest('Example 1'):
+            self.assertEqual(truncate_sentence(s="What is the solution to this problem", k=4), "What is the solution")
+
     def test_1822(self):
         self.assertEqual(array_sign([-1, -2, -3, -4, 3, 2, 1]), 1)
         self.assertEqual(array_sign([1, 5, 0, 2, -3]), 0)
@@ -643,6 +701,16 @@ class Test2001to2500(unittest.TestCase):
     def test_2221(self):
         self.assertEqual(triangular_sum([1, 2, 3, 4, 5]), 8)
         self.assertEqual(triangular_sum([5]), 5)
+
+    def test_2306(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(distinct_names(ideas=["coffee", "donuts", "time", "toffee"]), 6)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(distinct_names(ideas=["lack", "back"]), 0)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(distinct_names(ideas=["bzklqtbdr", "kaqvdlp", "r", "dk"]), 12)
 
 
 def list_to_linked_list(nodes: List[int]) -> ListNode:

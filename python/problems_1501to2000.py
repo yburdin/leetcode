@@ -209,3 +209,10 @@ def is_arithmetic(array: List[int]) -> bool:
         if array[i + 1] - array[i] != array[1] - array[0]:
             return False
     return True
+
+
+# 1816. Truncate Sentence
+def truncate_sentence(s: str, k: int) -> str:
+    words = s.split(' ')
+    new_sentence = ' '.join(words[:k])
+    return new_sentence

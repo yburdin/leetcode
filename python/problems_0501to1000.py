@@ -315,3 +315,25 @@ def check_inclusion(s1: str, s2: str) -> bool:
                 return True
 
     return False
+
+
+# 904. Fruit Into Baskets
+def total_fruit(fruits: List[int]) -> int:
+    basket = {}
+    start_index = 0
+    end_index = 0
+
+    if len(set(fruits)) < 3:
+        return len(fruits)
+
+    for end_index, fruit in enumerate(fruits):
+        basket[fruit] = basket.get(fruit, 0) + 1
+
+        if len(basket) > 2:
+            basket[fruits[start_index]] -= 1
+
+            if basket[fruits[start_index]] == 0:
+                del basket[fruits[start_index]]
+            start_index += 1
+
+    return end_index - start_index + 1
