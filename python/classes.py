@@ -180,3 +180,54 @@ class MyCalendar:
 
         self.events.append((start, end))
         return True
+
+
+# 355. Design Twitter
+class Twitter:
+    # Implement the Twitter class
+    def __init__(self):
+        # Initializes your twitter object.
+        self.users = {}
+        self.tweets = []
+
+    def postTweet(self, userId: int, tweetId: int) -> None:
+        # Composes a new tweet with ID tweetId by the user userId.
+        # Each call to this function will be made with a unique tweetId.
+        self.tweets.append({'user_id': userId, 'tweet_id': tweetId})
+
+        if userId not in self.users:
+            self.users[userId] = {'follow': []}
+
+    def getNewsFeed(self, userId: int) -> List[int]:
+        # Retrieves the 10 most recent tweet IDs in the user's news feed.
+        # Each item in the news feed must be posted by users who the user followed or by the user themself.
+        # Tweets must be ordered from most recent to least recent.
+
+        news_feed = []
+        if userId in self.users:
+            user_ids = self.users[userId]['follow'] + [userId]
+
+            for tweet in self.tweets[::-1]:
+                if tweet['user_id'] in user_ids:
+                    news_feed.append(tweet['tweet_id'])
+
+                    if len(news_feed) == 10:
+                        return news_feed
+
+        return news_feed
+
+    def follow(self, followerId: int, followeeId: int) -> None:
+        # The user with ID followerId started following the user with ID followeeId.
+        if followeeId not in self.users:
+            self.users[followeeId] = {'follow': []}
+
+        if followerId not in self.users:
+            self.users[followerId] = {'follow': []}
+
+        if followerId in self.users and followeeId in self.users:
+            self.users[followerId]['follow'].append(followeeId)
+
+    def unfollow(self, followerId: int, followeeId: int) -> None:
+        # The user with ID followerId started unfollowing the user with ID followeeId.
+        if followerId in self.users and followeeId in self.users[followerId]['follow']:
+            self.users[followerId]['follow'].remove(followeeId)

@@ -97,29 +97,6 @@ def str_str(haystack: str, needle: str) -> int:
     return -1
 
 
-# 232. Implement Queue using Stacks
-class MyQueue:
-    def __init__(self):
-        self.s1 = []
-        self.s2 = []
-
-    def push(self, x):
-        self.s1.append(x)
-
-    def pop(self):
-        self.peek()
-        return self.s2.pop()
-
-    def peek(self):
-        if not self.s2:
-            while self.s1:
-                self.s2.append(self.s1.pop())
-        return self.s2[-1]
-
-    def empty(self):
-        return not self.s1 and not self.s2
-
-
 # 242. Valid Anagram
 def is_anagram(s: str, t: str) -> bool:
     s_dict = {char: s.count(char) for char in set(s)}
@@ -376,8 +353,9 @@ def group_anagrams(strs: List[str]) -> List[List[str]]:
 # 438. Find All Anagrams in a String
 def find_anagrams_slow(s: str, p: str) -> List[int]:
     result = []
+    sorted_p = sorted(p)
     for start_index in range(len(s) - len(p) + 1):
-        if sorted(s[start_index:start_index+len(p)]) == sorted(p):
+        if sorted(s[start_index:start_index+len(p)]) == sorted_p:
             result.append(start_index)
 
     return result
