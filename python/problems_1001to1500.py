@@ -240,3 +240,34 @@ def max_distance(grid: List[List[int]]) -> int:
         distance += 1
 
     return distance
+
+
+# 1129. Shortest Path with Alternating Colors
+def shortest_alternating_paths(n: int, redEdges: List[List[int]], blueEdges: List[List[int]]) -> List[int]:
+    answer = [0] + [-1] * (n - 1)
+    adj = [[] for _ in range(n)]
+
+    for node_i, node_j in redEdges:
+        adj[node_i].append([node_j, 0])
+
+    for node_i, node_j in blueEdges:
+        adj[node_i].append([node_j, 1])
+
+    visit = [[False] * 2 for _ in range(n)]
+
+    queue = [(0, 0, -1)]
+    visit[0][0] = True
+    visit[0][1] = True
+
+    while queue:
+        node, steps, prev_color = queue.pop(0)
+
+        for neighbor, color in adj[node]:
+            if not visit[neighbor][color] and color != prev_color:
+                visit[neighbor][color] = True
+                queue.append((neighbor, steps + 1, color))
+
+                if answer[neighbor] == -1:
+                    answer[neighbor] = steps + 1
+
+    return answer

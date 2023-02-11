@@ -21,6 +21,19 @@ class Test0001to0500(unittest.TestCase):
         with self.subTest('Example 4'):
             self.assertEqual(convert(s="ABCDE", num_rows=4), 'ABCED')
 
+    def test_20(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(is_valid(s="()"), True)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(is_valid(s="()[]{}"), True)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(is_valid(s="(]"), False)
+
+        with self.subTest('Example 4'):
+            self.assertEqual(is_valid(s="]"), False)
+
     def test_016(self):
         with self.subTest('Example 1'):
             self.assertEqual(int_to_roman(3), 'III')
@@ -476,6 +489,13 @@ class Test1001to1500(unittest.TestCase):
         with self.subTest('Example 4'):
             self.assertEqual(gcd_of_strings(str1="TAUXXTAUXXTAUXXTAUXXTAUXX",
                                             str2="TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX"), 'TAUXX')
+
+    def test_1129(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(shortest_alternating_paths(n=3, redEdges=[[0, 1], [1, 2]], blueEdges=[]), [0, 1, -1])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(shortest_alternating_paths(n=3, redEdges=[[0, 1]], blueEdges=[[2, 1]]), [0, 1, -1])
 
     def test_1162(self):
         with self.subTest('Example 1'):

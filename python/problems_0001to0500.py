@@ -481,3 +481,22 @@ def jump(nums: List[int]) -> int:
             cur_end = cur_far
 
     return answer
+
+
+# 20. Valid Parentheses
+def is_valid(s: str) -> bool:
+    open_brackets = '({['
+    close_brackets = ')}]'
+
+    opened = ''
+
+    for char in s:
+        if char in open_brackets:
+            opened += char
+        else:
+            if len(opened) > 0 and char == close_brackets[open_brackets.index(opened[-1])]:
+                opened = opened[:-1]
+            else:
+                return False
+
+    return opened == ''
