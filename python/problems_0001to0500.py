@@ -1,5 +1,6 @@
-from typing import List
+from typing import List, Optional
 from math import factorial, sqrt
+from classes import TreeNode
 
 
 # 119. Pascal's Triangle II
@@ -500,3 +501,38 @@ def is_valid(s: str) -> bool:
                 return False
 
     return opened == ''
+
+
+# 100. Same Tree
+def is_same_tree(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+    if not p and not q:
+        return True
+
+    if not q or not p:
+        return False
+
+    if p.val != q.val:
+        return False
+
+    return is_same_tree(p.right, q.right) and is_same_tree(p.left, q.left)
+
+
+# 463. Island Perimeter
+def island_perimeter(grid: List[List[int]]) -> int:
+    from itertools import product
+    perimeter = 0
+    land_coordinates = []
+    directions = ((-1, 0), (0, 1), (1, 0), (0, -1))
+
+    for i, j in product(range(len(grid)), range(len(grid[0]))):
+        if grid[i][j] == 1:
+            land_coordinates.append((i, j))
+
+    for i, j in land_coordinates:
+        cur_perimeter = 4
+        for di, dj in directions:
+            if 0 <= i + di < len(grid) and 0 <= j + dj < len(grid[0]):
+                cur_perimeter -= grid[i + di][j + dj]
+        perimeter += cur_perimeter
+
+    return perimeter

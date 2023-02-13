@@ -111,6 +111,16 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(climb_stairs(4), 5)
         self.assertEqual(climb_stairs(5), 8)
 
+    def test_100(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(is_same_tree(p=TreeNode(1, 2, 3), q=TreeNode(1, 2, 3)))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(is_same_tree(p=TreeNode(1, 2), q=TreeNode(1, None, 2)))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(is_same_tree(p=TreeNode(1, 2, 1), q=TreeNode(1, 1, 2)))
+
     def test_119(self):
         self.assertEqual(get_row(3), [1, 3, 3, 1])
         self.assertEqual(get_row(0), [1])
@@ -199,6 +209,19 @@ class Test0001to0500(unittest.TestCase):
         self.assertFalse(repeated_substring_pattern("aba"))
         self.assertTrue(repeated_substring_pattern("abcabcabcabc"))
         self.assertFalse(repeated_substring_pattern("aabaaba"))
+        
+    def test_463(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(island_perimeter(grid=[[0, 1, 0, 0], [1, 1, 1, 0], [0, 1, 0, 0], [1, 1, 0, 0]]), 16)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(island_perimeter(grid=[[1]]), 4)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(island_perimeter(grid=[[1, 0]]), 4)
+
+        with self.subTest('Example 4'):
+            self.assertEqual(island_perimeter(grid=[[1, 1]]), 6)
 
     def test_496(self):
         self.assertEqual(next_greater_element([4, 1, 2], [1, 3, 4, 2]), [-1, 3, -1])

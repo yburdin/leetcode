@@ -8,6 +8,14 @@ class ListNode:
         self.next = next_
 
 
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = TreeNode(left) if left else left
+        self.right = TreeNode(right) if right else right
+
+
+
 # 707. Design Linked List
 class MyLinkedList:
 
