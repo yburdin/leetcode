@@ -1,11 +1,6 @@
 from typing import List, Optional
+from classes import ListNode, Node
 import string
-
-
-class ListNode:
-    def __init__(self, val=0, next_=None):
-        self.val = val
-        self.next = next_
 
 
 # 976. Largest Perimeter Triangle
@@ -337,3 +332,16 @@ def total_fruit(fruits: List[int]) -> int:
             start_index += 1
 
     return end_index - start_index + 1
+
+
+# 559. Maximum Depth of N-ary Tree
+def max_depth(root: Optional[Node]) -> int:
+    depth = 0
+    if not root:
+        return depth
+
+    if root.children and len(root.children) > 0:
+        for child in root.children:
+            depth = max(max_depth(child), depth)
+
+    return depth + 1

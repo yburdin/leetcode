@@ -536,3 +536,29 @@ def island_perimeter(grid: List[List[int]]) -> int:
         perimeter += cur_perimeter
 
     return perimeter
+
+
+# 111. Minimum Depth of Binary Tree
+def min_depth(root: Optional[TreeNode]) -> int:
+    depth = 0
+
+    if not root:
+        return depth
+
+    queue = [root]
+
+    while queue:
+        depth += 1
+        for n in range(len(queue)):
+            node = queue.pop(0)
+
+            if isinstance(node, TreeNode):
+                if not node.left and not node.right:
+                    return depth
+
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+
+    return depth

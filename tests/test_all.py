@@ -121,6 +121,14 @@ class Test0001to0500(unittest.TestCase):
         with self.subTest('Example 2'):
             self.assertFalse(is_same_tree(p=TreeNode(1, 2, 1), q=TreeNode(1, 1, 2)))
 
+    def test_111(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(min_depth(root=TreeNode(3, 9, TreeNode(20, 15, 7))), 2)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(
+                min_depth(root=TreeNode(2, None, TreeNode(3, None, TreeNode(4, None, TreeNode(5, None, 6))))), 5)
+
     def test_119(self):
         self.assertEqual(get_row(3), [1, 3, 3, 1])
         self.assertEqual(get_row(0), [1])
@@ -301,6 +309,39 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(next_greater_element_iii(1488), 1848)
         self.assertEqual(next_greater_element_iii(1312), 1321)
         self.assertEqual(next_greater_element_iii(2147483486), -1)
+
+    def test_559(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(max_depth(
+                Node(1, [
+                    Node(3, [Node(5), Node(6)]),
+                    Node(2),
+                    Node(4)]
+                     )
+            ), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(max_depth(
+                Node(1,
+                     [
+                         Node(2),
+                         Node(3,
+                              [
+                                  Node(6),
+                                  Node(7, [Node(11, [Node(14)])])
+                              ]),
+                         Node(4,
+                              [
+                                  Node(8, [Node(12)]),
+                              ]),
+                         Node(5,
+                              [
+                                  Node(9, [Node(13)]),
+                                  Node(10)
+                              ]),
+                     ]
+                     )
+            ), 5)
 
     def test_567(self):
         with self.subTest('Example 1'):

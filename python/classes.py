@@ -11,9 +11,24 @@ class ListNode:
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
-        self.left = TreeNode(left) if left else left
-        self.right = TreeNode(right) if right else right
+        self.left = None
+        self.right = None
 
+        if isinstance(left, int):
+            self.left = TreeNode(left)
+        elif isinstance(left, TreeNode):
+            self.left = left
+
+        if isinstance(right, int):
+            self.right = TreeNode(right)
+        elif isinstance(right, TreeNode):
+            self.right = right
+
+
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
 
 
 # 707. Design Linked List
