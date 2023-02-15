@@ -381,6 +381,15 @@ class Test0501to1000(unittest.TestCase):
         self.assertTrue(is_monotonic([6, 5, 4, 4]))
         self.assertFalse(is_monotonic([1, 3, 2]))
 
+    def test_933(self):
+        with self.subTest('Example 1'):
+            recent_counter = RecentCounter()
+            self.assertEqual(recent_counter.ping(1), 1)     # requests = [1], range is [-2999,1], return 1
+            self.assertEqual(recent_counter.ping(100), 2)   # requests = [1, 100], range is [-2900,100], return 2
+            self.assertEqual(recent_counter.ping(3001), 3)  # requests = [1, 100, 3001], range is [1,3001], return 3
+            self.assertEqual(recent_counter.ping(3002), 3)  # requests = [1, 100, 3001, 3002], range is [2,3002], return 3
+
+
     def test_953(self):
         self.assertTrue(is_alien_sorted(words=["hello", "leetcode"], order="hlabcdefgijkmnopqrstuvwxyz"))
         self.assertFalse(is_alien_sorted(words=["word", "world", "row"], order="worldabcefghijkmnpqstuvxyz"))
