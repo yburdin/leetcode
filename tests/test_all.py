@@ -121,6 +121,26 @@ class Test0001to0500(unittest.TestCase):
         with self.subTest('Example 2'):
             self.assertFalse(is_same_tree(p=TreeNode(1, 2, 1), q=TreeNode(1, 1, 2)))
 
+    def test_104(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(max_depth_binary(
+                root=TreeNode(3,
+                              TreeNode(9),
+                              TreeNode(20,
+                                       TreeNode(15),
+                                       TreeNode(7)
+                                       )
+                              )
+            ), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(max_depth_binary(
+                root=TreeNode(1,
+                              None,
+                              TreeNode(2)
+                              )
+            ), 2)
+
     def test_111(self):
         with self.subTest('Example 1'):
             self.assertEqual(min_depth(root=TreeNode(3, 9, TreeNode(20, 15, 7))), 2)

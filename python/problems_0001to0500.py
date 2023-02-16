@@ -562,3 +562,36 @@ def min_depth(root: Optional[TreeNode]) -> int:
                     queue.append(node.right)
 
     return depth
+
+
+# 104. Maximum Depth of Binary Tree
+def max_depth_binary(root: Optional[TreeNode]) -> int:
+    depth = 0
+    if not root:
+        return depth
+
+    children = []
+    if root.left:
+        children.append(root.left)
+    if root.right:
+        children.append(root.right)
+
+    for child in children:
+        depth = max(max_depth_binary(child), depth)
+
+    return depth + 1
+
+
+# 108. Convert Sorted Array to Binary Search Tree
+def sorted_array_to_bst(nums: List[int]) -> Optional[TreeNode]:
+    if not nums:
+        return None
+
+    root_index = len(nums) // 2
+    root_val = nums[root_index]
+
+    result = TreeNode(root_val,
+                      left=sorted_array_to_bst(nums[:root_index]),
+                      right=sorted_array_to_bst(nums[root_index + 1:])
+                      )
+    return result
