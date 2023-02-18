@@ -409,7 +409,6 @@ class Test0501to1000(unittest.TestCase):
             self.assertEqual(recent_counter.ping(3001), 3)  # requests = [1, 100, 3001], range is [1,3001], return 3
             self.assertEqual(recent_counter.ping(3002), 3)  # requests = [1, 100, 3001, 3002], range is [2,3002], return 3
 
-
     def test_953(self):
         self.assertTrue(is_alien_sorted(words=["hello", "leetcode"], order="hlabcdefgijkmnopqrstuvwxyz"))
         self.assertFalse(is_alien_sorted(words=["word", "world", "row"], order="worldabcefghijkmnpqstuvxyz"))
@@ -566,6 +565,13 @@ class Test0501to1000(unittest.TestCase):
 
         with self.subTest('Example 5'):
             self.assertEqual(total_fruit(fruits=[0, 1, 6, 6, 4, 4, 6]), 5)
+
+    def test_771(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(num_jewels_in_stones(jewels="aA", stones="aAAbbbb"), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(num_jewels_in_stones(jewels="z", stones="ZZ"), 0)
 
 
 class Test1001to1500(unittest.TestCase):
