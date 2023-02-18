@@ -8,6 +8,29 @@ class ListNode:
         self.next = next_
 
 
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = None
+        self.right = None
+
+        if isinstance(left, int):
+            self.left = TreeNode(left)
+        elif isinstance(left, TreeNode):
+            self.left = left
+
+        if isinstance(right, int):
+            self.right = TreeNode(right)
+        elif isinstance(right, TreeNode):
+            self.right = right
+
+
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+
+
 # 707. Design Linked List
 class MyLinkedList:
 
@@ -231,3 +254,29 @@ class Twitter:
         # The user with ID followerId started unfollowing the user with ID followeeId.
         if followerId in self.users and followeeId in self.users[followerId]['follow']:
             self.users[followerId]['follow'].remove(followeeId)
+
+
+# 933. Number of Recent Calls
+class RecentCounter:
+    def __init__(self):
+        """
+        RecentCounter() Initializes the counter with zero recent requests.
+        """
+        self.requests = []
+        self.index_min = 0
+
+    def ping(self, t: int) -> int:
+        """
+        Adds a new request at time t, where t represents some time in milliseconds,
+        and returns the number of requests that has happened in the past 3000 milliseconds (including the new request).
+        Specifically, return the number of requests that have happened in the inclusive range [t - 3000, t].
+        """
+
+        self.requests.append(t)
+        self.requests = sorted(self.requests)
+
+        t_min = t - 3000
+        while self.requests[self.index_min] < t_min and self.index_min < len(self.requests) - 1:
+            self.index_min += 1
+
+        return len(self.requests[self.index_min:])

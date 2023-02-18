@@ -111,6 +111,44 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(climb_stairs(4), 5)
         self.assertEqual(climb_stairs(5), 8)
 
+    def test_100(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(is_same_tree(p=TreeNode(1, 2, 3), q=TreeNode(1, 2, 3)))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(is_same_tree(p=TreeNode(1, 2), q=TreeNode(1, None, 2)))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(is_same_tree(p=TreeNode(1, 2, 1), q=TreeNode(1, 1, 2)))
+
+    def test_104(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(max_depth_binary(
+                root=TreeNode(3,
+                              TreeNode(9),
+                              TreeNode(20,
+                                       TreeNode(15),
+                                       TreeNode(7)
+                                       )
+                              )
+            ), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(max_depth_binary(
+                root=TreeNode(1,
+                              None,
+                              TreeNode(2)
+                              )
+            ), 2)
+
+    def test_111(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(min_depth(root=TreeNode(3, 9, TreeNode(20, 15, 7))), 2)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(
+                min_depth(root=TreeNode(2, None, TreeNode(3, None, TreeNode(4, None, TreeNode(5, None, 6))))), 5)
+
     def test_119(self):
         self.assertEqual(get_row(3), [1, 3, 3, 1])
         self.assertEqual(get_row(0), [1])
@@ -199,6 +237,19 @@ class Test0001to0500(unittest.TestCase):
         self.assertFalse(repeated_substring_pattern("aba"))
         self.assertTrue(repeated_substring_pattern("abcabcabcabc"))
         self.assertFalse(repeated_substring_pattern("aabaaba"))
+        
+    def test_463(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(island_perimeter(grid=[[0, 1, 0, 0], [1, 1, 1, 0], [0, 1, 0, 0], [1, 1, 0, 0]]), 16)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(island_perimeter(grid=[[1]]), 4)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(island_perimeter(grid=[[1, 0]]), 4)
+
+        with self.subTest('Example 4'):
+            self.assertEqual(island_perimeter(grid=[[1, 1]]), 6)
 
     def test_496(self):
         self.assertEqual(next_greater_element([4, 1, 2], [1, 3, 4, 2]), [-1, 3, -1])
@@ -279,6 +330,39 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(next_greater_element_iii(1312), 1321)
         self.assertEqual(next_greater_element_iii(2147483486), -1)
 
+    def test_559(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(max_depth(
+                Node(1, [
+                    Node(3, [Node(5), Node(6)]),
+                    Node(2),
+                    Node(4)]
+                     )
+            ), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(max_depth(
+                Node(1,
+                     [
+                         Node(2),
+                         Node(3,
+                              [
+                                  Node(6),
+                                  Node(7, [Node(11, [Node(14)])])
+                              ]),
+                         Node(4,
+                              [
+                                  Node(8, [Node(12)]),
+                              ]),
+                         Node(5,
+                              [
+                                  Node(9, [Node(13)]),
+                                  Node(10)
+                              ]),
+                     ]
+                     )
+            ), 5)
+
     def test_567(self):
         with self.subTest('Example 1'):
             self.assertEqual(check_inclusion(s1="ab", s2="eidbaooo"), True)
@@ -316,6 +400,15 @@ class Test0501to1000(unittest.TestCase):
         self.assertTrue(is_monotonic([1, 2, 2, 3]))
         self.assertTrue(is_monotonic([6, 5, 4, 4]))
         self.assertFalse(is_monotonic([1, 3, 2]))
+
+    def test_933(self):
+        with self.subTest('Example 1'):
+            recent_counter = RecentCounter()
+            self.assertEqual(recent_counter.ping(1), 1)     # requests = [1], range is [-2999,1], return 1
+            self.assertEqual(recent_counter.ping(100), 2)   # requests = [1, 100], range is [-2900,100], return 2
+            self.assertEqual(recent_counter.ping(3001), 3)  # requests = [1, 100, 3001], range is [1,3001], return 3
+            self.assertEqual(recent_counter.ping(3002), 3)  # requests = [1, 100, 3001, 3002], range is [2,3002], return 3
+
 
     def test_953(self):
         self.assertTrue(is_alien_sorted(words=["hello", "leetcode"], order="hlabcdefgijkmnopqrstuvwxyz"))
