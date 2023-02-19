@@ -622,3 +622,30 @@ def reverse_list(head: Optional[ListNode]) -> Optional[ListNode]:
             new_head = ListNode(head.val, new_head)
 
     return new_head
+
+
+# 103. Binary Tree Zigzag Level Order Traversal
+def zigzag_level_order(root: Optional[TreeNode]) -> List[List[int]]:
+    if not root:
+        return []
+
+    result = []
+    queue = [root]
+    direction = 1
+
+    while queue:
+        level = []
+
+        for n in range(len(queue)):
+            node = queue.pop(0)
+            if node:
+                level.append(node.val)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+
+        result.append(level[::direction])
+        direction *= -1
+
+    return result

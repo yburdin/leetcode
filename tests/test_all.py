@@ -121,6 +121,18 @@ class Test0001to0500(unittest.TestCase):
         with self.subTest('Example 2'):
             self.assertFalse(is_same_tree(p=TreeNode(1, 2, 1), q=TreeNode(1, 1, 2)))
 
+    def test_103(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(zigzag_level_order(
+                TreeNode(3, TreeNode(9), TreeNode(20, TreeNode(15), TreeNode(7)))
+            ), [[3], [20, 9], [15, 7]])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(zigzag_level_order(TreeNode(1)), [[1]])
+
+        with self.subTest('Example 3'):
+            self.assertEqual(zigzag_level_order(None), [])
+
     def test_104(self):
         with self.subTest('Example 1'):
             self.assertEqual(max_depth_binary(
