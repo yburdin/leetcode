@@ -371,3 +371,15 @@ def min_diff_in_bst(root: Optional[TreeNode]) -> int:
             return min_diff
 
     return min_diff
+
+
+# 771. Jewels and Stones
+def num_jewels_in_stones(jewels: str, stones: str) -> int:
+    from collections import Counter
+    counter = Counter(stones)
+
+    result = 0
+    for jewel in jewels:
+        result += counter[jewel]
+
+    return result
