@@ -1,6 +1,6 @@
 from typing import List, Optional
 from math import factorial, sqrt
-from classes import TreeNode
+from classes import TreeNode, ListNode
 
 
 # 119. Pascal's Triangle II
@@ -594,4 +594,58 @@ def sorted_array_to_bst(nums: List[int]) -> Optional[TreeNode]:
                       left=sorted_array_to_bst(nums[:root_index]),
                       right=sorted_array_to_bst(nums[root_index + 1:])
                       )
+    return result
+
+
+# 226. Invert Binary Tree
+def invert_tree(root: Optional[TreeNode]) -> Optional[TreeNode]:
+    if not root:
+        return
+
+    new_root = TreeNode(root.val,
+                        left=invert_tree(root.right),
+                        right=invert_tree(root.left))
+
+    return new_root
+
+
+# 206. Reverse Linked List
+def reverse_list(head: Optional[ListNode]) -> Optional[ListNode]:
+    if not head:
+        return
+
+    new_head = ListNode(head.val)
+
+    while head:
+        head = head.next
+        if head:
+            new_head = ListNode(head.val, new_head)
+
+    return new_head
+
+
+# 103. Binary Tree Zigzag Level Order Traversal
+def zigzag_level_order(root: Optional[TreeNode]) -> List[List[int]]:
+    if not root:
+        return []
+
+    result = []
+    queue = [root]
+    direction = 1
+
+    while queue:
+        level = []
+
+        for n in range(len(queue)):
+            node = queue.pop(0)
+            if node:
+                level.append(node.val)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+
+        result.append(level[::direction])
+        direction *= -1
+
     return result

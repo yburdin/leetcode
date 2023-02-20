@@ -345,3 +345,15 @@ def max_depth(root: Optional[Node]) -> int:
             depth = max(max_depth(child), depth)
 
     return depth + 1
+
+
+# 771. Jewels and Stones
+def num_jewels_in_stones(jewels: str, stones: str) -> int:
+    from collections import Counter
+    counter = Counter(stones)
+
+    result = 0
+    for jewel in jewels:
+        result += counter[jewel]
+
+    return result
