@@ -386,6 +386,22 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(daily_temperatures(temperatures=[89, 62, 70, 58, 47, 47, 46, 76, 100, 70]),
                          [8, 1, 5, 4, 3, 2, 1, 1, 0, 0])
 
+    def test_783(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(min_diff_in_bst(root=TreeNode(4, TreeNode(2, 1, 3), TreeNode(6))), 1)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(min_diff_in_bst(root=TreeNode(1, TreeNode(0), TreeNode(48, 12, 49))), 1)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(min_diff_in_bst(root=TreeNode(90,
+                                                           TreeNode(69,
+                                                                    TreeNode(49, None, 52),
+                                                                    TreeNode(89)
+                                                                    ),
+                                                           None)
+                                             ), 1)
+
     def test_797(self):
         self.assertCountEqual(all_paths_source_target([[1, 2], [3], [3], []]),
                               [[0, 1, 3], [0, 2, 3]])
@@ -850,6 +866,16 @@ class Test2001to2500(unittest.TestCase):
 
         with self.subTest('Example 3'):
             self.assertEqual(solution.distinct_names(ideas=["bzklqtbdr", "kaqvdlp", "r", "dk"]), 12)
+
+    def test_2469(self):
+        solution = Solution5()
+        with self.subTest('Example 1'):
+            self.assertAlmostEqual(solution.convert_temperature(36.50)[0], 309.65000, delta=10e-5)
+            self.assertAlmostEqual(solution.convert_temperature(36.50)[1], 97.70000, delta=10e-5)
+
+        with self.subTest('Example 2'):
+            self.assertAlmostEqual(solution.convert_temperature(122.11)[0], 395.26000, delta=10e-5)
+            self.assertAlmostEqual(solution.convert_temperature(122.11)[1], 251.79800, delta=10e-5)
 
     def test_2477(self):
         with self.subTest('Example 1'):

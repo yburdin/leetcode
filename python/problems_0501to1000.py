@@ -1,5 +1,5 @@
 from typing import List, Optional
-from classes import ListNode, Node
+from classes import ListNode, Node, TreeNode
 import string
 
 
@@ -345,3 +345,29 @@ def max_depth(root: Optional[Node]) -> int:
             depth = max(max_depth(child), depth)
 
     return depth + 1
+
+
+# 783. Minimum Distance Between BST Nodes
+def min_diff_in_bst(root: Optional[TreeNode]) -> int:
+    min_diff = 10000
+    values = []
+
+    children = [root]
+    while children:
+        root = children.pop(0)
+        if root:
+            values.append(root.val)
+        if root.left:
+            children.append(root.left)
+        if root.right:
+            children.append(root.right)
+
+    values = sorted(values)
+    for n, value in enumerate(values[:-1]):
+        diff = abs(value - values[n + 1])
+        min_diff = min(min_diff, diff)
+
+        if min_diff == 1:
+            return min_diff
+
+    return min_diff
