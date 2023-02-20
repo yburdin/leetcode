@@ -49,6 +49,16 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(str_str(haystack="aaaaa", needle="bba"), -1)
         self.assertEqual(str_str(haystack="a", needle="a"), 0)
 
+    def test_035(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(search_insert(nums=[1, 3, 5, 6], target=5), 2)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(search_insert(nums=[1, 3, 5, 6], target=2), 1)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(search_insert(nums=[1, 3, 5, 6], target=7), 4)
+
     def test_043(self):
         self.assertEqual(multiply('2', '3'), '6')
         self.assertEqual(multiply('123', '456'), '56088')
@@ -165,6 +175,16 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(get_row(3), [1, 3, 3, 1])
         self.assertEqual(get_row(0), [1])
         self.assertEqual(get_row(1), [1, 1])
+
+    def test_136(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(single_number(nums=[2, 2, 1]), 1)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(single_number(nums=[4, 1, 2, 1, 2]), 4)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(single_number(nums=[1]), 1)
 
     def test_150(self):
         self.assertEqual(eval_rpn(["2", "1", "+", "3", "*"]), 9)
