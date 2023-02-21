@@ -1,5 +1,6 @@
 from typing import List, Optional
 from classes import ListNode, Node, TreeNode
+from collections import Counter
 import string
 
 
@@ -383,3 +384,12 @@ def num_jewels_in_stones(jewels: str, stones: str) -> int:
         result += counter[jewel]
 
     return result
+
+
+# 540. Single Element in a Sorted Array
+def single_non_duplicate(nums: List[int]) -> int:
+    counter = Counter(nums)
+    for num, amount in counter.items():
+        if amount == 1:
+            return num
+

@@ -2,6 +2,8 @@ from typing import List, Optional
 from math import factorial, sqrt
 from classes import TreeNode, ListNode
 from collections import Counter
+import re
+import string
 
 
 # 119. Pascal's Triangle II
@@ -683,3 +685,32 @@ def single_number(nums: List[int]) -> int:
             return n
 
     return 0
+
+
+# 125. Valid Palindrome
+def is_palindrome(s: str) -> bool:
+    letters = re.findall(r'[a-zA-Z\d]', s)
+    phrase = ''.join(letters).lower()
+
+    left = 0
+    right = len(phrase) - 1
+    while left < right:
+        if phrase[left] != phrase[right]:
+            return False
+        left += 1
+        right -= 1
+
+    return True
+
+
+# 171. Excel Sheet Column Number
+def title_to_number(columnTitle: str) -> int:
+    letter_to_number = {
+        letter: number + 1 for number, letter in enumerate(string.ascii_uppercase)
+    }
+
+    result = 0
+    for power, letter in enumerate(columnTitle[::-1]):
+        result += letter_to_number[letter] * 26 ** power
+
+    return result

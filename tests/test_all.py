@@ -176,6 +176,19 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(get_row(0), [1])
         self.assertEqual(get_row(1), [1, 1])
 
+    def test_125(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(is_palindrome(s="A man, a plan, a canal: Panama"))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(is_palindrome(s="race a car"))
+
+        with self.subTest('Example 3'):
+            self.assertTrue(is_palindrome(s=" "))
+
+        with self.subTest('Example 4'):
+            self.assertFalse(is_palindrome(s="0P"))
+
     def test_136(self):
         with self.subTest('Example 1'):
             self.assertEqual(single_number(nums=[2, 2, 1]), 1)
@@ -190,6 +203,16 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(eval_rpn(["2", "1", "+", "3", "*"]), 9)
         self.assertEqual(eval_rpn(["4", "13", "5", "/", "+"]), 6)
         self.assertEqual(eval_rpn(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]), 22)
+
+    def test_171(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(title_to_number('A'), 1)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(title_to_number('AB'), 28)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(title_to_number('ZY'), 701)
 
     def test_191(self):
         self.assertEqual(hamming_weight(0b00000000000000000000000000001011), 3)
@@ -351,6 +374,13 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(next_greater_elements([1, 2, 3, 4, 3]), [2, 3, 4, -1, 4])
         self.assertEqual(next_greater_elements([5, 4, 3, 2, 1]), [-1, 5, 5, 5, 5])
         self.assertEqual(next_greater_elements([1, 5, 3, 6, 8]), [5, 6, 6, 8, -1])
+
+    def test_540(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(single_non_duplicate(nums=[1, 1, 2, 3, 3, 4, 4, 8, 8]), 2)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(single_non_duplicate(nums=[3, 3, 7, 7, 10, 11, 11]), 10)
 
     def test_556(self):
         self.assertEqual(next_greater_element_iii(234157641), 234161457)
