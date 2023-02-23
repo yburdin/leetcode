@@ -587,6 +587,16 @@ class Test0501to1000(unittest.TestCase):
 
 
 class Test1001to1500(unittest.TestCase):
+    def test_1011(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(ship_within_days(weights=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], days=5), 15)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(ship_within_days(weights=[3, 2, 2, 4, 1, 4], days=3), 6)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(ship_within_days(weights=[1, 2, 3, 1, 1], days=4), 3)
+
     def test_1071(self):
         with self.subTest('Example 1'):
             self.assertEqual(gcd_of_strings(str1="ABCABC", str2="ABC"), 'ABC')

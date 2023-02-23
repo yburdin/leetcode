@@ -271,3 +271,35 @@ def shortest_alternating_paths(n: int, redEdges: List[List[int]], blueEdges: Lis
                     answer[neighbor] = steps + 1
 
     return answer
+
+
+# 1011. Capacity To Ship Packages Within D Days
+def ship_within_days(weights: List[int], days: int) -> int:
+    total_load = sum(weights)
+    max_load = max(weights)
+
+    left = max_load
+    right = total_load
+
+    while left < right:
+        mid = (left + right) // 2
+        if feasible(weights, mid, days):
+            right = mid
+        else:
+            left = mid + 1
+
+    return left
+
+
+def feasible(weights: List[int], capacity: int, days: int) -> bool:
+    current_load = 0
+    days_needed = 1
+    for weight in weights:
+        if current_load + weight <= capacity:
+            current_load += weight
+        else:
+            days_needed += 1
+            current_load = weight
+
+    return days_needed <= days
+
