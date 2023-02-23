@@ -1,5 +1,6 @@
 from typing import List
 from math import atan
+from heapq import heappush, heappop
 
 
 class ListNode:
@@ -303,3 +304,15 @@ def feasible(weights: List[int], capacity: int, days: int) -> bool:
 
     return days_needed <= days
 
+
+# 1464. Maximum Product of Two Elements in an Array
+def max_product(nums: List[int]) -> int:
+    result = 1
+    q = []
+    for num in nums:
+        heappush(q, -num)
+
+    for _ in range(2):
+        result *= -heappop(q) - 1
+
+    return result

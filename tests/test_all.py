@@ -369,6 +369,13 @@ class Test0001to0500(unittest.TestCase):
 
 
 class Test0501to1000(unittest.TestCase):
+    def test_502(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(find_maximized_capital(k=2, w=0, profits=[1, 2, 3], capital=[0, 1, 1]), 4)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(find_maximized_capital(k=3, w=0, profits=[1, 2, 3], capital=[0, 1, 2]), 6)
+
     def test_503(self):
         self.assertEqual(next_greater_elements([1, 2, 1]), [2, -1, 2])
         self.assertEqual(next_greater_elements([1, 2, 3, 4, 3]), [2, 3, 4, -1, 4])
@@ -763,6 +770,16 @@ class Test1001to1500(unittest.TestCase):
 
         with self.subTest('Example 2'):
             self.assertEqual(min_time_to_visit_all_points([[3, 2], [-2, 2]]), 5)
+
+    def test_1464(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(max_product(nums=[3, 4, 5, 2]), 12)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(max_product(nums=[1, 5, 4, 5]), 16)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(max_product(nums=[3, 7]), 12)
 
 
 class Test1501to2000(unittest.TestCase):

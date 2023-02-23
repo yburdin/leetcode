@@ -1,6 +1,7 @@
 from typing import List, Optional
 from classes import ListNode, Node, TreeNode
 from collections import Counter
+from heapq import heappop, heappush
 import string
 
 
@@ -393,3 +394,21 @@ def single_non_duplicate(nums: List[int]) -> int:
         if amount == 1:
             return num
 
+
+# 502. IPO
+def find_maximized_capital(k: int, w: int, profits: List[int], capital: List[int]) -> int:
+    n = len(profits)
+    projects = list(zip(capital, profits))
+    projects.sort()
+
+    queue = []
+    ptr = 0
+
+    for _ in range(k):
+        while ptr < n and projects[ptr][0] <= w:
+            heappush(queue, -projects[ptr][1])
+            ptr += 1
+        if not queue:
+            break
+        w += -heappop(queue)
+    return w
