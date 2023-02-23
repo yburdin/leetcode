@@ -1,5 +1,6 @@
 from typing import List, Optional
-from classes import ListNode, Node
+from classes import ListNode, Node, TreeNode
+from collections import Counter
 import string
 
 
@@ -347,6 +348,32 @@ def max_depth(root: Optional[Node]) -> int:
     return depth + 1
 
 
+# 783. Minimum Distance Between BST Nodes
+def min_diff_in_bst(root: Optional[TreeNode]) -> int:
+    min_diff = 10000
+    values = []
+
+    children = [root]
+    while children:
+        root = children.pop(0)
+        if root:
+            values.append(root.val)
+        if root.left:
+            children.append(root.left)
+        if root.right:
+            children.append(root.right)
+
+    values = sorted(values)
+    for n, value in enumerate(values[:-1]):
+        diff = abs(value - values[n + 1])
+        min_diff = min(min_diff, diff)
+
+        if min_diff == 1:
+            return min_diff
+
+    return min_diff
+
+
 # 771. Jewels and Stones
 def num_jewels_in_stones(jewels: str, stones: str) -> int:
     from collections import Counter
@@ -357,3 +384,12 @@ def num_jewels_in_stones(jewels: str, stones: str) -> int:
         result += counter[jewel]
 
     return result
+
+
+# 540. Single Element in a Sorted Array
+def single_non_duplicate(nums: List[int]) -> int:
+    counter = Counter(nums)
+    for num, amount in counter.items():
+        if amount == 1:
+            return num
+

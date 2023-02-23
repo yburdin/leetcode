@@ -83,3 +83,7 @@ class Solution:
             self.fuel += self.ceil(representatives / seats)
 
         return representatives
+
+    # 2469. Convert the Temperature
+    def convert_temperature(self, celsius: float) -> List[float]:
+        return [celsius + 273.15, celsius * 1.80 + 32.00]
