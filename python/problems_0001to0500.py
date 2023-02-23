@@ -1,6 +1,9 @@
 from typing import List, Optional
 from math import factorial, sqrt
 from classes import TreeNode, ListNode
+from collections import Counter
+import re
+import string
 
 
 # 119. Pascal's Triangle II
@@ -647,5 +650,67 @@ def zigzag_level_order(root: Optional[TreeNode]) -> List[List[int]]:
 
         result.append(level[::direction])
         direction *= -1
+
+    return result
+
+
+# 35. Search Insert Position
+def search_insert(nums: List[int], target: int) -> int:
+    if nums[-1] < target:
+        return len(nums)
+
+    if nums[0] > target:
+        return 0
+
+    start_index = 0
+    end_index = len(nums) - 1
+
+    while start_index != end_index:
+        mid_index = (end_index + start_index) // 2
+        if nums[mid_index] == target:
+            return mid_index
+        elif nums[mid_index] > target:
+            end_index = mid_index
+        else:
+            start_index = mid_index + 1
+
+    return start_index
+
+
+# 136. Single Number
+def single_number(nums: List[int]) -> int:
+    counter = Counter(nums)
+    for n, amount in counter.items():
+        if amount == 1:
+            return n
+
+    return 0
+
+
+# 125. Valid Palindrome
+def is_palindrome(s: str) -> bool:
+    letters = re.findall(r'[a-zA-Z\d]', s)
+    phrase = ''.join(letters).lower()
+
+    left = 0
+    right = len(phrase) - 1
+    while left < right:
+        if phrase[left] != phrase[right]:
+            return False
+        left += 1
+        right -= 1
+
+    return True
+
+
+# 171. Excel Sheet Column Number
+def title_to_number(columnTitle: str) -> int:
+    letter_to_number = {
+        letter: number + 1 for number, letter in enumerate(string.ascii_uppercase)
+    }
+
+    result = 0
+    for power, letter in enumerate(columnTitle[::-1]):
+        result += letter_to_number[letter] * 26 ** power
 
     return result

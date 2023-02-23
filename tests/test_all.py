@@ -49,6 +49,16 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(str_str(haystack="aaaaa", needle="bba"), -1)
         self.assertEqual(str_str(haystack="a", needle="a"), 0)
 
+    def test_035(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(search_insert(nums=[1, 3, 5, 6], target=5), 2)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(search_insert(nums=[1, 3, 5, 6], target=2), 1)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(search_insert(nums=[1, 3, 5, 6], target=7), 4)
+
     def test_043(self):
         self.assertEqual(multiply('2', '3'), '6')
         self.assertEqual(multiply('123', '456'), '56088')
@@ -166,10 +176,43 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(get_row(0), [1])
         self.assertEqual(get_row(1), [1, 1])
 
+    def test_125(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(is_palindrome(s="A man, a plan, a canal: Panama"))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(is_palindrome(s="race a car"))
+
+        with self.subTest('Example 3'):
+            self.assertTrue(is_palindrome(s=" "))
+
+        with self.subTest('Example 4'):
+            self.assertFalse(is_palindrome(s="0P"))
+
+    def test_136(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(single_number(nums=[2, 2, 1]), 1)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(single_number(nums=[4, 1, 2, 1, 2]), 4)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(single_number(nums=[1]), 1)
+
     def test_150(self):
         self.assertEqual(eval_rpn(["2", "1", "+", "3", "*"]), 9)
         self.assertEqual(eval_rpn(["4", "13", "5", "/", "+"]), 6)
         self.assertEqual(eval_rpn(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]), 22)
+
+    def test_171(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(title_to_number('A'), 1)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(title_to_number('AB'), 28)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(title_to_number('ZY'), 701)
 
     def test_191(self):
         self.assertEqual(hamming_weight(0b00000000000000000000000000001011), 3)
@@ -332,6 +375,13 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(next_greater_elements([5, 4, 3, 2, 1]), [-1, 5, 5, 5, 5])
         self.assertEqual(next_greater_elements([1, 5, 3, 6, 8]), [5, 6, 6, 8, -1])
 
+    def test_540(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(single_non_duplicate(nums=[1, 1, 2, 3, 3, 4, 4, 8, 8]), 2)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(single_non_duplicate(nums=[3, 3, 7, 7, 10, 11, 11]), 10)
+
     def test_556(self):
         self.assertEqual(next_greater_element_iii(234157641), 234161457)
         self.assertEqual(next_greater_element_iii(12), 21)
@@ -397,6 +447,22 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(daily_temperatures(temperatures=[30, 60, 90]), [1, 1, 0])
         self.assertEqual(daily_temperatures(temperatures=[89, 62, 70, 58, 47, 47, 46, 76, 100, 70]),
                          [8, 1, 5, 4, 3, 2, 1, 1, 0, 0])
+
+    def test_783(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(min_diff_in_bst(root=TreeNode(4, TreeNode(2, 1, 3), TreeNode(6))), 1)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(min_diff_in_bst(root=TreeNode(1, TreeNode(0), TreeNode(48, 12, 49))), 1)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(min_diff_in_bst(root=TreeNode(90,
+                                                           TreeNode(69,
+                                                                    TreeNode(49, None, 52),
+                                                                    TreeNode(89)
+                                                                    ),
+                                                           None)
+                                             ), 1)
 
     def test_797(self):
         self.assertCountEqual(all_paths_source_target([[1, 2], [3], [3], []]),
@@ -878,6 +944,16 @@ class Test2001to2500(unittest.TestCase):
 
         with self.subTest('Example 3'):
             self.assertEqual(solution.distinct_names(ideas=["bzklqtbdr", "kaqvdlp", "r", "dk"]), 12)
+
+    def test_2469(self):
+        solution = Solution5()
+        with self.subTest('Example 1'):
+            self.assertAlmostEqual(solution.convert_temperature(36.50)[0], 309.65000, delta=10e-5)
+            self.assertAlmostEqual(solution.convert_temperature(36.50)[1], 97.70000, delta=10e-5)
+
+        with self.subTest('Example 2'):
+            self.assertAlmostEqual(solution.convert_temperature(122.11)[0], 395.26000, delta=10e-5)
+            self.assertAlmostEqual(solution.convert_temperature(122.11)[1], 251.79800, delta=10e-5)
 
     def test_2477(self):
         with self.subTest('Example 1'):
