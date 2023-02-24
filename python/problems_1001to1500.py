@@ -1,12 +1,4 @@
-from typing import List
-from math import atan
-from heapq import heappush, heappop
-
-
-class ListNode:
-    def __init__(self, val=0, next_=None):
-        self.val = val
-        self.next = next_
+from common import *
 
 
 # 1491. Average Salary Excluding the Minimum and Maximum Salary
@@ -316,3 +308,17 @@ def max_product(nums: List[int]) -> int:
         result *= -heappop(q) - 1
 
     return result
+
+
+# 1337. The K Weakest Rows in a Matrix
+def k_weakest_rows(mat: List[List[int]], k: int) -> List[int]:
+    q = []
+    for n, row in enumerate(mat):
+        num_soldiers = sum(row)
+        heappush(q, (num_soldiers, n))
+
+    res = []
+    for _ in range(k):
+        res.append(heappop(q)[1])
+
+    return res

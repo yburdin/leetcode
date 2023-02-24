@@ -1,9 +1,4 @@
-from typing import List, Optional
-from math import factorial, sqrt
-from classes import TreeNode, ListNode
-from collections import Counter
-import re
-import string
+from common import *
 
 
 # 119. Pascal's Triangle II

@@ -1,8 +1,4 @@
-from typing import List, Optional
-from classes import ListNode, Node, TreeNode
-from collections import Counter
-from heapq import heappop, heappush
-import string
+from common import *
 
 
 # 976. Largest Perimeter Triangle

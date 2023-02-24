@@ -1,4 +1,4 @@
-from typing import List
+from common import *
 
 
 class Solution:
@@ -216,3 +216,25 @@ class Solution:
         words = s.split(' ')
         new_sentence = ' '.join(words[:k])
         return new_sentence
+
+    # 1675. Minimize Deviation in Array
+    def minimum_deviation(self, nums: List[int]) -> int:
+        min_val = float('inf')
+        pq = []
+        for num in nums:
+            if num % 2 == 1:
+                num = num * 2
+            pq.append(-num)
+            min_val = min(min_val, num)
+        heapify(pq)
+
+        min_deviation = float('inf')
+        while True:
+            max_val = -heappop(pq)
+            min_deviation = min(min_deviation, max_val - min_val)
+            if max_val % 2 == 1:
+                break
+            max_val //= 2
+            min_val = min(min_val, max_val)
+            heappush(pq, -max_val)
+        return min_deviation
