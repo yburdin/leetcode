@@ -408,3 +408,26 @@ def find_maximized_capital(k: int, w: int, profits: List[int], capital: List[int
             break
         w += -heappop(queue)
     return w
+
+
+# 506. Relative Ranks
+def find_relative_ranks(score: List[int]) -> List[str]:
+    medals = {1: 'Gold Medal',
+              2: 'Silver Medal',
+              3: 'Bronze Medal'}
+
+    result = [''] * len(score)
+    q = []
+    for i, score in enumerate(score):
+        heappush(q, (-score, i))
+
+    place = 1
+    while q:
+        item = heappop(q)
+        if place in medals:
+            result[item[1]] += str(medals[place])
+        else:
+            result[item[1]] += str(place)
+        place += 1
+
+    return result

@@ -2,8 +2,9 @@ import unittest
 from python.problems_0001to0500 import *
 from python.problems_0501to1000 import *
 from python.problems_1001to1500 import *
-from python.problems_1501to2000 import Solution as Solution4
-from python.problems_2001to2500 import Solution as Solution5
+from python.problems_1501to2000 import Solution as Solution1501to2000
+from python.problems_2001to2500 import Solution as Solution2001to2500
+from python.problems_2501to3000 import Solution as Solution2501to3000
 from classes import *
 
 
@@ -388,6 +389,15 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(next_greater_elements([1, 2, 3, 4, 3]), [2, 3, 4, -1, 4])
         self.assertEqual(next_greater_elements([5, 4, 3, 2, 1]), [-1, 5, 5, 5, 5])
         self.assertEqual(next_greater_elements([1, 5, 3, 6, 8]), [5, 6, 6, 8, -1])
+
+    def test_506(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(find_relative_ranks(score=[5, 4, 3, 2, 1]),
+                             ["Gold Medal", "Silver Medal", "Bronze Medal", "4", "5"])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(find_relative_ranks(score=[10, 3, 8, 9, 4]),
+                             ["Gold Medal", "5", "Bronze Medal", "Silver Medal", "4"])
 
     def test_540(self):
         with self.subTest('Example 1'):
@@ -813,17 +823,17 @@ class Test1001to1500(unittest.TestCase):
 
 class Test1501to2000(unittest.TestCase):
     def test_1502(self):
-        solution = Solution4()
+        solution = Solution1501to2000()
         self.assertEqual(solution.can_make_arithmetic_progression([3, 5, 1]), True)
         self.assertEqual(solution.can_make_arithmetic_progression([1, 2, 4]), False)
 
     def test_1523(self):
-        solution = Solution4()
+        solution = Solution1501to2000()
         self.assertEqual(solution.count_odds(3, 7), 3)
         self.assertEqual(solution.count_odds(8, 10), 1)
 
     def test_1572(self):
-        solution = Solution4()
+        solution = Solution1501to2000()
         self.assertEqual(solution.diagonal_sum([[1, 2, 3], [4, 5, 6], [7, 8, 9]]), 25)
         self.assertEqual(solution.diagonal_sum(
             [[1, 1, 1, 1],
@@ -833,7 +843,7 @@ class Test1501to2000(unittest.TestCase):
         self.assertEqual(solution.diagonal_sum([[5]]), 5)
 
     def test_1588(self):
-        solution = Solution4()
+        solution = Solution1501to2000()
         self.assertEqual(solution.sum_odd_length_subarrays([1, 4, 2, 5, 3]), 58)
         self.assertEqual(solution.sum_odd_length_subarrays([1, 2]), 3)
         self.assertEqual(solution.sum_odd_length_subarrays([10, 11, 12]), 66)
@@ -846,7 +856,7 @@ class Test1501to2000(unittest.TestCase):
         self.assertFalse(parking_system.add_car(1))
 
     def test_1630(self):
-        solution = Solution4()
+        solution = Solution1501to2000()
         self.assertEqual(
             solution.check_arithmetic_subarrays(nums=[4, 6, 5, 9, 3, 7], l=[0, 0, 2], r=[2, 3, 5]
                                                 ), [True, False, True])
@@ -857,13 +867,13 @@ class Test1501to2000(unittest.TestCase):
                                                 ), [False, True, False, False, True, True])
 
     def test_1672(self):
-        solution = Solution4()
+        solution = Solution1501to2000()
         self.assertEqual(solution.maximum_wealth([[1, 2, 3], [3, 2, 1]]), 6)
         self.assertEqual(solution.maximum_wealth([[1, 5], [7, 3], [3, 5]]), 10)
         self.assertEqual(solution.maximum_wealth([[2, 8, 7], [7, 1, 3], [1, 9, 5]]), 17)
 
     def test_1675(self):
-        solution = Solution4()
+        solution = Solution1501to2000()
         with self.subTest('Example 1'):
             self.assertEqual(solution.minimum_deviation(nums=[1, 2, 3, 4]), 1)
 
@@ -877,41 +887,41 @@ class Test1501to2000(unittest.TestCase):
             self.assertEqual(solution.minimum_deviation(nums=[3, 5]), 1)
 
     def test_1678(self):
-        solution = Solution4()
+        solution = Solution1501to2000()
         self.assertEqual(solution.interpret("G()(al)"), "Goal")
         self.assertEqual(solution.interpret("G()()()()(al)"), "Gooooal")
         self.assertEqual(solution.interpret("(al)G(al)()()G"), "alGalooG")
 
     def test_1700(self):
-        solution = Solution4()
+        solution = Solution1501to2000()
         self.assertEqual(solution.count_students([1, 1, 0, 0], [0, 1, 0, 1]), 0)
         self.assertEqual(solution.count_students([1, 1, 1, 0, 0, 1], [1, 0, 0, 0, 1, 1]), 3)
 
     def test_1732(self):
-        solution = Solution4()
+        solution = Solution1501to2000()
         self.assertEqual(solution.largest_altitude([-5, 1, 5, 0, -7]), 1)
         self.assertEqual(solution.largest_altitude([-4, -3, -2, -1, 4, 3, 2]), 0)
 
     def test_1768(self):
-        solution = Solution4()
+        solution = Solution1501to2000()
         self.assertEqual(solution.merge_alternately(word1="abc", word2="pqr"), "apbqcr")
         self.assertEqual(solution.merge_alternately(word1="ab", word2="pqrs"), "apbqrs")
         self.assertEqual(solution.merge_alternately(word1="abcd", word2="pq"), "apbqcd")
 
     def test_1779(self):
-        solution = Solution4()
+        solution = Solution1501to2000()
         self.assertEqual(solution.nearest_valid_point(3, 4, [[1, 2], [3, 1], [2, 4], [2, 3], [4, 4]]), 2)
         self.assertEqual(solution.nearest_valid_point(3, 4, [[3, 4]]), 0)
         self.assertEqual(solution.nearest_valid_point(3, 4, [[2, 3]]), -1)
 
     def test_1790(self):
-        solution = Solution4()
+        solution = Solution1501to2000()
         self.assertEqual(solution.are_almost_equal("bank", "kanb"), True)
         self.assertEqual(solution.are_almost_equal("attack", "defend"), False)
         self.assertEqual(solution.are_almost_equal("kelb", "kelb"), True)
 
     def test_1816(self):
-        solution = Solution4()
+        solution = Solution1501to2000()
         with self.subTest('Example 1'):
             self.assertEqual(solution.truncate_sentence(s="Hello how are you Contestant", k=4), "Hello how are you")
 
@@ -920,13 +930,13 @@ class Test1501to2000(unittest.TestCase):
                              "What is the solution")
 
     def test_1822(self):
-        solution = Solution4()
+        solution = Solution1501to2000()
         self.assertEqual(solution.array_sign([-1, -2, -3, -4, 3, 2, 1]), 1)
         self.assertEqual(solution.array_sign([1, 5, 0, 2, -3]), 0)
         self.assertEqual(solution.array_sign([-1, 1, -1, 1, -1]), -1)
 
     def test_1828(self):
-        solution = Solution4()
+        solution = Solution1501to2000()
         self.assertEqual(solution.count_points([[1, 3], [3, 3], [5, 3], [2, 2]], [[2, 3, 1], [4, 3, 1], [1, 1, 2]]),
                          [3, 2, 2])
         self.assertEqual(
@@ -935,7 +945,7 @@ class Test1501to2000(unittest.TestCase):
             [2, 3, 2, 4])
 
     def test_1886(self):
-        solution = Solution4()
+        solution = Solution1501to2000()
         self.assertTrue(
             solution.find_rotation(mat=[[0, 0, 0], [0, 1, 0], [1, 1, 1]], target=[[1, 1, 1], [0, 1, 0], [0, 0, 0]]))
         self.assertTrue(solution.find_rotation(mat=[[0, 1], [1, 0]], target=[[1, 0], [0, 1]]))
@@ -944,7 +954,7 @@ class Test1501to2000(unittest.TestCase):
             solution.find_rotation(mat=[[0, 0, 0], [0, 1, 0], [1, 1, 1]], target=[[1, 0, 0], [1, 1, 0], [1, 0, 0]]))
 
     def test_1925(self):
-        solution = Solution4()
+        solution = Solution1501to2000()
         self.assertEqual(solution.count_triples(5), 2)
         self.assertEqual(solution.count_triples(10), 4)
 
@@ -978,24 +988,24 @@ class Test1501to2000(unittest.TestCase):
 
 class Test2001to2500(unittest.TestCase):
     def test_2053(self):
-        solution = Solution5()
+        solution = Solution2001to2500()
         self.assertEqual(solution.kth_distinct(["d", "b", "c", "b", "c", "a"], 2), "a")
         self.assertEqual(solution.kth_distinct(["aaa", "aa", "a"], 1), "aaa")
         self.assertEqual(solution.kth_distinct(["a", "b", "a"], 3), "")
 
     def test_2073(self):
-        solution = Solution5()
+        solution = Solution2001to2500()
         self.assertEqual(solution.time_required_to_buy([2, 3, 2], 2), 6)
         self.assertEqual(solution.time_required_to_buy([5, 1, 1, 1], 0), 8)
         self.assertEqual(solution.time_required_to_buy([84, 49, 5, 24, 70, 77, 87, 8], 3), 154)
 
     def test_2221(self):
-        solution = Solution5()
+        solution = Solution2001to2500()
         self.assertEqual(solution.triangular_sum([1, 2, 3, 4, 5]), 8)
         self.assertEqual(solution.triangular_sum([5]), 5)
 
     def test_2306(self):
-        solution = Solution5()
+        solution = Solution2001to2500()
         with self.subTest('Example 1'):
             self.assertEqual(solution.distinct_names(ideas=["coffee", "donuts", "time", "toffee"]), 6)
 
@@ -1006,7 +1016,7 @@ class Test2001to2500(unittest.TestCase):
             self.assertEqual(solution.distinct_names(ideas=["bzklqtbdr", "kaqvdlp", "r", "dk"]), 12)
 
     def test_2469(self):
-        solution = Solution5()
+        solution = Solution2001to2500()
         with self.subTest('Example 1'):
             self.assertAlmostEqual(solution.convert_temperature(36.50)[0], 309.65000, delta=10e-5)
             self.assertAlmostEqual(solution.convert_temperature(36.50)[1], 97.70000, delta=10e-5)
@@ -1017,17 +1027,28 @@ class Test2001to2500(unittest.TestCase):
 
     def test_2477(self):
         with self.subTest('Example 1'):
-            solution = Solution5()
+            solution = Solution2001to2500()
             self.assertEqual(solution.minimum_fuel_cost(roads=[[0, 1], [0, 2], [0, 3]], seats=5), 3)
 
         with self.subTest('Example 2'):
-            solution = Solution5()
+            solution = Solution2001to2500()
             self.assertEqual(
                 solution.minimum_fuel_cost(roads=[[3, 1], [3, 2], [1, 0], [0, 4], [0, 5], [4, 6]], seats=2), 7)
 
         with self.subTest('Example 3'):
-            solution = Solution5()
+            solution = Solution2001to2500()
             self.assertEqual(solution.minimum_fuel_cost(roads=[], seats=1), 0)
+
+
+class Test2501to3000(unittest.TestCase):
+    def test_2558(self):
+        solution = Solution2501to3000()
+
+        with self.subTest('Example 1'):
+            self.assertEqual(solution.pick_gifts(gifts=[25, 64, 9, 4, 100], k=4), 29)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(solution.pick_gifts(gifts=[1, 1, 1, 1], k=4), 4)
 
 
 def list_to_linked_list(nodes: List[int]) -> ListNode:
