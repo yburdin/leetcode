@@ -176,6 +176,13 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(get_row(0), [1])
         self.assertEqual(get_row(1), [1, 1])
 
+    def test_121(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(max_profit(prices=[7, 1, 5, 3, 6, 4]), 5)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(max_profit(prices=[7, 6, 4, 3, 1]), 0)
+
     def test_125(self):
         with self.subTest('Example 1'):
             self.assertTrue(is_palindrome(s="A man, a plan, a canal: Panama"))
