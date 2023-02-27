@@ -1,11 +1,4 @@
-from typing import List
-from math import atan
-
-
-class ListNode:
-    def __init__(self, val=0, next_=None):
-        self.val = val
-        self.next = next_
+from common import *
 
 
 # 1491. Average Salary Excluding the Minimum and Maximum Salary
@@ -271,3 +264,61 @@ def shortest_alternating_paths(n: int, redEdges: List[List[int]], blueEdges: Lis
                     answer[neighbor] = steps + 1
 
     return answer
+
+
+# 1011. Capacity To Ship Packages Within D Days
+def ship_within_days(weights: List[int], days: int) -> int:
+    total_load = sum(weights)
+    max_load = max(weights)
+
+    left = max_load
+    right = total_load
+
+    while left < right:
+        mid = (left + right) // 2
+        if feasible(weights, mid, days):
+            right = mid
+        else:
+            left = mid + 1
+
+    return left
+
+
+def feasible(weights: List[int], capacity: int, days: int) -> bool:
+    current_load = 0
+    days_needed = 1
+    for weight in weights:
+        if current_load + weight <= capacity:
+            current_load += weight
+        else:
+            days_needed += 1
+            current_load = weight
+
+    return days_needed <= days
+
+
+# 1464. Maximum Product of Two Elements in an Array
+def max_product(nums: List[int]) -> int:
+    result = 1
+    q = []
+    for num in nums:
+        heappush(q, -num)
+
+    for _ in range(2):
+        result *= -heappop(q) - 1
+
+    return result
+
+
+# 1337. The K Weakest Rows in a Matrix
+def k_weakest_rows(mat: List[List[int]], k: int) -> List[int]:
+    q = []
+    for n, row in enumerate(mat):
+        num_soldiers = sum(row)
+        heappush(q, (num_soldiers, n))
+
+    res = []
+    for _ in range(k):
+        res.append(heappop(q)[1])
+
+    return res

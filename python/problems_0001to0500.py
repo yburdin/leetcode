@@ -1,9 +1,4 @@
-from typing import List, Optional
-from math import factorial, sqrt
-from classes import TreeNode, ListNode
-from collections import Counter
-import re
-import string
+from common import *
 
 
 # 119. Pascal's Triangle II
@@ -714,3 +709,17 @@ def title_to_number(columnTitle: str) -> int:
         result += letter_to_number[letter] * 26 ** power
 
     return result
+
+
+# 121. Best Time to Buy and Sell Stock
+def max_profit(prices: List[int]) -> int:
+    min_price = float('inf')
+    profit = 0
+
+    for price in prices:
+        if price < min_price:
+            min_price = price
+        elif price - min_price > profit:
+            profit = price - min_price
+
+    return profit
