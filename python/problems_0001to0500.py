@@ -723,3 +723,45 @@ def max_profit(prices: List[int]) -> int:
             profit = price - min_price
 
     return profit
+
+
+# 427. Construct Quad Tree
+def construct(grid: List[List[int]]) -> 'QuadNode':
+    half_len = len(grid) // 2
+    first_value = grid[0][0]
+    is_leaf = True
+
+    for i, j in product(range(len(grid)), range(len(grid))):
+        value = grid[i][j]
+        if value != first_value:
+            is_leaf = False
+            break
+
+    if not is_leaf:
+        root = QuadNode(
+            val=first_value,
+            isLeaf=is_leaf,
+            topLeft=construct([row[:half_len] for row in grid[:half_len]]),
+            topRight=construct([row[half_len:] for row in grid[:half_len]]),
+            bottomLeft=construct([row[:half_len] for row in grid[half_len:]]),
+            bottomRight=construct([row[half_len:] for row in grid[half_len:]]),
+        )
+    else:
+        root = QuadNode(
+            val=first_value,
+            isLeaf=is_leaf,
+            topLeft=None,
+            topRight=None,
+            bottomLeft=None,
+            bottomRight=None,
+        )
+
+    return root
+
+
+if __name__ == '__main__':
+    root = construct(
+        grid=[[1, 1, 1, 1, 0, 0, 0, 0], [1, 1, 1, 1, 0, 0, 0, 0], [1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1],
+              [1, 1, 1, 1, 0, 0, 0, 0], [1, 1, 1, 1, 0, 0, 0, 0], [1, 1, 1, 1, 0, 0, 0, 0], [1, 1, 1, 1, 0, 0, 0, 0]])
+
+    root = construct(grid=[[0, 1], [1, 0]])
