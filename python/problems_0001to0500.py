@@ -759,9 +759,23 @@ def construct(grid: List[List[int]]) -> 'QuadNode':
     return root
 
 
-if __name__ == '__main__':
-    root = construct(
-        grid=[[1, 1, 1, 1, 0, 0, 0, 0], [1, 1, 1, 1, 0, 0, 0, 0], [1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1],
-              [1, 1, 1, 1, 0, 0, 0, 0], [1, 1, 1, 1, 0, 0, 0, 0], [1, 1, 1, 1, 0, 0, 0, 0], [1, 1, 1, 1, 0, 0, 0, 0]])
+# 290. Word Pattern
+def word_pattern(pattern: str, s: str) -> bool:
+    words = s.split(' ')
 
-    root = construct(grid=[[0, 1], [1, 0]])
+    if len(set(pattern)) != len(set(words)):
+        return False
+
+    if len(pattern) != len(words):
+        return False
+
+    char_to_word = {}
+
+    for i, char in enumerate(pattern):
+        if char not in char_to_word:
+            char_to_word[char] = words[i]
+        else:
+            if char_to_word[char] != words[i]:
+                return False
+
+    return True

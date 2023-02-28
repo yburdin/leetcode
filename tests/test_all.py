@@ -249,6 +249,22 @@ class Test0001to0500(unittest.TestCase):
         self.assertFalse(is_anagram(s="rat", t="car"))
         self.assertFalse(is_anagram(s="ac", t="bb"))
 
+    def test_290(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(word_pattern(pattern="abba", s="dog cat cat dog"))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(word_pattern(pattern="abba", s="dog cat cat fish"))
+
+        with self.subTest('Example 3'):
+            self.assertFalse(word_pattern(pattern="aaaa", s="dog cat cat dog"))
+
+        with self.subTest('Example 4'):
+            self.assertFalse(word_pattern(pattern="abba", s="dog dog dog dog"))
+
+        with self.subTest('Example 5'):
+            self.assertFalse(word_pattern(pattern="aba", s="cat cat cat dog"))
+
     def test_303(self):
         num_array = NumArray([-2, 0, 3, -5, 2, -1])
         self.assertEqual(num_array.sum_range(0, 2), 1)

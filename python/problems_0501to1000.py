@@ -431,3 +431,29 @@ def find_relative_ranks(score: List[int]) -> List[str]:
         place += 1
 
     return result
+
+
+# 652. Find Duplicate Subtrees
+def find_duplicate_subtrees(root: Optional[TreeNode]) -> List[Optional[TreeNode]]:
+    def traverse(node: TreeNode) -> int:
+        if not node:
+            return 0
+
+        triplet = (traverse(node.left), node.val, traverse(node.right))
+
+        if triplet not in triplet_to_id:
+            triplet_to_id[triplet] = len(triplet_to_id) + 1
+        id_ = triplet_to_id[triplet]
+
+        count_dict[id_] += 1
+        if count_dict[id_] == 2:
+            duplicate_nodes.append(node)
+
+        return id_
+
+    triplet_to_id = {}
+    count_dict = defaultdict(int)
+    duplicate_nodes = []
+    traverse(root)
+
+    return duplicate_nodes
