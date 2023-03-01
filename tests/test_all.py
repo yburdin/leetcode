@@ -519,6 +519,19 @@ class Test0501to1000(unittest.TestCase):
         self.assertTrue(is_monotonic([6, 5, 4, 4]))
         self.assertFalse(is_monotonic([1, 3, 2]))
 
+    def test_912(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(sort_array(nums=[5, 2, 3, 1]), [1, 2, 3, 5])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sort_array(nums=[5, 1, 1, 2, 0, 0]), [0, 0, 1, 1, 2, 5])
+
+        with self.subTest('Example 3'):
+            self.assertEqual(sort_array(nums=[3, -1]), [-1, 3])
+
+        with self.subTest('Example 4'):
+            self.assertEqual(sort_array(nums=[-2, 3, -5]), [-5, -2, 3])
+
     def test_933(self):
         with self.subTest('Example 1'):
             recent_counter = RecentCounter()

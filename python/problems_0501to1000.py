@@ -457,3 +457,22 @@ def find_duplicate_subtrees(root: Optional[TreeNode]) -> List[Optional[TreeNode]
     traverse(root)
 
     return duplicate_nodes
+
+
+# 912. Sort an Array
+def sort_array(nums: List[int]) -> List[int]:
+    cnt_plus = [0] * (max(nums) + 1)
+    cnt_minus = []
+    if min(nums) < 0:
+        cnt_minus = [0] * abs(min(nums))
+
+    for item in nums:
+        if item >= 0:
+            cnt_plus[item] += 1
+        else:
+            cnt_minus[abs(item) - 1] += 1
+
+    result = ([num - len(cnt_minus) for num, count in enumerate(cnt_minus[::-1]) for i in range(count)] +
+              [num for num, count in enumerate(cnt_plus) for i in range(count)])
+
+    return result
