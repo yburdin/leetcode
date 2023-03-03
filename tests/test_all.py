@@ -249,6 +249,19 @@ class Test0001to0500(unittest.TestCase):
         self.assertFalse(is_anagram(s="rat", t="car"))
         self.assertFalse(is_anagram(s="ac", t="bb"))
 
+    def test_268(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(missing_number(nums=[3, 0, 1]), 2)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(missing_number(nums=[0, 1]), 2)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(missing_number(nums=[9, 6, 4, 2, 3, 5, 7, 0, 1]), 8)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(missing_number(nums=[1]), 0)
+
     def test_290(self):
         with self.subTest('Example 1'):
             self.assertTrue(word_pattern(pattern="abba", s="dog cat cat dog"))
@@ -310,6 +323,16 @@ class Test0001to0500(unittest.TestCase):
     def test_438(self):
         self.assertEqual(find_anagrams(s="cbaebabacd", p="abc"), [0, 6])
         self.assertEqual(find_anagrams(s="abab", p="ab"), [0, 1, 2])
+
+    def test_443(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(compress(chars=["a", "a", "b", "b", "c", "c", "c"]), 6)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(compress(chars=["a"]), 1)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(compress(chars=["a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b"]), 4)
 
     def test_459(self):
         self.assertTrue(repeated_substring_pattern("abab"))
@@ -471,6 +494,85 @@ class Test0501to1000(unittest.TestCase):
 
         with self.subTest('Example 2'):
             self.assertEqual(check_inclusion(s1="ab", s2="eidboaoo"), False)
+
+    def test_575(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(distribute_candies(candyType=[1, 1, 2, 2, 3, 3]), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(distribute_candies(candyType=[1, 1, 2, 3]), 2)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(distribute_candies(candyType=[6, 6, 6, 6]), 1)
+
+    def test_637(self):
+        with self.subTest('Example 1'):
+            result = average_of_levels(
+                root=TreeNode(3,
+                              TreeNode(9),
+                              TreeNode(20,
+                                       TreeNode(15),
+                                       TreeNode(7)))
+            )
+            expected_result = [3.0, 14.5, 11.0]
+            for i, avr_val in enumerate(result):
+                self.assertAlmostEqual(avr_val, expected_result[i])
+
+        with self.subTest('Example 2'):
+            result = average_of_levels(
+                root=TreeNode(3,
+                              TreeNode(9,
+                                       TreeNode(15),
+                                       TreeNode(7)),
+                              TreeNode(20))
+            )
+            expected_result = [3.0, 14.5, 11.0]
+            for i, avr_val in enumerate(result):
+                self.assertAlmostEqual(avr_val, expected_result[i])
+
+    def test_645(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(find_error_nums(nums=[1, 2, 2, 4]), [2, 3])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(find_error_nums(nums=[1, 1]), [1, 2])
+
+        with self.subTest('Example 3'):
+            self.assertEqual(find_error_nums(nums=[2, 2]), [2, 1])
+
+        with self.subTest('Example 4'):
+            self.assertEqual(find_error_nums(nums=[3, 2, 2]), [2, 1])
+
+        with self.subTest('Example 5'):
+            self.assertEqual(find_error_nums(nums=[1, 3, 3]), [3, 2])
+
+        with self.subTest('Example 6'):
+            self.assertEqual(find_error_nums(nums=[2, 3, 2]), [2, 1])
+
+    def test_706(self):
+        with self.subTest('Example 1'):
+            my_hash_map = MyHashMap()
+            my_hash_map.put(1, 1)  # The map is now [[1,1]]
+            my_hash_map.put(2, 2)  # The map is now [[1,1], [2,2]]
+            self.assertEqual(my_hash_map.get(1), 1)  # return 1, The map is now [[1,1], [2,2]]
+            self.assertEqual(my_hash_map.get(3), -1)  # return -1 (i.e., not found), The map is now [[1,1], [2,2]]
+            my_hash_map.put(2, 1)  # The map is now [[1,1], [2,1]] (i.e., update the existing value)
+            self.assertEqual(my_hash_map.get(2), 1)  # return 1, The map is now [[1,1], [2,1]]
+            my_hash_map.remove(2)  # remove the mapping for 2, The map is now [[1,1]]
+            self.assertEqual(my_hash_map.get(2), -1)  # return -1 (i.e., not found), The map is now [[1,1]]
+
+        with self.subTest('Example 2'):
+            my_hash_map = MyHashMap()
+            my_hash_map.remove(2)
+            my_hash_map.put(3, 11)
+            my_hash_map.put(4, 13)
+            my_hash_map.put(15, 6)
+            my_hash_map.put(6, 15)
+            my_hash_map.put(8, 8)
+            my_hash_map.put(11, 0)
+            self.assertEqual(my_hash_map.get(11), 0)
+            my_hash_map.put(1, 10)
+            my_hash_map.put(12, 4)
 
     def test_709(self):
         self.assertEqual(to_lower_case("Hello"), "hello")

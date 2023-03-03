@@ -476,3 +476,44 @@ def sort_array(nums: List[int]) -> List[int]:
               [num for num, count in enumerate(cnt_plus) for i in range(count)])
 
     return result
+
+
+# 575. Distribute Candies
+def distribute_candies(candyType: List[int]) -> int:
+    types = set(candyType)
+    return min(len(types), len(candyType) // 2)
+
+
+# 645. Set Mismatch
+def find_error_nums(nums: List[int]) -> List[int]:
+    counter = Counter(nums)
+    lost_number = set(range(1, len(nums) + 1)) - set(nums)
+
+    for num in counter:
+        if counter[num] == 2:
+            return [num, lost_number.pop()]
+
+    return []
+
+
+# 637. Average of Levels in Binary Tree
+def average_of_levels(root: Optional[TreeNode]) -> List[float]:
+    result = []
+    queue = [root]
+
+    while queue:
+        level_sum = 0
+        level_nodes = len(queue)
+        for _ in range(level_nodes):
+            node = queue.pop(0)
+            if node:
+                level_sum += node.val
+                queue.append(node.left)
+                queue.append(node.right)
+            else:
+                level_nodes -= 1
+
+        if level_nodes:
+            result.append(level_sum / level_nodes)
+
+    return result
