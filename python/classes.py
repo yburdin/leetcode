@@ -31,6 +31,16 @@ class Node:
         self.children = children
 
 
+class QuadNode:
+    def __init__(self, val, isLeaf, topLeft, topRight, bottomLeft, bottomRight):
+        self.val = val
+        self.isLeaf = isLeaf
+        self.topLeft = topLeft
+        self.topRight = topRight
+        self.bottomLeft = bottomLeft
+        self.bottomRight = bottomRight
+
+
 # 707. Design Linked List
 class MyLinkedList:
 
@@ -280,3 +290,32 @@ class RecentCounter:
             self.index_min += 1
 
         return len(self.requests[self.index_min:])
+
+
+# 706. Design HashMap
+class MyHashMap:
+    def __init__(self):
+        """
+        Initializes the object with an empty map.
+        """
+        self.storage = [None] * 1000001
+
+    def put(self, key: int, value: int) -> None:
+        """
+        Inserts a (key, value) pair into the HashMap.
+        If the key already exists in the map, update the corresponding value
+        """
+        self.storage[key] = value
+
+    def get(self, key: int) -> int:
+        """
+        Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key.
+        """
+        value = self.storage[key]
+        return value if value is not None else -1
+
+    def remove(self, key: int) -> None:
+        """
+        Removes the key and its corresponding value if the map contains the mapping for the key.
+        """
+        self.storage[key] = None

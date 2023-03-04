@@ -79,7 +79,7 @@ def next_greater_element(nums1: List[int], nums2: List[int]) -> List[int]:
 # 389. Find the Difference
 def find_the_difference(s: str, t: str) -> str:
     return chr(sum([ord(x) for x in t]) - sum([ord(x) for x in s]))
-    
+
   
 # 70. Climbing Stairs
 def climb_stairs(n: int) -> int:
@@ -88,7 +88,7 @@ def climb_stairs(n: int) -> int:
     return int((phi ** n - (-phi) ** (-n)) / (2 * phi - 1))
 
 
-# 28. Implement strStr()
+# 28. Implement strStr() / Find the Index of the First Occurrence in a String
 def str_str(haystack: str, needle: str) -> int:
     for i in range(len(haystack) - len(needle) + 1):
         if haystack[i:i+len(needle)] == needle:
@@ -750,3 +750,87 @@ def min_distance(word1: str, word2: str) -> int:
                 memo[word1index][word2index] = edit_min_distance
 
     return memo[len(word1)][len(word2)]
+
+
+# 427. Construct Quad Tree
+def construct(grid: List[List[int]]) -> 'QuadNode':
+    half_len = len(grid) // 2
+    first_value = grid[0][0]
+    is_leaf = True
+
+    for i, j in product(range(len(grid)), range(len(grid))):
+        value = grid[i][j]
+        if value != first_value:
+            is_leaf = False
+            break
+
+    if not is_leaf:
+        root = QuadNode(
+            val=first_value,
+            isLeaf=is_leaf,
+            topLeft=construct([row[:half_len] for row in grid[:half_len]]),
+            topRight=construct([row[half_len:] for row in grid[:half_len]]),
+            bottomLeft=construct([row[:half_len] for row in grid[half_len:]]),
+            bottomRight=construct([row[half_len:] for row in grid[half_len:]]),
+        )
+    else:
+        root = QuadNode(
+            val=first_value,
+            isLeaf=is_leaf,
+            topLeft=None,
+            topRight=None,
+            bottomLeft=None,
+            bottomRight=None,
+        )
+
+    return root
+
+
+# 290. Word Pattern
+def word_pattern(pattern: str, s: str) -> bool:
+    words = s.split(' ')
+
+    if len(set(pattern)) != len(set(words)):
+        return False
+
+    if len(pattern) != len(words):
+        return False
+
+    char_to_word = {}
+
+    for i, char in enumerate(pattern):
+        if char not in char_to_word:
+            char_to_word[char] = words[i]
+        else:
+            if char_to_word[char] != words[i]:
+                return False
+
+    return True
+
+
+# 443. String Compression
+def compress(chars: List[str]) -> int:
+    current_index = 0
+    res = 0
+
+    while current_index < len(chars):
+        group_length = 1
+        while (current_index + group_length < len(chars)
+               and chars[current_index + group_length] == chars[current_index]):
+            group_length += 1
+        chars[res] = chars[current_index]
+        res += 1
+
+        if group_length > 1:
+            str_repr = str(group_length)
+            chars[res:res+len(str_repr)] = list(str_repr)
+            res += len(str_repr)
+        current_index += group_length
+
+    return res
+
+
+# 268. Missing Number
+def missing_number(nums: List[int]) -> int:
+    number = set(range(len(nums) + 1)) - set(nums)
+    return number.pop()
