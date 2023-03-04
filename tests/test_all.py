@@ -122,6 +122,13 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(climb_stairs(4), 5)
         self.assertEqual(climb_stairs(5), 8)
 
+    def test_072(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(min_distance(word1="horse", word2="ros"), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(min_distance(word1="intention", word2="execution"), 5)
+
     def test_100(self):
         with self.subTest('Example 1'):
             self.assertTrue(is_same_tree(p=TreeNode(1, 2, 3), q=TreeNode(1, 2, 3)))

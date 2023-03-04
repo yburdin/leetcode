@@ -723,3 +723,30 @@ def max_profit(prices: List[int]) -> int:
             profit = price - min_price
 
     return profit
+
+
+# 72. Edit Distance
+def min_distance(word1: str, word2: str) -> int:
+    memo = [[0 for _ in range(len(word2) + 1)] for _ in range((len(word1) + 1))]
+
+    word1index = 0
+    for word2index in range(1, len(word2) + 1):
+        memo[word1index][word2index] = word2index
+
+    word2index = 0
+    for word1index in range(1, len(word1) + 1):
+        memo[word1index][word2index] = word1index
+
+    for word1index in range(1, len(word1) + 1):
+        for word2index in range(1, len(word2) + 1):
+            if word1[word1index - 1] == word2[word2index - 1]:
+                memo[word1index][word2index] = memo[word1index - 1][word2index - 1]
+            else:
+                edit_min_distance = min(
+                    memo[word1index][word2index - 1] + 1,
+                    memo[word1index - 1][word2index] + 1,
+                    memo[word1index - 1][word2index - 1] + 1,
+                )
+                memo[word1index][word2index] = edit_min_distance
+
+    return memo[len(word1)][len(word2)]
