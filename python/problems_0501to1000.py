@@ -431,3 +431,89 @@ def find_relative_ranks(score: List[int]) -> List[str]:
         place += 1
 
     return result
+
+
+# 652. Find Duplicate Subtrees
+def find_duplicate_subtrees(root: Optional[TreeNode]) -> List[Optional[TreeNode]]:
+    def traverse(node: TreeNode) -> int:
+        if not node:
+            return 0
+
+        triplet = (traverse(node.left), node.val, traverse(node.right))
+
+        if triplet not in triplet_to_id:
+            triplet_to_id[triplet] = len(triplet_to_id) + 1
+        id_ = triplet_to_id[triplet]
+
+        count_dict[id_] += 1
+        if count_dict[id_] == 2:
+            duplicate_nodes.append(node)
+
+        return id_
+
+    triplet_to_id = {}
+    count_dict = defaultdict(int)
+    duplicate_nodes = []
+    traverse(root)
+
+    return duplicate_nodes
+
+
+# 912. Sort an Array
+def sort_array(nums: List[int]) -> List[int]:
+    cnt_plus = [0] * (max(nums) + 1)
+    cnt_minus = []
+    if min(nums) < 0:
+        cnt_minus = [0] * abs(min(nums))
+
+    for item in nums:
+        if item >= 0:
+            cnt_plus[item] += 1
+        else:
+            cnt_minus[abs(item) - 1] += 1
+
+    result = ([num - len(cnt_minus) for num, count in enumerate(cnt_minus[::-1]) for i in range(count)] +
+              [num for num, count in enumerate(cnt_plus) for i in range(count)])
+
+    return result
+
+
+# 575. Distribute Candies
+def distribute_candies(candyType: List[int]) -> int:
+    types = set(candyType)
+    return min(len(types), len(candyType) // 2)
+
+
+# 645. Set Mismatch
+def find_error_nums(nums: List[int]) -> List[int]:
+    counter = Counter(nums)
+    lost_number = set(range(1, len(nums) + 1)) - set(nums)
+
+    for num in counter:
+        if counter[num] == 2:
+            return [num, lost_number.pop()]
+
+    return []
+
+
+# 637. Average of Levels in Binary Tree
+def average_of_levels(root: Optional[TreeNode]) -> List[float]:
+    result = []
+    queue = [root]
+
+    while queue:
+        level_sum = 0
+        level_nodes = len(queue)
+        for _ in range(level_nodes):
+            node = queue.pop(0)
+            if node:
+                level_sum += node.val
+                queue.append(node.left)
+                queue.append(node.right)
+            else:
+                level_nodes -= 1
+
+        if level_nodes:
+            result.append(level_sum / level_nodes)
+
+    return result
