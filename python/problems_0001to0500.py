@@ -834,3 +834,57 @@ def compress(chars: List[str]) -> int:
 def missing_number(nums: List[int]) -> int:
     number = set(range(len(nums) + 1)) - set(nums)
     return number.pop()
+
+
+# 101. Symmetric Tree
+def is_symmetric(root: Optional[TreeNode]) -> bool:
+    queue = []
+
+    if root:
+        queue.append(root.left)
+        queue.append(root.right)
+    else:
+        return False
+
+    while queue:
+        left_node = queue.pop()
+        right_node = queue.pop()
+
+        if left_node and right_node:
+            if left_node.val != right_node.val:
+                return False
+
+            queue.append(left_node.left)
+            queue.append(right_node.right)
+
+            queue.append(right_node.left)
+            queue.append(left_node.right)
+        elif not left_node and not right_node:
+            pass
+        else:
+            return False
+
+    return True
+
+
+# 134. Gas Station
+def can_complete_circuit(gas: List[int], cost: List[int]) -> int:
+    n = len(gas)
+    start_position = 0
+    current_gas = 0
+    total_gas = 0
+    total_cost = 0
+
+    for i in range(n):
+        current_gas += gas[i] - cost[i]
+        total_gas += gas[i]
+        total_cost += cost[i]
+
+        if current_gas < 0:
+            start_position = i + 1
+            current_gas = 0
+
+    if total_gas < total_cost:
+        return -1
+    else:
+        return start_position
