@@ -122,6 +122,13 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(climb_stairs(4), 5)
         self.assertEqual(climb_stairs(5), 8)
 
+    def test_072(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(min_distance(word1="horse", word2="ros"), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(min_distance(word1="intention", word2="execution"), 5)
+
     def test_100(self):
         with self.subTest('Example 1'):
             self.assertTrue(is_same_tree(p=TreeNode(1, 2, 3), q=TreeNode(1, 2, 3)))
@@ -131,6 +138,29 @@ class Test0001to0500(unittest.TestCase):
 
         with self.subTest('Example 2'):
             self.assertFalse(is_same_tree(p=TreeNode(1, 2, 1), q=TreeNode(1, 1, 2)))
+
+    def test_101(self):
+        with self.subTest('Example 1'):
+            root = TreeNode(1,
+                            TreeNode(2,
+                                     TreeNode(3), TreeNode(4)),
+                            TreeNode(2,
+                                     TreeNode(4), TreeNode(3)))
+
+            self.assertTrue(is_symmetric(root))
+
+        with self.subTest('Example 2'):
+            root = TreeNode(1,
+                            TreeNode(2,
+                                     None, TreeNode(3)),
+                            TreeNode(2,
+                                     None, TreeNode(3)))
+
+            self.assertFalse(is_symmetric(root))
+
+        with self.subTest('Example 3'):
+            root = TreeNode(1)
+            self.assertTrue(is_symmetric(root))
 
     def test_103(self):
         with self.subTest('Example 1'):
@@ -196,6 +226,13 @@ class Test0001to0500(unittest.TestCase):
 
         with self.subTest('Example 4'):
             self.assertFalse(is_palindrome(s="0P"))
+
+    def test_134(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(can_complete_circuit(gas=[1, 2, 3, 4, 5], cost=[3, 4, 5, 1, 2]), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(can_complete_circuit(gas=[2, 3, 4], cost=[3, 4, 3]), -1)
 
     def test_136(self):
         with self.subTest('Example 1'):
@@ -616,6 +653,15 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(num_subarray_product_less_than_k(nums=[10, 5, 2, 6], k=100), 8)
         self.assertEqual(num_subarray_product_less_than_k(nums=[1, 2, 3], k=0), 0)
 
+    def test_733(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(flood_fill(image=[[1, 1, 1], [1, 1, 0], [1, 0, 1]], sr=1, sc=1, color=2),
+                             [[2, 2, 2], [2, 2, 0], [2, 0, 1]])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(flood_fill(image=[[0, 0, 0], [0, 0, 0]], sr=0, sc=0, color=0),
+                             [[0, 0, 0], [0, 0, 0]])
+
     def test_739(self):
         self.assertEqual(daily_temperatures(temperatures=[73, 74, 75, 71, 69, 72, 76, 73]), [1, 1, 4, 2, 1, 1, 0, 0])
         self.assertEqual(daily_temperatures(temperatures=[30, 40, 50, 60]), [1, 1, 1, 0])
@@ -933,6 +979,16 @@ class Test1001to1500(unittest.TestCase):
                 [0, 2]
             )
 
+    def test_1345(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(min_jumps(arr=[100, -23, -23, 404, 100, 23, 23, 23, 3, 404]), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(min_jumps(arr=[7]), 0)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(min_jumps(arr=[7, 6, 9, 6, 9, 6, 9, 7]), 1)
+
     def test_1356(self):
         self.assertEqual(sort_by_bits([0, 1, 2, 3, 4, 5, 6, 7, 8]), [0, 1, 2, 4, 8, 3, 5, 6, 7])
         self.assertEqual(sort_by_bits([1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1]),
@@ -1149,6 +1205,19 @@ class Test1501to2000(unittest.TestCase):
         # Unreserve seat 5, so now the available seats are [5].
         seat_manager.unreserve(5)
 
+    def test_1971(self):
+        solution = Solution1501to2000()
+        with self.subTest('Example 1'):
+            self.assertTrue(solution.valid_path(n=3, edges=[[0, 1], [1, 2], [2, 0]], source=0, destination=2))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(
+                solution.valid_path(n=6, edges=[[0, 1], [0, 2], [3, 5], [5, 4], [4, 3]], source=0, destination=5))
+
+        with self.subTest('Example 3'):
+            self.assertTrue(
+                solution.valid_path(n=1, edges=[], source=0, destination=0))
+
 
 class Test2001to2500(unittest.TestCase):
     def test_2053(self):
@@ -1178,6 +1247,15 @@ class Test2001to2500(unittest.TestCase):
 
         with self.subTest('Example 3'):
             self.assertEqual(solution.distinct_names(ideas=["bzklqtbdr", "kaqvdlp", "r", "dk"]), 12)
+
+    def test_2444(self):
+        solution = Solution2001to2500()
+
+        with self.subTest('Example 1'):
+            self.assertEqual(solution.count_subarrays(nums=[1, 3, 5, 2, 7, 5], minK=1, maxK=5), 2)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(solution.count_subarrays(nums=[1, 1, 1, 1], minK=1, maxK=1), 10)
 
     def test_2469(self):
         solution = Solution2001to2500()
