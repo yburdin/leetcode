@@ -87,3 +87,22 @@ class Solution:
     # 2469. Convert the Temperature
     def convert_temperature(self, celsius: float) -> List[float]:
         return [celsius + 273.15, celsius * 1.80 + 32.00]
+
+    # 2444. Count Subarrays With Fixed Bounds
+    def count_subarrays(self, nums: List[int], minK: int, maxK: int) -> int:
+        min_position = -1
+        max_position = -1
+        left_bound = -1
+        result = 0
+
+        for i, num in enumerate(nums):
+            if num > maxK or num < minK:
+                left_bound = i
+
+            if num == minK:
+                min_position = i
+            if num == maxK:
+                max_position = i
+            result += max(0, min(min_position, max_position) - left_bound)
+
+        return result

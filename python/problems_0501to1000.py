@@ -517,3 +517,28 @@ def average_of_levels(root: Optional[TreeNode]) -> List[float]:
             result.append(level_sum / level_nodes)
 
     return result
+
+
+# 733. Flood Fill
+def flood_fill(image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+    directions = ((-1, 0), (0, -1), (1, 0), (0, 1))
+    prev_color = image[sr][sc]
+
+    image[sr][sc] = color
+    queue = [(sr, sc)]
+    visited = {(sr, sc)}
+
+    while queue:
+        current_position = queue.pop()
+        for direction in directions:
+            next_position = (current_position[0] + direction[0], current_position[1] + direction[1])
+
+            if (0 <= next_position[0] < len(image) and
+                    0 <= next_position[1] < len(image[0]) and
+                    next_position not in visited):
+                visited.add(next_position)
+                if image[next_position[0]][next_position[1]] == prev_color:
+                    image[next_position[0]][next_position[1]] = color
+                    queue.append(next_position)
+
+    return image

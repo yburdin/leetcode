@@ -238,3 +238,29 @@ class Solution:
             min_val = min(min_val, max_val)
             heappush(pq, -max_val)
         return min_deviation
+
+    # 1971. Find if Path Exists in Graph
+    def valid_path(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
+        if n < 2:
+            return True
+
+        graph = {node: set() for node in range(n)}
+
+        for edge in edges:
+            graph[edge[0]].add(edge[1])
+            graph[edge[1]].add(edge[0])
+
+        queue = [source]
+        visited = {source}
+
+        while queue:
+            current_node = queue.pop()
+
+            for next_node in graph[current_node]:
+                if next_node == destination:
+                    return True
+                if next_node not in visited:
+                    queue.append(next_node)
+                    visited.add(next_node)
+
+        return False
