@@ -934,3 +934,30 @@ def can_complete_circuit(gas: List[int], cost: List[int]) -> int:
         return -1
     else:
         return start_position
+
+
+# 112. Path Sum
+def has_path_sum(root: Optional[TreeNode], targetSum: int) -> bool:
+    queue = []
+
+    if root:
+        if not root.left and not root.right:
+            if root.val == targetSum:
+                return True
+        else:
+            queue.append((root.val, root.left))
+            queue.append((root.val, root.right))
+
+    while queue:
+        prev_sum, node = queue.pop()
+
+        if node:
+            cur_sum = prev_sum + node.val
+
+            if not node.left and not node.right and cur_sum == targetSum:
+                return True
+
+            queue.append((cur_sum, node.left))
+            queue.append((cur_sum, node.right))
+
+    return False
