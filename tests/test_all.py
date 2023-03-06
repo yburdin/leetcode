@@ -236,6 +236,19 @@ class Test0001to0500(unittest.TestCase):
         self.assertFalse(contains_duplicate([1, 2, 3, 4]))
         self.assertTrue(contains_duplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]))
 
+    def test_219(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(contains_nearby_duplicate(nums=[1, 2, 3, 1], k=3))
+
+        with self.subTest('Example 2'):
+            self.assertTrue(contains_nearby_duplicate(nums=[1, 0, 1, 1], k=1))
+
+        with self.subTest('Example 3'):
+            self.assertFalse(contains_nearby_duplicate(nums=[1, 2, 3, 1, 2, 3], k=2))
+
+        with self.subTest('Example 4'):
+            self.assertTrue(contains_nearby_duplicate(nums=[99, 99], k=2))
+
     def test_232(self):
         my_queue = MyQueue()
         my_queue.push(1)
@@ -316,9 +329,29 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(find_the_difference(s="", t="y"), 'y')
         self.assertEqual(find_the_difference(s="a", t="aa"), 'a')
 
+    def test_392(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(is_subsequence(s="abc", t="ahbgdc"))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(is_subsequence(s="axc", t="ahbgdc"))
+
+        with self.subTest('Example 3'):
+            self.assertTrue(is_subsequence(s="", t="ahbgdc"))
+
+        with self.subTest('Example 4'):
+            self.assertFalse(is_subsequence(s="axc", t=""))
+
     def test_405(self):
         self.assertEqual(to_hex(26), '1a')
         self.assertEqual(to_hex(-1), 'ffffffff')
+
+    def test_413(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(number_of_arithmetic_slices(nums=[1, 2, 3, 4]), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(number_of_arithmetic_slices(nums=[1]), 0)
 
     def test_438(self):
         self.assertEqual(find_anagrams(s="cbaebabacd", p="abc"), [0, 6])

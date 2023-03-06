@@ -807,3 +807,49 @@ def compress(chars: List[str]) -> int:
 def missing_number(nums: List[int]) -> int:
     number = set(range(len(nums) + 1)) - set(nums)
     return number.pop()
+
+
+# 392. Is Subsequence
+def is_subsequence(s: str, t: str) -> bool:
+    if len(s) == 0:
+        return True
+    if len(t) == 0:
+        return False
+
+    point_s = 0
+    point_t = 0
+
+    while point_t < len(t):
+        if t[point_t] == s[point_s]:
+            point_s += 1
+            if point_s == len(s):
+                return True
+        point_t += 1
+
+    return False
+
+
+# 413. Arithmetic Slices
+def number_of_arithmetic_slices(nums: List[int]) -> int:
+    n = len(nums)
+    dp = [0] * n
+    result = 0
+
+    for i in range(2, n):
+        if nums[i-1] - nums[i-2] == nums[i] - nums[i-1]:
+            dp[i] = dp[i-1] + 1
+        result += dp[i]
+
+    return result
+
+
+# 219. Contains Duplicate II
+def contains_nearby_duplicate(nums: List[int], k: int) -> bool:
+    dic = {}
+
+    for i, v in enumerate(nums):
+        if v in dic and i - dic[v] <= k:
+            return True
+        dic[v] = i
+
+    return False
