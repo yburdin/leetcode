@@ -437,7 +437,7 @@ class Test0001to0500(unittest.TestCase):
         self.assertFalse(repeated_substring_pattern("aba"))
         self.assertTrue(repeated_substring_pattern("abcabcabcabc"))
         self.assertFalse(repeated_substring_pattern("aabaaba"))
-        
+
     def test_463(self):
         with self.subTest('Example 1'):
             self.assertEqual(island_perimeter(grid=[[0, 1, 0, 0], [1, 1, 1, 0], [0, 1, 0, 0], [1, 1, 0, 0]]), 16)
@@ -756,7 +756,8 @@ class Test0501to1000(unittest.TestCase):
             self.assertEqual(recent_counter.ping(1), 1)     # requests = [1], range is [-2999,1], return 1
             self.assertEqual(recent_counter.ping(100), 2)   # requests = [1, 100], range is [-2900,100], return 2
             self.assertEqual(recent_counter.ping(3001), 3)  # requests = [1, 100, 3001], range is [1,3001], return 3
-            self.assertEqual(recent_counter.ping(3002), 3)  # requests = [1, 100, 3001, 3002], range is [2,3002], return 3
+            self.assertEqual(recent_counter.ping(3002),
+                             3)  # requests = [1, 100, 3001, 3002], range is [2,3002], return 3
 
     def test_953(self):
         self.assertTrue(is_alien_sorted(words=["hello", "leetcode"], order="hlabcdefgijkmnopqrstuvwxyz"))
@@ -1329,10 +1330,10 @@ class Test2001to2500(unittest.TestCase):
     def test_2187(self):
         solution = Solution2001to2500()
         with self.subTest('Example 1'):
-            self.assertEqual(solution.minimum_time(time = [1,2,3], totalTrips = 5), 3)
+            self.assertEqual(solution.minimum_time(time=[1, 2, 3], totalTrips=5), 3)
 
         with self.subTest('Example 2'):
-            self.assertEqual(solution.minimum_time(time = [2], totalTrips = 1), 2)
+            self.assertEqual(solution.minimum_time(time=[2], totalTrips=1), 2)
 
     def test_2221(self):
         solution = Solution2001to2500()
