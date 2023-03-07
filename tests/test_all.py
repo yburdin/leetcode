@@ -647,6 +647,15 @@ class Test0501to1000(unittest.TestCase):
         with self.subTest('Example 6'):
             self.assertEqual(find_error_nums(nums=[2, 3, 2]), [2, 1])
 
+    def test_703(self):
+        with self.subTest('Example 1'):
+            kth_largest = KthLargest(3, [4, 5, 8, 2])
+            self.assertEqual(kth_largest.add(3), 4)
+            self.assertEqual(kth_largest.add(5), 5)
+            self.assertEqual(kth_largest.add(10), 5)
+            self.assertEqual(kth_largest.add(9), 8)
+            self.assertEqual(kth_largest.add(4), 8)
+
     def test_706(self):
         with self.subTest('Example 1'):
             my_hash_map = MyHashMap()
@@ -1316,6 +1325,14 @@ class Test2001to2500(unittest.TestCase):
         self.assertEqual(solution.time_required_to_buy([2, 3, 2], 2), 6)
         self.assertEqual(solution.time_required_to_buy([5, 1, 1, 1], 0), 8)
         self.assertEqual(solution.time_required_to_buy([84, 49, 5, 24, 70, 77, 87, 8], 3), 154)
+
+    def test_2187(self):
+        solution = Solution2001to2500()
+        with self.subTest('Example 1'):
+            self.assertEqual(solution.minimum_time(time = [1,2,3], totalTrips = 5), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(solution.minimum_time(time = [2], totalTrips = 1), 2)
 
     def test_2221(self):
         solution = Solution2001to2500()
