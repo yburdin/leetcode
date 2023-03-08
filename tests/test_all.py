@@ -244,6 +244,32 @@ class Test0001to0500(unittest.TestCase):
         with self.subTest('Example 3'):
             self.assertEqual(single_number(nums=[1]), 1)
 
+    def test_144(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(preorder_traversal(
+                root=TreeNode(1, None, TreeNode(2, TreeNode(3)))
+            ), [1, 2, 3])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(preorder_traversal(None), [])
+
+        with self.subTest('Example 3'):
+            self.assertEqual(preorder_traversal(TreeNode(1)), [1])
+
+        with self.subTest('Example 4'):
+            self.assertEqual(preorder_traversal(
+                root=TreeNode(1, TreeNode(4, TreeNode(4), TreeNode(2)), None)
+            ), [1, 4, 4, 2])
+
+        with self.subTest('Example 5'):
+            self.assertEqual(preorder_traversal(
+                root=TreeNode(6,
+                              TreeNode(3,
+                                       None, TreeNode(1)),
+                              TreeNode(2,
+                                       TreeNode(2), None))
+            ), [6, 3, 1, 2, 2])
+
     def test_150(self):
         self.assertEqual(eval_rpn(["2", "1", "+", "3", "*"]), 9)
         self.assertEqual(eval_rpn(["4", "13", "5", "/", "+"]), 6)
@@ -475,6 +501,22 @@ class Test0501to1000(unittest.TestCase):
             self.assertEqual(find_relative_ranks(score=[10, 3, 8, 9, 4]),
                              ["Gold Medal", "5", "Bronze Medal", "Silver Medal", "4"])
 
+    def test_520(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(detect_capital_use(word='USA'))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(detect_capital_use(word='FlaG'))
+
+        with self.subTest('Example 3'):
+            self.assertTrue(detect_capital_use(word='leetcode'))
+
+        with self.subTest('Example 4'):
+            self.assertTrue(detect_capital_use(word='Google'))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(detect_capital_use(word='gooGle'))
+
     def test_540(self):
         with self.subTest('Example 1'):
             self.assertEqual(single_non_duplicate(nums=[1, 1, 2, 3, 3, 4, 4, 8, 8]), 2)
@@ -658,6 +700,16 @@ class Test0501to1000(unittest.TestCase):
         self.assertCountEqual(all_paths_source_target([[4, 3, 1], [3, 2, 4], [3], [4], []]),
                               [[0, 4], [0, 3, 4], [0, 1, 3, 4], [0, 1, 2, 3, 4], [0, 1, 4]])
 
+    def test_875(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(min_eating_speed(piles=[3, 6, 7, 11], h=8), 4)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(min_eating_speed(piles=[30, 11, 23, 4, 20], h=5), 30)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(min_eating_speed(piles=[30, 11, 23, 4, 20], h=6), 23)
+
     def test_876(self):
         self.assertEqual(linked_list_to_list(middle_node(list_to_linked_list([1, 2, 3, 4, 5]))), [3, 4, 5])
         self.assertEqual(linked_list_to_list(middle_node(list_to_linked_list([1, 2, 3, 4, 5, 6]))), [4, 5, 6])
@@ -687,6 +739,19 @@ class Test0501to1000(unittest.TestCase):
             self.assertEqual(recent_counter.ping(100), 2)   # requests = [1, 100], range is [-2900,100], return 2
             self.assertEqual(recent_counter.ping(3001), 3)  # requests = [1, 100, 3001], range is [1,3001], return 3
             self.assertEqual(recent_counter.ping(3002), 3)  # requests = [1, 100, 3001, 3002], range is [2,3002], return 3
+
+    def test_944(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(min_deletion_size(strs=["cba", "daf", "ghi"]), 1)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(min_deletion_size(strs=["a", "b"]), 0)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(min_deletion_size(strs=["zyx", "wvu", "tsr"]), 3)
+
+        with self.subTest('Example 4'):
+            self.assertEqual(min_deletion_size(strs=["abc", "bce", "cae"]), 1)
 
     def test_953(self):
         self.assertTrue(is_alien_sorted(words=["hello", "leetcode"], order="hlabcdefgijkmnopqrstuvwxyz"))
@@ -1203,6 +1268,14 @@ class Test2001to2500(unittest.TestCase):
         solution = Solution2001to2500()
         self.assertEqual(solution.triangular_sum([1, 2, 3, 4, 5]), 8)
         self.assertEqual(solution.triangular_sum([5]), 5)
+
+    def test_2244(self):
+        solution = Solution2001to2500()
+        with self.subTest('Example 1'):
+            self.assertEqual(solution.minimum_rounds(tasks=[2, 2, 3, 3, 2, 4, 4, 4, 4, 4]), 4)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(solution.minimum_rounds(tasks=[2, 3, 3]), -1)
 
     def test_2306(self):
         solution = Solution2001to2500()

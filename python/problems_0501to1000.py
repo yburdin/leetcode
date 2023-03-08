@@ -542,3 +542,30 @@ def flood_fill(image: List[List[int]], sr: int, sc: int, color: int) -> List[Lis
                     queue.append(next_position)
 
     return image
+
+
+# 520. Detect Capital
+def detect_capital_use(word: str) -> bool:
+    n_capitals = 0
+    not_first_capital = False
+    for i, char in enumerate(word):
+        is_capital = ord(char) < 97
+        n_capitals += is_capital
+        if i > 0 and is_capital:
+            not_first_capital = True
+
+    all_capitals = len(word) == n_capitals
+    no_capitals = n_capitals == 0
+
+    return no_capitals or all_capitals or not not_first_capital
+
+
+# 944. Delete Columns to Make Sorted
+def min_deletion_size(strs: List[str]) -> int:
+    result = 0
+    for i, _ in enumerate(strs[0]):
+        column = [str_[i] for str_ in strs]
+        if column != sorted(column):
+            result += 1
+
+    return result

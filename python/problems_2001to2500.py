@@ -1,4 +1,4 @@
-from typing import List
+from common import *
 
 
 class Solution:
@@ -104,5 +104,20 @@ class Solution:
             if num == maxK:
                 max_position = i
             result += max(0, min(min_position, max_position) - left_bound)
+
+        return result
+
+    # 2244. Minimum Rounds to Complete All Tasks
+    def minimum_rounds(self, tasks: List[int]) -> int:
+        result = 0
+        counter = Counter(tasks)
+        for task in counter:
+            n_task = counter[task]
+            if n_task < 2:
+                return -1
+
+            result += n_task // 3
+            if n_task % 3 != 0:
+                result += 1
 
         return result
