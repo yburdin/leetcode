@@ -362,6 +362,13 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(num_array.sum_range(2, 5), -1)
         self.assertEqual(num_array.sum_range(0, 5), -3)
 
+    def test_316(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(remove_duplicate_letters(s="bcabc"), 'abc')
+
+        with self.subTest('Example 2'):
+            self.assertEqual(remove_duplicate_letters(s="cbacdcbc"), 'acdb')
+
     def test_355(self):
         with self.subTest('Example 1'):
             twitter = Twitter()

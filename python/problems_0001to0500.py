@@ -961,3 +961,70 @@ def has_path_sum(root: Optional[TreeNode], targetSum: int) -> bool:
             queue.append((cur_sum, node.right))
 
     return False
+
+
+# 141. Linked List Cycle
+def has_cycle(head: Optional[ListNode]) -> bool:
+    slow = head
+    fast = head
+
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            return True
+
+    return False
+
+
+# 142. Linked List Cycle II
+def detect_cycle(head: Optional[ListNode]) -> Optional[ListNode]:
+    slow = head
+    fast = head
+
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            break
+        else:
+            return
+
+    while head != slow:
+        head = head.next
+        slow = slow.next
+
+    return head
+
+
+# 83. Remove Duplicates from Sorted List
+def delete_duplicates(head: Optional[ListNode]) -> Optional[ListNode]:
+    cur = head
+
+    while cur:
+        if cur.next and cur.next.val == cur.val:
+            cur.next = cur.next.next
+        else:
+            cur = cur.next
+
+    return head
+
+
+# 316. Remove Duplicate Letters
+def remove_duplicate_letters(s: str) -> str:
+    highest_index_of_char = {}
+    stack = []
+    visited = set()
+
+    for i, char in enumerate(s):
+        highest_index_of_char[char] = i
+
+    for i, char in enumerate(s):
+        if char not in visited:
+            while stack and stack[-1] > char and highest_index_of_char[stack[-1]] > i:
+                visited.remove(stack.pop())
+
+            stack.append(char)
+            visited.add(char)
+
+    return ''.join(stack)
