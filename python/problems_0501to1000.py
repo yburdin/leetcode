@@ -569,3 +569,22 @@ def min_deletion_size(strs: List[str]) -> int:
             result += 1
 
     return result
+
+
+# 501. Find Mode in Binary Search Tree
+def find_mode(root: Optional[TreeNode]) -> List[int]:
+    def get_vals(node: TreeNode) -> None:
+        if node:
+            counter[node.val] = counter.get(node.val, 0) + 1
+            get_vals(node.left)
+            get_vals(node.right)
+
+    counter = {}
+    get_vals(root)
+    result = []
+    max_val = max(counter.values())
+    for key in counter:
+        if counter[key] == max_val:
+            result.append(key)
+
+    return result
