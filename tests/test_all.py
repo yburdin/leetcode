@@ -963,6 +963,13 @@ class Test1001to1500(unittest.TestCase):
         with self.subTest('Example 2'):
             self.assertEqual(shortest_alternating_paths(n=3, redEdges=[[0, 1]], blueEdges=[[2, 1]]), [0, 1, -1])
 
+    def test_1160(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(count_characters(words=["cat", "bt", "hat", "tree"], chars="atach"), 6)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(count_characters(words=["hello", "world", "leetcode"], chars="welldonehoneyr"), 10)
+
     def test_1162(self):
         with self.subTest('Example 1'):
             self.assertEqual(max_distance(grid=[[1, 0, 1], [0, 0, 0], [1, 0, 1]]), 2)
