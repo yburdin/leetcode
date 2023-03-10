@@ -1,5 +1,5 @@
-from typing import List
-import heapq
+from common import List, Optional
+from common import heappop, heapify, heappush
 
 
 class ListNode:
@@ -212,10 +212,10 @@ class SeatManager:
         self.heap = list(range(1, n + 1))
 
     def reserve(self) -> int:
-        return heapq.heappop(self.heap)
+        return heappop(self.heap)
 
     def unreserve(self, seat_number: int) -> None:
-        heapq.heappush(self.heap, seat_number)
+        heappush(self.heap, seat_number)
 
 
 # 729. My Calendar I
@@ -348,13 +348,13 @@ class KthLargest:
     def __init__(self, k: int, nums: List[int]):
         self.nums = nums
         self.k = k
-        heapq.heapify(self.nums)
+        heapify(self.nums)
 
         while len(self.nums) > self.k:
-            heapq.heappop(self.nums)
+            heappop(self.nums)
 
     def add(self, val: int) -> int:
-        heapq.heappush(self.nums, val)
+        heappush(self.nums, val)
         if len(self.nums) > self.k:
-            heapq.heappop(self.nums)
+            heappop(self.nums)
         return self.nums[0]
