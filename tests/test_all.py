@@ -202,6 +202,34 @@ class Test0001to0500(unittest.TestCase):
             self.assertEqual(
                 min_depth(root=TreeNode(2, None, TreeNode(3, None, TreeNode(4, None, TreeNode(5, None, 6))))), 5)
 
+    def test_112(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(has_path_sum(
+                root=TreeNode(5,
+                              TreeNode(4,
+                                       TreeNode(11,
+                                                TreeNode(7),
+                                                TreeNode(2))),
+                              TreeNode(8,
+                                       TreeNode(13),
+                                       TreeNode(4,
+                                                None,
+                                                TreeNode(1)))),
+                targetSum=22
+            ))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(has_path_sum(root=TreeNode(1, TreeNode(2), TreeNode(3)), targetSum=5))
+
+        with self.subTest('Example 3'):
+            self.assertFalse(has_path_sum(root=None, targetSum=0))
+
+        with self.subTest('Example 4'):
+            self.assertTrue(has_path_sum(root=TreeNode(1), targetSum=1))
+
+        with self.subTest('Example 5'):
+            self.assertFalse(has_path_sum(root=TreeNode(1, TreeNode(2)), targetSum=1))
+
     def test_119(self):
         self.assertEqual(get_row(3), [1, 3, 3, 1])
         self.assertEqual(get_row(0), [1])
@@ -299,6 +327,19 @@ class Test0001to0500(unittest.TestCase):
         self.assertFalse(contains_duplicate([1, 2, 3, 4]))
         self.assertTrue(contains_duplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]))
 
+    def test_219(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(contains_nearby_duplicate(nums=[1, 2, 3, 1], k=3))
+
+        with self.subTest('Example 2'):
+            self.assertTrue(contains_nearby_duplicate(nums=[1, 0, 1, 1], k=1))
+
+        with self.subTest('Example 3'):
+            self.assertFalse(contains_nearby_duplicate(nums=[1, 2, 3, 1, 2, 3], k=2))
+
+        with self.subTest('Example 4'):
+            self.assertTrue(contains_nearby_duplicate(nums=[99, 99], k=2))
+
     def test_232(self):
         my_queue = MyQueue()
         my_queue.push(1)
@@ -347,6 +388,13 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(num_array.sum_range(2, 5), -1)
         self.assertEqual(num_array.sum_range(0, 5), -3)
 
+    def test_316(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(remove_duplicate_letters(s="bcabc"), 'abc')
+
+        with self.subTest('Example 2'):
+            self.assertEqual(remove_duplicate_letters(s="cbacdcbc"), 'acdb')
+
     def test_355(self):
         with self.subTest('Example 1'):
             twitter = Twitter()
@@ -379,9 +427,29 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(find_the_difference(s="", t="y"), 'y')
         self.assertEqual(find_the_difference(s="a", t="aa"), 'a')
 
+    def test_392(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(is_subsequence(s="abc", t="ahbgdc"))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(is_subsequence(s="axc", t="ahbgdc"))
+
+        with self.subTest('Example 3'):
+            self.assertTrue(is_subsequence(s="", t="ahbgdc"))
+
+        with self.subTest('Example 4'):
+            self.assertFalse(is_subsequence(s="axc", t=""))
+
     def test_405(self):
         self.assertEqual(to_hex(26), '1a')
         self.assertEqual(to_hex(-1), 'ffffffff')
+
+    def test_413(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(number_of_arithmetic_slices(nums=[1, 2, 3, 4]), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(number_of_arithmetic_slices(nums=[1]), 0)
 
     def test_438(self):
         self.assertEqual(find_anagrams(s="cbaebabacd", p="abc"), [0, 6])
@@ -402,7 +470,7 @@ class Test0001to0500(unittest.TestCase):
         self.assertFalse(repeated_substring_pattern("aba"))
         self.assertTrue(repeated_substring_pattern("abcabcabcabc"))
         self.assertFalse(repeated_substring_pattern("aabaaba"))
-        
+
     def test_463(self):
         with self.subTest('Example 1'):
             self.assertEqual(island_perimeter(grid=[[0, 1, 0, 0], [1, 1, 1, 0], [0, 1, 0, 0], [1, 1, 0, 0]]), 16)
@@ -628,6 +696,15 @@ class Test0501to1000(unittest.TestCase):
         with self.subTest('Example 6'):
             self.assertEqual(find_error_nums(nums=[2, 3, 2]), [2, 1])
 
+    def test_703(self):
+        with self.subTest('Example 1'):
+            kth_largest = KthLargest(3, [4, 5, 8, 2])
+            self.assertEqual(kth_largest.add(3), 4)
+            self.assertEqual(kth_largest.add(5), 5)
+            self.assertEqual(kth_largest.add(10), 5)
+            self.assertEqual(kth_largest.add(9), 8)
+            self.assertEqual(kth_largest.add(4), 8)
+
     def test_706(self):
         with self.subTest('Example 1'):
             my_hash_map = MyHashMap()
@@ -738,7 +815,8 @@ class Test0501to1000(unittest.TestCase):
             self.assertEqual(recent_counter.ping(1), 1)     # requests = [1], range is [-2999,1], return 1
             self.assertEqual(recent_counter.ping(100), 2)   # requests = [1, 100], range is [-2900,100], return 2
             self.assertEqual(recent_counter.ping(3001), 3)  # requests = [1, 100, 3001], range is [1,3001], return 3
-            self.assertEqual(recent_counter.ping(3002), 3)  # requests = [1, 100, 3001, 3002], range is [2,3002], return 3
+            self.assertEqual(recent_counter.ping(3002),
+                             3)  # requests = [1, 100, 3001, 3002], range is [2,3002], return 3
 
     def test_944(self):
         with self.subTest('Example 1'):
@@ -950,6 +1028,13 @@ class Test1001to1500(unittest.TestCase):
         with self.subTest('Example 2'):
             self.assertEqual(shortest_alternating_paths(n=3, redEdges=[[0, 1]], blueEdges=[[2, 1]]), [0, 1, -1])
 
+    def test_1160(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(count_characters(words=["cat", "bt", "hat", "tree"], chars="atach"), 6)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(count_characters(words=["hello", "world", "leetcode"], chars="welldonehoneyr"), 10)
+
     def test_1162(self):
         with self.subTest('Example 1'):
             self.assertEqual(max_distance(grid=[[1, 0, 1], [0, 0, 0], [1, 0, 1]]), 2)
@@ -1083,6 +1168,63 @@ class Test1501to2000(unittest.TestCase):
         solution = Solution1501to2000()
         self.assertEqual(solution.count_odds(3, 7), 3)
         self.assertEqual(solution.count_odds(8, 10), 1)
+
+    def test_1539(self):
+        solution = Solution1501to2000()
+        with self.subTest('Example 1'):
+            self.assertEqual(solution.find_kth_positive(arr=[2, 3, 4, 7, 11], k=5), 9)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(solution.find_kth_positive(arr=[1, 2, 3, 4], k=2), 6)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(solution.find_kth_positive(
+                arr=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 13, 17, 18, 19, 20, 21, 22, 24, 25, 26, 27, 28, 29, 30, 32, 33, 35,
+                     37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61,
+                     62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 84, 85, 86, 87,
+                     88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109,
+                     110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129,
+                     130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 150,
+                     152, 153, 154, 155, 156, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172,
+                     173, 174, 175, 177, 180, 181, 182, 183, 184, 185, 186, 188, 189, 190, 191, 192, 193, 194, 195, 196,
+                     197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 209, 210, 211, 212, 213, 214, 215, 216, 217,
+                     218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237,
+                     238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 256, 257, 258,
+                     262, 263, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282,
+                     283, 284, 285, 286, 288, 289, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304,
+                     305, 306, 307, 308, 309, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325,
+                     326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 343, 344, 345, 346,
+                     347, 349, 350, 351, 352, 353, 354, 355, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368,
+                     369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388,
+                     389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408,
+                     409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428,
+                     429, 430, 432, 433, 434, 435, 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 449,
+                     450, 451, 452, 454, 455, 456, 457, 458, 459, 460, 461, 462, 463, 464, 465, 466, 467, 468, 469, 470,
+                     472, 473, 474, 475, 476, 478, 479, 480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492,
+                     493, 495, 496, 497, 498, 499, 500, 501, 502, 503, 504, 505, 506, 508, 509, 510, 511, 512, 513, 514,
+                     515, 516, 517, 518, 520, 521, 522, 523, 524, 525, 526, 528, 529, 530, 531, 532, 533, 534, 535, 536,
+                     537, 538, 539, 540, 542, 543, 544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 554, 555, 556, 557,
+                     558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577,
+                     578, 579, 580, 581, 582, 584, 585, 586, 587, 588, 589, 590, 591, 592, 593, 594, 595, 596, 597, 598,
+                     599, 600, 602, 603, 605, 606, 607, 608, 609, 610, 611, 612, 613, 614, 615, 616, 617, 618, 619, 620,
+                     621, 622, 623, 624, 625, 626, 628, 629, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639, 640, 641,
+                     642, 643, 644, 645, 646, 647, 648, 649, 650, 651, 652, 654, 655, 656, 657, 658, 659, 660, 661, 662,
+                     663, 664, 665, 666, 667, 668, 669, 670, 671, 672, 673, 674, 675, 676, 677, 679, 680, 681, 682, 683,
+                     685, 686, 687, 688, 689, 690, 691, 692, 693, 694, 695, 696, 697, 698, 699, 700, 701, 702, 703, 704,
+                     705, 707, 708, 709, 710, 711, 712, 713, 714, 715, 716, 717, 718, 720, 721, 722, 723, 724, 725, 726,
+                     728, 729, 730, 731, 732, 733, 734, 735, 736, 737, 738, 740, 741, 742, 743, 744, 745, 746, 747, 748,
+                     749, 750, 751, 752, 753, 754, 755, 756, 757, 758, 759, 760, 761, 762, 763, 764, 765, 766, 767, 769,
+                     770, 771, 772, 773, 775, 777, 778, 779, 780, 781, 782, 783, 784, 785, 786, 787, 788, 789, 790, 791,
+                     792, 793, 794, 795, 796, 797, 798, 799, 800, 801, 802, 803, 804, 806, 807, 808, 809, 810, 811, 812,
+                     813, 814, 815, 816, 817, 818, 819, 820, 822, 823, 824, 826, 827, 828, 829, 830, 832, 833, 835, 836,
+                     837, 838, 839, 840, 841, 842, 843, 844, 845, 846, 847, 848, 849, 850, 851, 852, 853, 854, 855, 856,
+                     857, 858, 859, 860, 861, 862, 863, 864, 865, 866, 867, 868, 869, 870, 871, 872, 873, 874, 875, 876,
+                     877, 878, 879, 880, 881, 882, 883, 886, 887, 888, 889, 890, 891, 892, 893, 894, 895, 896, 898, 899,
+                     900, 901, 902, 904, 906, 907, 908, 909, 910, 911, 912, 913, 914, 915, 916, 917, 918, 919, 920, 921,
+                     922, 923, 924, 925, 926, 927, 928, 929, 930, 931, 932, 933, 934, 936, 937, 938, 939, 940, 941, 942,
+                     943, 944, 945, 946, 947, 948, 949, 950, 951, 952, 953, 954, 955, 956, 957, 958, 959, 961, 962, 964,
+                     965, 966, 967, 968, 969, 970, 971, 972, 973, 974, 975, 976, 977, 978, 979, 980, 981, 982, 983, 985,
+                     986, 987, 988, 989, 990, 992, 993, 994, 995, 996, 997, 998, 999], k=8), 34)
 
     def test_1572(self):
         solution = Solution1501to2000()
@@ -1263,6 +1405,14 @@ class Test2001to2500(unittest.TestCase):
         self.assertEqual(solution.time_required_to_buy([2, 3, 2], 2), 6)
         self.assertEqual(solution.time_required_to_buy([5, 1, 1, 1], 0), 8)
         self.assertEqual(solution.time_required_to_buy([84, 49, 5, 24, 70, 77, 87, 8], 3), 154)
+
+    def test_2187(self):
+        solution = Solution2001to2500()
+        with self.subTest('Example 1'):
+            self.assertEqual(solution.minimum_time(time=[1, 2, 3], totalTrips=5), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(solution.minimum_time(time=[2], totalTrips=1), 2)
 
     def test_2221(self):
         solution = Solution2001to2500()

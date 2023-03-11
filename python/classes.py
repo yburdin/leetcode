@@ -1,11 +1,22 @@
-from typing import List
-import heapq
+from typing import List, Optional
+from heapq import heappop, heapify, heappush
+import random
 
 
 class ListNode:
     def __init__(self, val=0, next_=None):
         self.val = val
         self.next = next_
+
+    def __str__(self):
+        return_str = f'val={self.val}'
+        if self.next:
+            return_str += f' next={self.next.val}'
+
+        return return_str
+
+    def __repr__(self):
+        return f'ListNode({self.val})'
 
 
 class TreeNode:
@@ -23,6 +34,18 @@ class TreeNode:
             self.right = TreeNode(right)
         elif isinstance(right, TreeNode):
             self.right = right
+
+    def __str__(self):
+        return_str = f'val={self.val}'
+        if self.left:
+            return_str += f' left={self.left.val}'
+        if self.right:
+            return_str += f' right={self.right.val}'
+
+        return return_str
+
+    def __repr__(self):
+        return f'TreeNode({self.val})'
 
 
 class Node:
@@ -190,10 +213,10 @@ class SeatManager:
         self.heap = list(range(1, n + 1))
 
     def reserve(self) -> int:
-        return heapq.heappop(self.heap)
+        return heappop(self.heap)
 
     def unreserve(self, seat_number: int) -> None:
-        heapq.heappush(self.heap, seat_number)
+        heappush(self.heap, seat_number)
 
 
 # 729. My Calendar I
@@ -319,3 +342,43 @@ class MyHashMap:
         Removes the key and its corresponding value if the map contains the mapping for the key.
         """
         self.storage[key] = None
+
+
+# 703. Kth Largest Element in a Stream
+class KthLargest:
+    def __init__(self, k: int, nums: List[int]):
+        self.nums = nums
+        self.k = k
+        heapify(self.nums)
+
+        while len(self.nums) > self.k:
+            heappop(self.nums)
+
+    def add(self, val: int) -> int:
+        heappush(self.nums, val)
+        if len(self.nums) > self.k:
+            heappop(self.nums)
+        return self.nums[0]
+
+
+# 382. Linked List Random Node
+class LinkedListRandom:
+    def __init__(self, head: Optional[ListNode]):
+        self.head = head
+
+    def getRandom(self) -> int:
+        cur_value = None
+        element_number = 1
+
+        cur = self.head
+        if cur:
+            cur_value = cur.val
+
+        while cur:
+            cur = cur.next
+            element_number += 1
+            if cur and random.random() < 1 / element_number:
+                cur_value = cur.val
+
+        return cur_value
+

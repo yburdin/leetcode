@@ -264,3 +264,17 @@ class Solution:
                     visited.add(next_node)
 
         return False
+
+    # 1539. Kth Missing Positive Number
+    def find_kth_positive(self, arr: List[int], k: int) -> int:
+        left = 0
+        right = len(arr)
+
+        while left < right:
+            mid = (left + right) // 2
+            if arr[mid] - 1 - mid < k:
+                left = mid + 1
+            else:
+                right = mid
+
+        return left + k

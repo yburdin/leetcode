@@ -31,6 +31,25 @@ class Solution:
 
         return time
 
+    # 2187. Minimum Time to Complete Trips
+    def minimum_time(self, time: List[int], totalTrips: int) -> int:
+        left = min(time)
+        right = totalTrips * max(time)
+
+        while left < right:
+            mid = (left + right) // 2
+
+            sum_trips = 0
+            for t in time:
+                sum_trips += mid // t
+
+            if sum_trips >= totalTrips:
+                right = mid
+            else:
+                left = mid + 1
+
+        return left
+
     # 2221. Find Triangular Sum of an Array
     @staticmethod
     def triangular_sum(nums: List[int]) -> int:
