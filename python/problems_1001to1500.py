@@ -370,3 +370,18 @@ def min_jumps(arr: List[int]) -> int:
         step += 1
 
     return 0
+
+
+# 1160. Find Words That Can Be Formed by Characters
+def count_characters(words: List[str], chars: str) -> int:
+    chars_counter = Counter(chars)
+    good_chars = 0
+
+    for word in words:
+        word_counter = Counter(word)
+        char_in_chars = [chars_counter.get(key, 0) >= word_counter[key] for key in word_counter]
+
+        if all(char_in_chars):
+            good_chars += sum(word_counter.values())
+
+    return good_chars

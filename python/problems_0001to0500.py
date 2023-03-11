@@ -836,6 +836,52 @@ def missing_number(nums: List[int]) -> int:
     return number.pop()
 
 
+# 392. Is Subsequence
+def is_subsequence(s: str, t: str) -> bool:
+    if len(s) == 0:
+        return True
+    if len(t) == 0:
+        return False
+
+    point_s = 0
+    point_t = 0
+
+    while point_t < len(t):
+        if t[point_t] == s[point_s]:
+            point_s += 1
+            if point_s == len(s):
+                return True
+        point_t += 1
+
+    return False
+
+
+# 413. Arithmetic Slices
+def number_of_arithmetic_slices(nums: List[int]) -> int:
+    n = len(nums)
+    dp = [0] * n
+    result = 0
+
+    for i in range(2, n):
+        if nums[i-1] - nums[i-2] == nums[i] - nums[i-1]:
+            dp[i] = dp[i-1] + 1
+        result += dp[i]
+
+    return result
+
+
+# 219. Contains Duplicate II
+def contains_nearby_duplicate(nums: List[int], k: int) -> bool:
+    dic = {}
+
+    for i, v in enumerate(nums):
+        if v in dic and i - dic[v] <= k:
+            return True
+        dic[v] = i
+
+    return False
+
+
 # 101. Symmetric Tree
 def is_symmetric(root: Optional[TreeNode]) -> bool:
     queue = []
@@ -888,3 +934,97 @@ def can_complete_circuit(gas: List[int], cost: List[int]) -> int:
         return -1
     else:
         return start_position
+
+
+# 112. Path Sum
+def has_path_sum(root: Optional[TreeNode], targetSum: int) -> bool:
+    queue = []
+
+    if root:
+        if not root.left and not root.right:
+            if root.val == targetSum:
+                return True
+        else:
+            queue.append((root.val, root.left))
+            queue.append((root.val, root.right))
+
+    while queue:
+        prev_sum, node = queue.pop()
+
+        if node:
+            cur_sum = prev_sum + node.val
+
+            if not node.left and not node.right and cur_sum == targetSum:
+                return True
+
+            queue.append((cur_sum, node.left))
+            queue.append((cur_sum, node.right))
+
+    return False
+
+
+# 141. Linked List Cycle
+def has_cycle(head: Optional[ListNode]) -> bool:
+    slow = head
+    fast = head
+
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            return True
+
+    return False
+
+
+# 142. Linked List Cycle II
+def detect_cycle(head: Optional[ListNode]) -> Optional[ListNode]:
+    slow = head
+    fast = head
+
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            break
+        else:
+            return
+
+    while head != slow:
+        head = head.next
+        slow = slow.next
+
+    return head
+
+
+# 83. Remove Duplicates from Sorted List
+def delete_duplicates(head: Optional[ListNode]) -> Optional[ListNode]:
+    cur = head
+
+    while cur:
+        if cur.next and cur.next.val == cur.val:
+            cur.next = cur.next.next
+        else:
+            cur = cur.next
+
+    return head
+
+
+# 316. Remove Duplicate Letters
+def remove_duplicate_letters(s: str) -> str:
+    highest_index_of_char = {}
+    stack = []
+    visited = set()
+
+    for i, char in enumerate(s):
+        highest_index_of_char[char] = i
+
+    for i, char in enumerate(s):
+        if char not in visited:
+            while stack and stack[-1] > char and highest_index_of_char[stack[-1]] > i:
+                visited.remove(stack.pop())
+
+            stack.append(char)
+            visited.add(char)
+
+    return ''.join(stack)
