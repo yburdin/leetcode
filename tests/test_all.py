@@ -9,7 +9,7 @@ from classes import *
 
 
 class Test0001to0500(unittest.TestCase):
-    def test_06(self):
+    def test_006(self):
         with self.subTest('Example 1'):
             self.assertEqual(convert(s="PAYPALISHIRING", num_rows=3), 'PAHNAPLSIIGYIR')
 
@@ -22,7 +22,17 @@ class Test0001to0500(unittest.TestCase):
         with self.subTest('Example 4'):
             self.assertEqual(convert(s="ABCDE", num_rows=4), 'ABCED')
 
-    def test_20(self):
+    def test_016(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(int_to_roman(3), 'III')
+
+        with self.subTest('Example 2'):
+            self.assertEqual(int_to_roman(58), 'LVIII')
+
+        with self.subTest('Example 3'):
+            self.assertEqual(int_to_roman(1994), 'MCMXCIV')
+
+    def test_020(self):
         with self.subTest('Example 1'):
             self.assertEqual(is_valid(s="()"), True)
 
@@ -34,16 +44,6 @@ class Test0001to0500(unittest.TestCase):
 
         with self.subTest('Example 4'):
             self.assertEqual(is_valid(s="]"), False)
-
-    def test_016(self):
-        with self.subTest('Example 1'):
-            self.assertEqual(int_to_roman(3), 'III')
-
-        with self.subTest('Example 2'):
-            self.assertEqual(int_to_roman(58), 'LVIII')
-
-        with self.subTest('Example 3'):
-            self.assertEqual(int_to_roman(1994), 'MCMXCIV')
 
     def test_028(self):
         self.assertEqual(str_str(haystack="hello", needle="ll"), 2)
@@ -59,6 +59,13 @@ class Test0001to0500(unittest.TestCase):
 
         with self.subTest('Example 3'):
             self.assertEqual(search_insert(nums=[1, 3, 5, 6], target=7), 4)
+
+    def test_038(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(count_and_say(1), '1')
+
+        with self.subTest('Example 2'):
+            self.assertEqual(count_and_say(4), '1211')
 
     def test_043(self):
         self.assertEqual(multiply('2', '3'), '6')
@@ -107,6 +114,32 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(length_of_last_word("   fly me   to   the moon  "), 4)
         self.assertEqual(length_of_last_word("luffy is still joyboy"), 6)
 
+    def test_062(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(unique_paths(m=3, n=7), 28)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(unique_paths(m=3, n=2), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(unique_paths(m=57, n=2), 57)
+
+    def test_063(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(unique_paths_with_obstacles([[0, 0, 0], [0, 1, 0], [0, 0, 0]]), 2)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(unique_paths_with_obstacles([[0, 1], [0, 0]]), 1)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(unique_paths_with_obstacles([[0]]), 1)
+
+        with self.subTest('Example 4'):
+            self.assertEqual(unique_paths_with_obstacles([[1, 0]]), 0)
+
+        with self.subTest('Example 5'):
+            self.assertEqual(unique_paths_with_obstacles([[0, 0], [1, 1], [0, 0]]), 0)
+
     def test_066(self):
         self.assertEqual(plus_one([1, 2, 3]), [1, 2, 4])
         self.assertEqual(plus_one([4, 3, 2, 1]), [4, 3, 2, 2])
@@ -129,7 +162,7 @@ class Test0001to0500(unittest.TestCase):
         with self.subTest('Example 2'):
             self.assertEqual(min_distance(word1="intention", word2="execution"), 5)
 
-    def test_94(self):
+    def test_094(self):
         with self.subTest('Example 1'):
             self.assertEqual(inorder_traversal(
                 root=TreeNode(1, None, TreeNode(2, TreeNode(3)))
@@ -411,12 +444,36 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(num_array.sum_range(2, 5), -1)
         self.assertEqual(num_array.sum_range(0, 5), -3)
 
+    def test_304(self):
+        num_matrix = NumMatrix([[3, 0, 1, 4, 2], [5, 6, 3, 2, 1], [1, 2, 0, 1, 5], [4, 1, 0, 1, 7], [1, 0, 3, 0, 5]])
+        param_1 = num_matrix.sumRegion(2, 1, 4, 3)
+        param_2 = num_matrix.sumRegion(1, 1, 2, 2)
+        param_3 = num_matrix.sumRegion(1, 2, 2, 4)
+
+        self.assertEqual(param_1, 8)
+        self.assertEqual(param_2, 11)
+        self.assertEqual(param_3, 12)
+
+        num_matrix = NumMatrix([[-4, -5]])
+        param_1 = num_matrix.sumRegion(0, 0, 0, 0)
+        param_2 = num_matrix.sumRegion(0, 0, 0, 1)
+        param_3 = num_matrix.sumRegion(0, 1, 0, 1)
+
+        self.assertEqual(param_1, -4)
+        self.assertEqual(param_2, -9)
+        self.assertEqual(param_3, -5)
+
     def test_316(self):
         with self.subTest('Example 1'):
             self.assertEqual(remove_duplicate_letters(s="bcabc"), 'abc')
 
         with self.subTest('Example 2'):
             self.assertEqual(remove_duplicate_letters(s="cbacdcbc"), 'acdb')
+
+    def test_342(self):
+        self.assertTrue(is_power_of_four(16))
+        self.assertTrue(is_power_of_four(1))
+        self.assertFalse(is_power_of_four(5))
 
     def test_355(self):
         with self.subTest('Example 1'):
@@ -510,63 +567,6 @@ class Test0001to0500(unittest.TestCase):
     def test_496(self):
         self.assertEqual(next_greater_element([4, 1, 2], [1, 3, 4, 2]), [-1, 3, -1])
         self.assertEqual(next_greater_element([2, 4], [1, 2, 3, 4]), [3, -1])
-
-    def test_304(self):
-        num_matrix = NumMatrix([[3, 0, 1, 4, 2], [5, 6, 3, 2, 1], [1, 2, 0, 1, 5], [4, 1, 0, 1, 7], [1, 0, 3, 0, 5]])
-        param_1 = num_matrix.sumRegion(2, 1, 4, 3)
-        param_2 = num_matrix.sumRegion(1, 1, 2, 2)
-        param_3 = num_matrix.sumRegion(1, 2, 2, 4)
-
-        self.assertEqual(param_1, 8)
-        self.assertEqual(param_2, 11)
-        self.assertEqual(param_3, 12)
-
-        num_matrix = NumMatrix([[-4, -5]])
-        param_1 = num_matrix.sumRegion(0, 0, 0, 0)
-        param_2 = num_matrix.sumRegion(0, 0, 0, 1)
-        param_3 = num_matrix.sumRegion(0, 1, 0, 1)
-
-        self.assertEqual(param_1, -4)
-        self.assertEqual(param_2, -9)
-        self.assertEqual(param_3, -5)
-
-    def test_342(self):
-        self.assertTrue(is_power_of_four(16))
-        self.assertTrue(is_power_of_four(1))
-        self.assertFalse(is_power_of_four(5))
-
-    def test_062(self):
-        with self.subTest('Example 1'):
-            self.assertEqual(unique_paths(m=3, n=7), 28)
-
-        with self.subTest('Example 2'):
-            self.assertEqual(unique_paths(m=3, n=2), 3)
-
-        with self.subTest('Example 2'):
-            self.assertEqual(unique_paths(m=57, n=2), 57)
-
-    def test_063(self):
-        with self.subTest('Example 1'):
-            self.assertEqual(unique_paths_with_obstacles([[0, 0, 0], [0, 1, 0], [0, 0, 0]]), 2)
-
-        with self.subTest('Example 2'):
-            self.assertEqual(unique_paths_with_obstacles([[0, 1], [0, 0]]), 1)
-
-        with self.subTest('Example 3'):
-            self.assertEqual(unique_paths_with_obstacles([[0]]), 1)
-
-        with self.subTest('Example 4'):
-            self.assertEqual(unique_paths_with_obstacles([[1, 0]]), 0)
-
-        with self.subTest('Example 5'):
-            self.assertEqual(unique_paths_with_obstacles([[0, 0], [1, 1], [0, 0]]), 0)
-
-    def test_038(self):
-        with self.subTest('Example 1'):
-            self.assertEqual(count_and_say(1), '1')
-
-        with self.subTest('Example 2'):
-            self.assertEqual(count_and_say(4), '1211')
 
 
 class Test0501to1000(unittest.TestCase):
@@ -719,6 +719,16 @@ class Test0501to1000(unittest.TestCase):
         with self.subTest('Example 6'):
             self.assertEqual(find_error_nums(nums=[2, 3, 2]), [2, 1])
 
+    def test_692(self):
+        with self.subTest('Example 1'):
+            self.assertCountEqual(top_k_frequent(words=["i", "love", "leetcode", "i", "love", "coding"], k=2),
+                                  ["i", "love"])
+
+        with self.subTest('Example 2'):
+            self.assertCountEqual(
+                top_k_frequent(words=["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"], k=4),
+                ["the", "is", "sunny", "day"])
+
     def test_703(self):
         with self.subTest('Example 1'):
             kth_largest = KthLargest(3, [4, 5, 8, 2])
@@ -753,6 +763,58 @@ class Test0501to1000(unittest.TestCase):
             my_hash_map.put(1, 10)
             my_hash_map.put(12, 4)
 
+    def test_707(self):
+        with self.subTest(msg='Testcase 1'):
+            my_linked_list = MyLinkedList()
+            my_linked_list.addAtHead(1)
+            my_linked_list.addAtTail(3)
+            my_linked_list.addAtIndex(1, 2)                 # linked list becomes 1->2->3
+            self.assertEqual(my_linked_list.get(1), 2)      # return 2
+
+            my_linked_list.deleteAtIndex(1)                 # now the linked list is 1->3
+            self.assertEqual(my_linked_list.get(1), 3)      # return 3
+
+        with self.subTest(msg='Testcase 2'):
+            my_linked_list = MyLinkedList()
+            my_linked_list.addAtHead(7)
+            my_linked_list.addAtHead(2)
+            my_linked_list.addAtHead(1)
+            my_linked_list.addAtIndex(3, 0)
+            my_linked_list.deleteAtIndex(2)
+            my_linked_list.addAtHead(6)
+            my_linked_list.addAtTail(4)
+            self.assertEqual(my_linked_list.get(4), 4)
+
+            my_linked_list.addAtHead(4)
+            my_linked_list.addAtIndex(5, 0)
+            my_linked_list.addAtHead(6)
+
+        with self.subTest(msg='Testcase 3'):
+            my_linked_list = MyLinkedList()
+            my_linked_list.addAtIndex(0, 10)
+            my_linked_list.addAtIndex(0, 20)
+            my_linked_list.addAtIndex(1, 30)
+            self.assertEqual(my_linked_list.get(0), 20)
+
+        with self.subTest(msg='Testcase 4'):
+            my_linked_list = MyLinkedList()
+            my_linked_list.addAtTail(1)
+            self.assertEqual(my_linked_list.get(0), 1)
+
+        with self.subTest(msg='Testcase 5'):
+            my_linked_list = MyLinkedList()
+            my_linked_list.addAtHead(4)
+            self.assertEqual(my_linked_list.get(1), -1)
+            my_linked_list.addAtHead(1)
+            my_linked_list.addAtHead(5)
+            my_linked_list.deleteAtIndex(3)
+            my_linked_list.addAtHead(7)
+            self.assertEqual(my_linked_list.get(3), 4)
+            self.assertEqual(my_linked_list.get(3), 4)
+            self.assertEqual(my_linked_list.get(3), 4)
+            my_linked_list.addAtHead(1)
+            my_linked_list.deleteAtIndex(4)
+
     def test_709(self):
         self.assertEqual(to_lower_case("Hello"), "hello")
         self.assertEqual(to_lower_case("here"), "here")
@@ -761,6 +823,49 @@ class Test0501to1000(unittest.TestCase):
     def test_713(self):
         self.assertEqual(num_subarray_product_less_than_k(nums=[10, 5, 2, 6], k=100), 8)
         self.assertEqual(num_subarray_product_less_than_k(nums=[1, 2, 3], k=0), 0)
+
+    def test_729(self):
+        with self.subTest(msg='Testcase 1'):
+            my_calendar = MyCalendar()
+            self.assertTrue(my_calendar.book(10, 20))
+            self.assertFalse(my_calendar.book(15, 25))
+            self.assertTrue(my_calendar.book(20, 30))
+
+        with self.subTest(msg='Testcase 2'):
+            my_calendar = MyCalendar()
+            self.assertTrue(my_calendar.book(47, 50))
+            self.assertTrue(my_calendar.book(33, 41))
+            self.assertFalse(my_calendar.book(39, 45))
+            self.assertFalse(my_calendar.book(33, 42))
+            self.assertTrue(my_calendar.book(25, 32))
+            self.assertFalse(my_calendar.book(26, 35))
+            self.assertTrue(my_calendar.book(19, 25))
+            self.assertTrue(my_calendar.book(3, 8))
+            self.assertTrue(my_calendar.book(8, 13))
+            self.assertFalse(my_calendar.book(18, 27))
+
+        with self.subTest(msg='Testcase 3'):
+            my_calendar = MyCalendar()
+            self.assertTrue(my_calendar.book(97, 100))
+            self.assertTrue(my_calendar.book(33, 51))
+            self.assertFalse(my_calendar.book(89, 100))
+            self.assertFalse(my_calendar.book(83, 100))
+            self.assertTrue(my_calendar.book(75, 92))
+            self.assertFalse(my_calendar.book(76, 95))
+            self.assertTrue(my_calendar.book(19, 30))
+            self.assertTrue(my_calendar.book(53, 63))
+            self.assertFalse(my_calendar.book(8, 23))
+            self.assertFalse(my_calendar.book(18, 37))
+            self.assertFalse(my_calendar.book(87, 100))
+            self.assertFalse(my_calendar.book(83, 100))
+            self.assertFalse(my_calendar.book(54, 67))
+            self.assertFalse(my_calendar.book(35, 48))
+            self.assertFalse(my_calendar.book(58, 75))
+            self.assertFalse(my_calendar.book(70, 89))
+            self.assertFalse(my_calendar.book(13, 32))
+            self.assertFalse(my_calendar.book(44, 63))
+            self.assertFalse(my_calendar.book(51, 62))
+            self.assertTrue(my_calendar.book(2, 15))
 
     def test_733(self):
         with self.subTest('Example 1'):
@@ -777,6 +882,13 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(daily_temperatures(temperatures=[30, 60, 90]), [1, 1, 0])
         self.assertEqual(daily_temperatures(temperatures=[89, 62, 70, 58, 47, 47, 46, 76, 100, 70]),
                          [8, 1, 5, 4, 3, 2, 1, 1, 0, 0])
+
+    def test_771(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(num_jewels_in_stones(jewels="aA", stones="aAAbbbb"), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(num_jewels_in_stones(jewels="z", stones="ZZ"), 0)
 
     def test_783(self):
         with self.subTest('Example 1'):
@@ -800,6 +912,14 @@ class Test0501to1000(unittest.TestCase):
         self.assertCountEqual(all_paths_source_target([[4, 3, 1], [3, 2, 4], [3], [4], []]),
                               [[0, 4], [0, 3, 4], [0, 1, 3, 4], [0, 1, 2, 3, 4], [0, 1, 4]])
 
+    def test_804(self):
+        self.assertEqual(unique_morse_representations(["gin", "zen", "gig", "msg"]), 2)
+        self.assertEqual(unique_morse_representations(["a"]), 1)
+
+    def test_860(self):
+        self.assertTrue(lemonade_change([5, 5, 5, 10, 20]))
+        self.assertFalse(lemonade_change([5, 5, 10, 10, 20]))
+
     def test_875(self):
         with self.subTest('Example 1'):
             self.assertEqual(min_eating_speed(piles=[3, 6, 7, 11], h=8), 4)
@@ -818,6 +938,27 @@ class Test0501to1000(unittest.TestCase):
         self.assertTrue(is_monotonic([1, 2, 2, 3]))
         self.assertTrue(is_monotonic([6, 5, 4, 4]))
         self.assertFalse(is_monotonic([1, 3, 2]))
+
+    def test_904(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(total_fruit(fruits=[1, 2, 1]), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(total_fruit(fruits=[0, 1, 2, 2]), 3)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(total_fruit(fruits=[1, 2, 3, 2, 2]), 4)
+
+        with self.subTest('Example 4'):
+            self.assertEqual(total_fruit(fruits=[3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4]), 5)
+
+        with self.subTest('Example 5'):
+            self.assertEqual(total_fruit(fruits=[0, 1, 6, 6, 4, 4, 6]), 5)
+
+    def test_910(self):
+        self.assertEqual(smallest_range_ii(nums=[1], k=0), 0)
+        self.assertEqual(smallest_range_ii(nums=[0, 10], k=2), 6)
+        self.assertEqual(smallest_range_ii(nums=[1, 3, 6], k=3), 3)
 
     def test_912(self):
         with self.subTest('Example 1'):
@@ -876,147 +1017,6 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(add_to_array_form(num=[2, 1, 5], k=806), [1, 0, 2, 1])
         self.assertEqual(add_to_array_form(num=[0], k=23), [2, 3])
         self.assertEqual(add_to_array_form(num=[0], k=10000), [1, 0, 0, 0, 0])
-
-    def test_910(self):
-        self.assertEqual(smallest_range_ii(nums=[1], k=0), 0)
-        self.assertEqual(smallest_range_ii(nums=[0, 10], k=2), 6)
-        self.assertEqual(smallest_range_ii(nums=[1, 3, 6], k=3), 3)
-
-    def test_804(self):
-        self.assertEqual(unique_morse_representations(["gin", "zen", "gig", "msg"]), 2)
-        self.assertEqual(unique_morse_representations(["a"]), 1)
-
-    def test_860(self):
-        self.assertTrue(lemonade_change([5, 5, 5, 10, 20]))
-        self.assertFalse(lemonade_change([5, 5, 10, 10, 20]))
-
-    def test_707(self):
-        with self.subTest(msg='Testcase 1'):
-            my_linked_list = MyLinkedList()
-            my_linked_list.addAtHead(1)
-            my_linked_list.addAtTail(3)
-            my_linked_list.addAtIndex(1, 2)                 # linked list becomes 1->2->3
-            self.assertEqual(my_linked_list.get(1), 2)      # return 2
-
-            my_linked_list.deleteAtIndex(1)                 # now the linked list is 1->3
-            self.assertEqual(my_linked_list.get(1), 3)      # return 3
-
-        with self.subTest(msg='Testcase 2'):
-            my_linked_list = MyLinkedList()
-            my_linked_list.addAtHead(7)
-            my_linked_list.addAtHead(2)
-            my_linked_list.addAtHead(1)
-            my_linked_list.addAtIndex(3, 0)
-            my_linked_list.deleteAtIndex(2)
-            my_linked_list.addAtHead(6)
-            my_linked_list.addAtTail(4)
-            self.assertEqual(my_linked_list.get(4), 4)
-
-            my_linked_list.addAtHead(4)
-            my_linked_list.addAtIndex(5, 0)
-            my_linked_list.addAtHead(6)
-
-        with self.subTest(msg='Testcase 3'):
-            my_linked_list = MyLinkedList()
-            my_linked_list.addAtIndex(0, 10)
-            my_linked_list.addAtIndex(0, 20)
-            my_linked_list.addAtIndex(1, 30)
-            self.assertEqual(my_linked_list.get(0), 20)
-
-        with self.subTest(msg='Testcase 4'):
-            my_linked_list = MyLinkedList()
-            my_linked_list.addAtTail(1)
-            self.assertEqual(my_linked_list.get(0), 1)
-
-        with self.subTest(msg='Testcase 5'):
-            my_linked_list = MyLinkedList()
-            my_linked_list.addAtHead(4)
-            self.assertEqual(my_linked_list.get(1), -1)
-            my_linked_list.addAtHead(1)
-            my_linked_list.addAtHead(5)
-            my_linked_list.deleteAtIndex(3)
-            my_linked_list.addAtHead(7)
-            self.assertEqual(my_linked_list.get(3), 4)
-            self.assertEqual(my_linked_list.get(3), 4)
-            self.assertEqual(my_linked_list.get(3), 4)
-            my_linked_list.addAtHead(1)
-            my_linked_list.deleteAtIndex(4)
-
-    def test_729(self):
-        with self.subTest(msg='Testcase 1'):
-            my_calendar = MyCalendar()
-            self.assertTrue(my_calendar.book(10, 20))
-            self.assertFalse(my_calendar.book(15, 25))
-            self.assertTrue(my_calendar.book(20, 30))
-
-        with self.subTest(msg='Testcase 2'):
-            my_calendar = MyCalendar()
-            self.assertTrue(my_calendar.book(47, 50))
-            self.assertTrue(my_calendar.book(33, 41))
-            self.assertFalse(my_calendar.book(39, 45))
-            self.assertFalse(my_calendar.book(33, 42))
-            self.assertTrue(my_calendar.book(25, 32))
-            self.assertFalse(my_calendar.book(26, 35))
-            self.assertTrue(my_calendar.book(19, 25))
-            self.assertTrue(my_calendar.book(3, 8))
-            self.assertTrue(my_calendar.book(8, 13))
-            self.assertFalse(my_calendar.book(18, 27))
-
-        with self.subTest(msg='Testcase 3'):
-            my_calendar = MyCalendar()
-            self.assertTrue(my_calendar.book(97, 100))
-            self.assertTrue(my_calendar.book(33, 51))
-            self.assertFalse(my_calendar.book(89, 100))
-            self.assertFalse(my_calendar.book(83, 100))
-            self.assertTrue(my_calendar.book(75, 92))
-            self.assertFalse(my_calendar.book(76, 95))
-            self.assertTrue(my_calendar.book(19, 30))
-            self.assertTrue(my_calendar.book(53, 63))
-            self.assertFalse(my_calendar.book(8, 23))
-            self.assertFalse(my_calendar.book(18, 37))
-            self.assertFalse(my_calendar.book(87, 100))
-            self.assertFalse(my_calendar.book(83, 100))
-            self.assertFalse(my_calendar.book(54, 67))
-            self.assertFalse(my_calendar.book(35, 48))
-            self.assertFalse(my_calendar.book(58, 75))
-            self.assertFalse(my_calendar.book(70, 89))
-            self.assertFalse(my_calendar.book(13, 32))
-            self.assertFalse(my_calendar.book(44, 63))
-            self.assertFalse(my_calendar.book(51, 62))
-            self.assertTrue(my_calendar.book(2, 15))
-
-    def test_692(self):
-        with self.subTest('Example 1'):
-            self.assertCountEqual(top_k_frequent(words=["i", "love", "leetcode", "i", "love", "coding"], k=2),
-                                  ["i", "love"])
-
-        with self.subTest('Example 2'):
-            self.assertCountEqual(
-                top_k_frequent(words=["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"], k=4),
-                ["the", "is", "sunny", "day"])
-
-    def test_904(self):
-        with self.subTest('Example 1'):
-            self.assertEqual(total_fruit(fruits=[1, 2, 1]), 3)
-
-        with self.subTest('Example 2'):
-            self.assertEqual(total_fruit(fruits=[0, 1, 2, 2]), 3)
-
-        with self.subTest('Example 3'):
-            self.assertEqual(total_fruit(fruits=[1, 2, 3, 2, 2]), 4)
-
-        with self.subTest('Example 4'):
-            self.assertEqual(total_fruit(fruits=[3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4]), 5)
-
-        with self.subTest('Example 5'):
-            self.assertEqual(total_fruit(fruits=[0, 1, 6, 6, 4, 4, 6]), 5)
-
-    def test_771(self):
-        with self.subTest('Example 1'):
-            self.assertEqual(num_jewels_in_stones(jewels="aA", stones="aAAbbbb"), 3)
-
-        with self.subTest('Example 2'):
-            self.assertEqual(num_jewels_in_stones(jewels="z", stones="ZZ"), 0)
 
 
 class Test1001to1500(unittest.TestCase):
@@ -1077,6 +1077,13 @@ class Test1001to1500(unittest.TestCase):
         self.assertEqual(check_straight_line([[1, 2], [2, 3], [3, 5]]), False)
         self.assertEqual(check_straight_line([[1, 1], [2, 2], [2, 0]]), False)
 
+    def test_1266(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(min_time_to_visit_all_points([[1, 1], [3, 4], [-1, 0]]), 7)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(min_time_to_visit_all_points([[3, 2], [-2, 2]]), 5)
+
     def test_1281(self):
         self.assertEqual(subtract_product_and_sum(234), 15)
         self.assertEqual(subtract_product_and_sum(4421), 21)
@@ -1096,6 +1103,16 @@ class Test1001to1500(unittest.TestCase):
     def test_1309(self):
         self.assertEqual(freq_alphabets("10#11#12"), "jkab")
         self.assertEqual(freq_alphabets("1326#"), "acz")
+
+    def test_1323(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(maximum_69_number(9669), 9969)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(maximum_69_number(9996), 9999)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(maximum_69_number(9999), 9999)
 
     def test_1337(self):
         with self.subTest('Example 1'):
@@ -1139,6 +1156,16 @@ class Test1001to1500(unittest.TestCase):
         self.assertEqual(k_length_apart([1, 0, 0, 1, 0, 1], 2), False)
         self.assertEqual(k_length_apart([1, 0, 0, 0], 1), True)
 
+    def test_1464(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(max_product(nums=[3, 4, 5, 2]), 12)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(max_product(nums=[1, 5, 4, 5]), 16)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(max_product(nums=[3, 7]), 12)
+
     def test_1470(self):
         with self.subTest('Example 1'):
             self.assertEqual(shuffle(nums=[2, 5, 1, 3, 4, 7], n=3), [2, 3, 5, 4, 1, 7])
@@ -1152,33 +1179,6 @@ class Test1001to1500(unittest.TestCase):
     def test_1491(self):
         self.assertEqual(average([4000, 3000, 1000, 2000]), 2500.)
         self.assertEqual(average([1000, 2000, 3000]), 2000.)
-
-    def test_1323(self):
-        with self.subTest('Example 1'):
-            self.assertEqual(maximum_69_number(9669), 9969)
-
-        with self.subTest('Example 2'):
-            self.assertEqual(maximum_69_number(9996), 9999)
-
-        with self.subTest('Example 3'):
-            self.assertEqual(maximum_69_number(9999), 9999)
-
-    def test_1266(self):
-        with self.subTest('Example 1'):
-            self.assertEqual(min_time_to_visit_all_points([[1, 1], [3, 4], [-1, 0]]), 7)
-
-        with self.subTest('Example 2'):
-            self.assertEqual(min_time_to_visit_all_points([[3, 2], [-2, 2]]), 5)
-
-    def test_1464(self):
-        with self.subTest('Example 1'):
-            self.assertEqual(max_product(nums=[3, 4, 5, 2]), 12)
-
-        with self.subTest('Example 2'):
-            self.assertEqual(max_product(nums=[1, 5, 4, 5]), 16)
-
-        with self.subTest('Example 3'):
-            self.assertEqual(max_product(nums=[3, 7]), 12)
 
 
 class Test1501to2000(unittest.TestCase):
@@ -1361,20 +1361,6 @@ class Test1501to2000(unittest.TestCase):
                                   [[1, 2, 2], [2, 2, 2], [4, 3, 2], [4, 3, 3]]),
             [2, 3, 2, 4])
 
-    def test_1886(self):
-        solution = Solution1501to2000()
-        self.assertTrue(
-            solution.find_rotation(mat=[[0, 0, 0], [0, 1, 0], [1, 1, 1]], target=[[1, 1, 1], [0, 1, 0], [0, 0, 0]]))
-        self.assertTrue(solution.find_rotation(mat=[[0, 1], [1, 0]], target=[[1, 0], [0, 1]]))
-        self.assertFalse(solution.find_rotation(mat=[[0, 1], [1, 1]], target=[[1, 0], [0, 1]]))
-        self.assertTrue(
-            solution.find_rotation(mat=[[0, 0, 0], [0, 1, 0], [1, 1, 1]], target=[[1, 0, 0], [1, 1, 0], [1, 0, 0]]))
-
-    def test_1925(self):
-        solution = Solution1501to2000()
-        self.assertEqual(solution.count_triples(5), 2)
-        self.assertEqual(solution.count_triples(10), 4)
-
     def test_1845(self):
         seat_manager = SeatManager(5)  # Initializes a SeatManager with 5 seats.
 
@@ -1401,6 +1387,20 @@ class Test1501to2000(unittest.TestCase):
 
         # Unreserve seat 5, so now the available seats are [5].
         seat_manager.unreserve(5)
+
+    def test_1886(self):
+        solution = Solution1501to2000()
+        self.assertTrue(
+            solution.find_rotation(mat=[[0, 0, 0], [0, 1, 0], [1, 1, 1]], target=[[1, 1, 1], [0, 1, 0], [0, 0, 0]]))
+        self.assertTrue(solution.find_rotation(mat=[[0, 1], [1, 0]], target=[[1, 0], [0, 1]]))
+        self.assertFalse(solution.find_rotation(mat=[[0, 1], [1, 1]], target=[[1, 0], [0, 1]]))
+        self.assertTrue(
+            solution.find_rotation(mat=[[0, 0, 0], [0, 1, 0], [1, 1, 1]], target=[[1, 0, 0], [1, 1, 0], [1, 0, 0]]))
+
+    def test_1925(self):
+        solution = Solution1501to2000()
+        self.assertEqual(solution.count_triples(5), 2)
+        self.assertEqual(solution.count_triples(10), 4)
 
     def test_1971(self):
         solution = Solution1501to2000()
