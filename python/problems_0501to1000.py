@@ -588,3 +588,18 @@ def find_mode(root: Optional[TreeNode]) -> List[int]:
             result.append(key)
 
     return result
+
+
+# 938. Range Sum of BST
+def range_sum_bst(root: Optional[TreeNode], low: int, high: int) -> int:
+    def dfs(node: Optional[TreeNode]):
+        if node:
+            if low <= node.val <= high:
+                result.add(node.val)
+
+            dfs(node.left)
+            dfs(node.right)
+
+    result = set()
+    dfs(root)
+    return sum(result)

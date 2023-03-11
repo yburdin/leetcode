@@ -129,6 +129,22 @@ class Test0001to0500(unittest.TestCase):
         with self.subTest('Example 2'):
             self.assertEqual(min_distance(word1="intention", word2="execution"), 5)
 
+    def test_94(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(inorder_traversal(
+                root=TreeNode(1, None, TreeNode(2, TreeNode(3)))
+            ), [1, 3, 2])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(inorder_traversal(
+                root=TreeNode(1, TreeNode(3), TreeNode(2))
+            ), [3, 1, 2])
+
+        with self.subTest('Example 3'):
+            self.assertEqual(inorder_traversal(
+                root=TreeNode(10, TreeNode(20, TreeNode(40), TreeNode(60)), TreeNode(30, TreeNode(50)))
+            ), [40, 20, 60, 10, 50, 30])
+
     def test_100(self):
         with self.subTest('Example 1'):
             self.assertTrue(is_same_tree(p=TreeNode(1, 2, 3), q=TreeNode(1, 2, 3)))
@@ -352,6 +368,13 @@ class Test0001to0500(unittest.TestCase):
         self.assertTrue(is_anagram(s="anagram", t="nagaram"))
         self.assertFalse(is_anagram(s="rat", t="car"))
         self.assertFalse(is_anagram(s="ac", t="bb"))
+
+    def test_257(self):
+        with self.subTest('Example 1'):
+            self.assertCountEqual(binary_tree_paths(
+                root=TreeNode(1, TreeNode(2, None, TreeNode(5)), TreeNode(3))),
+                ["1->2->5", "1->3"]
+            )
 
     def test_268(self):
         with self.subTest('Example 1'):

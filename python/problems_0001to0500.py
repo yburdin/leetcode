@@ -1098,3 +1098,70 @@ def remove_duplicate_letters(s: str) -> str:
             visited.add(char)
 
     return ''.join(stack)
+
+
+# 109. Convert Sorted List to Binary Search Tree
+def sorted_list_to_bst(head: Optional[ListNode]) -> Optional[TreeNode]:
+    def construct_bst(left: ListNode, right: Optional[ListNode]) -> Optional[TreeNode]:
+        if left == right:
+            return
+
+        slow = left
+        fast = left
+
+        while fast != right and fast.next != right:
+            slow = slow.next
+            fast = fast.next.next
+
+        root = TreeNode(slow.val, construct_bst(left, slow), construct_bst(slow.next, right))
+        return root
+
+    if not head:
+        return
+
+    if not head.next:
+        return TreeNode(head.val)
+
+    return construct_bst(head, None)
+
+
+# 94. Binary Tree Inorder Traversal
+def inorder_traversal(root: Optional[TreeNode]) -> List[int]:
+    def traverse(node: Optional[TreeNode]):
+        if node:
+            if node.left:
+                traverse(node.left)
+            result.append(node.val)
+            if node.right:
+                traverse(node.right)
+
+    result = []
+    traverse(root)
+
+    return result
+
+
+# 257. Binary Tree Paths
+def binary_tree_paths(root: Optional[TreeNode]) -> List[str]:
+    paths = []
+    queue = []
+
+    if not root.left and not root.right:
+        return [f'{root.val}']
+
+    for node in [root.left, root.right]:
+        if node:
+            queue.append((f'{root.val}', node))
+
+    while queue:
+        path, node = queue.pop()
+        if node:
+            path += f'->{node.val}'
+            if node.left:
+                queue.append((path, node.left))
+            if node.right:
+                queue.append((path, node.right))
+            if not node.left and not node.right:
+                paths.append(path)
+
+    return paths

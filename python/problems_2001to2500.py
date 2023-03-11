@@ -140,3 +140,7 @@ class Solution:
                 result += 1
 
         return result
+
+    # 2236. Root Equals Sum of Children
+    def check_tree(self, root: Optional[TreeNode]) -> bool:
+        return root.val == root.left.val + root.right.val
