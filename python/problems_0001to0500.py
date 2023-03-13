@@ -936,6 +936,88 @@ def can_complete_circuit(gas: List[int], cost: List[int]) -> int:
         return start_position
 
 
+# 875. Koko Eating Bananas
+def min_eating_speed(piles: List[int], h: int) -> int:
+    min_k = 1
+    max_k = max(piles)
+
+    while min_k < max_k:
+        mid_k = (min_k + max_k) // 2
+        hours = 0
+
+        for pile in piles:
+            time_to_eat = pile // mid_k
+            if time_to_eat * mid_k < pile:
+                time_to_eat += 1
+            hours += time_to_eat
+
+        if hours > h:
+            min_k = mid_k + 1
+        else:
+            max_k = mid_k
+
+    return min_k
+
+
+# 144. Binary Tree Preorder Traversal
+def preorder_traversal(root: Optional[TreeNode]) -> List[int]:
+    result = []
+
+    # DFS
+    # --------------
+    # def dsf(node: Optional[TreeNode]):
+    #     if not node:
+    #         return
+    #
+    #     result.append(node.val)
+    #     dsf(node.left)
+    #     dsf(node.right)
+    #
+    # dsf(root)
+
+    # Queue
+    # --------------
+    if not root:
+        return result
+
+    queue = [root]
+    while queue:
+        node = queue.pop()
+        if node:
+            result.append(node.val)
+            if node.right:
+                queue.append(node.right)
+            if node.left:
+                queue.append(node.left)
+
+    return result
+
+
+# 21. Merge Two Sorted Lists
+def merge_two_lists(list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+    if not list1 or not list2:
+        return list1 or list2
+
+    if list1.val < list2.val:
+        list1.next = merge_two_lists(list1.next, list2)
+        return list1
+    else:
+        list2.next = merge_two_lists(list1, list2.next)
+        return list2
+
+
+# 23. Merge k Sorted Lists
+def merge_k_lists(lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+    while len(lists) > 1:
+        list1_ = lists.pop(0)
+        list2_ = lists.pop(1)
+
+        merged_list = merge_two_lists(list1_, list2_)
+        lists.append(merged_list)
+
+    return lists.pop()
+
+
 # 112. Path Sum
 def has_path_sum(root: Optional[TreeNode], targetSum: int) -> bool:
     queue = []
@@ -1028,3 +1110,70 @@ def remove_duplicate_letters(s: str) -> str:
             visited.add(char)
 
     return ''.join(stack)
+
+
+# 109. Convert Sorted List to Binary Search Tree
+def sorted_list_to_bst(head: Optional[ListNode]) -> Optional[TreeNode]:
+    def construct_bst(left: ListNode, right: Optional[ListNode]) -> Optional[TreeNode]:
+        if left == right:
+            return
+
+        slow = left
+        fast = left
+
+        while fast != right and fast.next != right:
+            slow = slow.next
+            fast = fast.next.next
+
+        root = TreeNode(slow.val, construct_bst(left, slow), construct_bst(slow.next, right))
+        return root
+
+    if not head:
+        return
+
+    if not head.next:
+        return TreeNode(head.val)
+
+    return construct_bst(head, None)
+
+
+# 94. Binary Tree Inorder Traversal
+def inorder_traversal(root: Optional[TreeNode]) -> List[int]:
+    def traverse(node: Optional[TreeNode]):
+        if node:
+            if node.left:
+                traverse(node.left)
+            result.append(node.val)
+            if node.right:
+                traverse(node.right)
+
+    result = []
+    traverse(root)
+
+    return result
+
+
+# 257. Binary Tree Paths
+def binary_tree_paths(root: Optional[TreeNode]) -> List[str]:
+    paths = []
+    queue = []
+
+    if not root.left and not root.right:
+        return [f'{root.val}']
+
+    for node in [root.left, root.right]:
+        if node:
+            queue.append((f'{root.val}', node))
+
+    while queue:
+        path, node = queue.pop()
+        if node:
+            path += f'->{node.val}'
+            if node.left:
+                queue.append((path, node.left))
+            if node.right:
+                queue.append((path, node.right))
+            if not node.left and not node.right:
+                paths.append(path)
+
+    return paths

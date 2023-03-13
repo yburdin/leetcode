@@ -542,3 +542,79 @@ def flood_fill(image: List[List[int]], sr: int, sc: int, color: int) -> List[Lis
                     queue.append(next_position)
 
     return image
+
+
+# 520. Detect Capital
+def detect_capital_use(word: str) -> bool:
+    n_capitals = 0
+    not_first_capital = False
+    for i, char in enumerate(word):
+        is_capital = ord(char) < 97
+        n_capitals += is_capital
+        if i > 0 and is_capital:
+            not_first_capital = True
+
+    all_capitals = len(word) == n_capitals
+    no_capitals = n_capitals == 0
+
+    return no_capitals or all_capitals or not not_first_capital
+
+
+# 944. Delete Columns to Make Sorted
+def min_deletion_size(strs: List[str]) -> int:
+    result = 0
+    for i, _ in enumerate(strs[0]):
+        column = [str_[i] for str_ in strs]
+        if column != sorted(column):
+            result += 1
+
+    return result
+
+
+# 501. Find Mode in Binary Search Tree
+def find_mode(root: Optional[TreeNode]) -> List[int]:
+    def get_vals(node: TreeNode) -> None:
+        if node:
+            counter[node.val] = counter.get(node.val, 0) + 1
+            get_vals(node.left)
+            get_vals(node.right)
+
+    counter = {}
+    get_vals(root)
+    result = []
+    max_val = max(counter.values())
+    for key in counter:
+        if counter[key] == max_val:
+            result.append(key)
+
+    return result
+
+
+# 938. Range Sum of BST
+def range_sum_bst(root: Optional[TreeNode], low: int, high: int) -> int:
+    def dfs(node: Optional[TreeNode]):
+        if node:
+            if low <= node.val <= high:
+                result.add(node.val)
+
+            dfs(node.left)
+            dfs(node.right)
+
+    result = set()
+    dfs(root)
+    return sum(result)
+
+
+# 700. Search in a Binary Search Tree
+def search_bst(root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+    if not root:
+        return
+
+    cur = root
+    while cur:
+        if val < cur.val:
+            cur = cur.left
+        elif val > cur.val:
+            cur = cur.right
+        else:
+            return cur
