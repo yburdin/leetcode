@@ -1006,6 +1006,18 @@ def merge_two_lists(list1: Optional[ListNode], list2: Optional[ListNode]) -> Opt
         return list2
 
 
+# 23. Merge k Sorted Lists
+def merge_k_lists(lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+    while len(lists) > 1:
+        list1_ = lists.pop(0)
+        list2_ = lists.pop(1)
+
+        merged_list = merge_two_lists(list1_, list2_)
+        lists.append(merged_list)
+
+    return lists.pop()
+
+
 # 112. Path Sum
 def has_path_sum(root: Optional[TreeNode], targetSum: int) -> bool:
     queue = []

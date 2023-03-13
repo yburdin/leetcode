@@ -603,3 +603,18 @@ def range_sum_bst(root: Optional[TreeNode], low: int, high: int) -> int:
     result = set()
     dfs(root)
     return sum(result)
+
+
+# 700. Search in a Binary Search Tree
+def search_bst(root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+    if not root:
+        return
+
+    cur = root
+    while cur:
+        if val < cur.val:
+            cur = cur.left
+        elif val > cur.val:
+            cur = cur.right
+        else:
+            return cur

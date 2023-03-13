@@ -385,3 +385,53 @@ def count_characters(words: List[str], chars: str) -> int:
             good_chars += sum(word_counter.values())
 
     return good_chars
+
+
+# 1022. Sum of Root To Leaf Binary Numbers
+def sum_root_to_leaf(root: Optional[TreeNode]) -> int:
+    def is_leaf(node_: TreeNode) -> bool:
+        return not node_.left and not node_.right
+
+    queue = []
+    result = []
+
+    if is_leaf(root):
+        return root.val
+
+    if root.left:
+        queue.append((str(root.val), root.left))
+    if root.right:
+        queue.append((str(root.val), root.right))
+
+    while queue:
+        prev_val, node = queue.pop()
+        prev_val += str(node.val)
+        if is_leaf(node):
+            result.append(int(prev_val, base=2))
+        else:
+            if node.left:
+                queue.append((prev_val, node.left))
+            if node.right:
+                queue.append((prev_val, node.right))
+
+    return sum(result)
+
+
+# 1302. Deepest Leaves Sum
+def deepest_leaves_sum(root: Optional[TreeNode]) -> int:
+    depth_dict = {}
+
+    queue = [(0, root)]
+    while queue:
+        depth, node = queue.pop()
+
+        if not node.left and not node.right:
+            depth_dict[depth] = depth_dict.get(depth, 0) + node.val
+        else:
+            if node.left:
+                queue.append((depth + 1, node.left))
+            if node.right:
+                queue.append((depth + 1, node.right))
+
+    max_depth = max(depth_dict.keys())
+    return depth_dict[max_depth]

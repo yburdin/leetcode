@@ -1030,6 +1030,23 @@ class Test1001to1500(unittest.TestCase):
         with self.subTest('Example 3'):
             self.assertEqual(ship_within_days(weights=[1, 2, 3, 1, 1], days=4), 3)
 
+    def test_1022(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(sum_root_to_leaf(
+                root=TreeNode(1,
+                              TreeNode(0,
+                                       TreeNode(0), TreeNode(1)),
+                              TreeNode(1,
+                                       TreeNode(0), TreeNode(1))
+                              )
+            ), 22)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sum_root_to_leaf(root=TreeNode(0)), 0)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(sum_root_to_leaf(root=TreeNode(1, TreeNode(1))), 3)
+
     def test_1071(self):
         with self.subTest('Example 1'):
             self.assertEqual(gcd_of_strings(str1="ABCABC", str2="ABC"), 'ABC')
@@ -1099,6 +1116,21 @@ class Test1001to1500(unittest.TestCase):
 
         with self.subTest('Example 2'):
             self.assertEqual(find_numbers(nums=[555, 901, 482, 1771]), 1)
+
+    def test_1302(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(deepest_leaves_sum(
+                root=TreeNode(1,
+                              TreeNode(2,
+                                       TreeNode(4,
+                                                TreeNode(7)),
+                                       TreeNode(5)),
+                              TreeNode(3,
+                                       None,
+                                       TreeNode(6,
+                                                None,
+                                                TreeNode(8))))
+            ), 15)
 
     def test_1309(self):
         self.assertEqual(freq_alphabets("10#11#12"), "jkab")
