@@ -618,3 +618,38 @@ def search_bst(root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
             cur = cur.right
         else:
             return cur
+
+
+# 965. Univalued Binary Tree
+def is_unival_tree(root: Optional[TreeNode]) -> bool:
+    def dfs(node: TreeNode):
+        if node:
+            values.add(node.val)
+            dfs(node.left)
+            dfs(node.right)
+
+    values = set()
+    dfs(root)
+    return len(values) == 1
+
+
+# 701. Insert into a Binary Search Tree
+def insert_into_bst(root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+    if not root:
+        return TreeNode(val)
+
+    cur = root
+    parent = root
+    while cur:
+        parent = cur
+        if val < cur.val:
+            cur = cur.left
+        else:
+            cur = cur.right
+
+    if val < parent.val:
+        parent.left = TreeNode(val)
+    else:
+        parent.right = TreeNode(val)
+
+    return root

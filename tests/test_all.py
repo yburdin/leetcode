@@ -1000,6 +1000,17 @@ class Test0501to1000(unittest.TestCase):
         self.assertFalse(is_alien_sorted(words=["word", "world", "row"], order="worldabcefghijkmnpqstuvxyz"))
         self.assertFalse(is_alien_sorted(words=["apple", "app"], order="abcdefghijklmnopqrstuvwxyz"))
 
+    def test_965(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(is_unival_tree(
+                root=TreeNode(1, TreeNode(1, TreeNode(1), TreeNode(1)), TreeNode(1, None, TreeNode(1)))
+            ))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(is_unival_tree(
+                root=TreeNode(2, TreeNode(2, TreeNode(5), TreeNode(2)), TreeNode(2))
+            ))
+
     def test_973(self):
         self.assertCountEqual(k_closest(points=[[1, 3], [-2, 2]], k=1), [[-2, 2]])
         self.assertCountEqual(k_closest(points=[[3, 3], [5, -1], [-2, 4]], k=2), [[3, 3], [-2, 4]])
