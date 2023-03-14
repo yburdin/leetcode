@@ -435,3 +435,19 @@ def deepest_leaves_sum(root: Optional[TreeNode]) -> int:
 
     max_depth = max(depth_dict.keys())
     return depth_dict[max_depth]
+
+
+# 1325. Delete Leaves With a Given Value
+def remove_leaf_nodes(root: Optional[TreeNode], target: int) -> Optional[TreeNode]:
+    def is_leaf(node_: TreeNode) -> bool:
+        return not node_.left and not node_.right
+
+    if root.left:
+        root.left = remove_leaf_nodes(root.left, target)
+    if root.right:
+        root.right = remove_leaf_nodes(root.right, target)
+
+    if is_leaf(root) and root.val == target:
+        return
+    else:
+        return root
