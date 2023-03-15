@@ -451,3 +451,19 @@ def remove_leaf_nodes(root: Optional[TreeNode], target: int) -> Optional[TreeNod
         return
     else:
         return root
+
+
+# 1008. Construct Binary Search Tree from Preorder Traversal
+def bst_from_preorder(preorder: List[int]) -> Optional[TreeNode]:
+    def build_tree(vals: List[int], max_val) -> Optional[TreeNode]:
+        if not vals or vals[0] > max_val:
+            return None
+
+        node = TreeNode(vals.pop(0))
+        node.left = build_tree(vals, node.val)
+        node.right = build_tree(vals, max_val)
+
+        return node
+
+    bst = build_tree(preorder, 2e3)
+    return bst

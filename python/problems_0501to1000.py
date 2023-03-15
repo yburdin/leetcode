@@ -653,3 +653,54 @@ def insert_into_bst(root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
         parent.right = TreeNode(val)
 
     return root
+
+
+# 958. Check Completeness of a Binary Tree
+def is_complete_tree(root: Optional[TreeNode]) -> bool:
+    if not root:
+        return True
+
+    none_node_found = False
+    bfs_queue = [root]
+
+    while bfs_queue:
+        node = bfs_queue.pop(0)
+        if not node:
+            none_node_found = True
+        else:
+            if none_node_found:
+                return False
+            else:
+                bfs_queue.append(node.left)
+                bfs_queue.append(node.right)
+
+    return True
+
+
+# 617. Merge Two Binary Trees
+def merge_trees(root1: Optional[TreeNode], root2: Optional[TreeNode]) -> Optional[TreeNode]:
+    def merge_node(node1: Optional[TreeNode], node2: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not node1 and not node2:
+            return
+
+        result_node = TreeNode()
+        if node1:
+            result_node.val += node1.val
+        if node2:
+            result_node.val += node2.val
+
+        if node1 and node2:
+            result_node.left = merge_node(node1.left, node2.left)
+            result_node.right = merge_node(node1.right, node2.right)
+
+        elif node1:
+            result_node.left = node1.left
+            result_node.right = node1.right
+        else:
+            result_node.left = node2.left
+            result_node.right = node2.right
+
+        return result_node
+
+    root = merge_node(root1, root2)
+    return root
