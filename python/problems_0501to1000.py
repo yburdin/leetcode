@@ -704,3 +704,53 @@ def merge_trees(root1: Optional[TreeNode], root2: Optional[TreeNode]) -> Optiona
 
     root = merge_node(root1, root2)
     return root
+
+
+# 680. Valid Palindrome II
+def valid_palindrome(s: str) -> bool:
+    left = 0
+    right = len(s) - 1
+    
+    while left < right:
+        if s[left] != s[right]:
+            option_1 = s[:left] + s[left+1:]
+            option_2 = s[:right] + s[right+1:]
+            return option_1 == option_1[::-1] or option_2 == option_2[::-1]
+        left += 1
+        right -= 1
+
+    return True
+
+
+# 590. N-ary Tree Postorder Traversal
+def postorder(root: Node) -> List[int]:
+    def traverse(node: Node):
+        if not node:
+            return
+
+        if node.children:
+            for child in node.children:
+                traverse(child)
+        result.append(node.val)
+
+    result = []
+    traverse(root)
+
+    return result
+
+
+# 589. N-ary Tree Preorder Traversal
+def preorder(root: Node) -> List[int]:
+    def traverse(node: Node):
+        if not node:
+            return
+
+        result.append(node.val)
+        if node.children:
+            for child in node.children:
+                traverse(child)
+
+    result = []
+    traverse(root)
+
+    return result
