@@ -675,6 +675,11 @@ class Test0501to1000(unittest.TestCase):
         with self.subTest('Example 3'):
             self.assertEqual(distribute_candies(candyType=[6, 6, 6, 6]), 1)
 
+    def test_590(self):
+        with self.subTest('Example 1'):
+            root_ = Node(val=1, children=[Node(val=3, children=[Node(5), Node(6)]), Node(val=2), Node(val=4)])
+            self.assertEqual(postorder(root_), [5, 6, 3, 2, 4, 1])
+
     def test_637(self):
         with self.subTest('Example 1'):
             result = average_of_levels(
@@ -718,6 +723,16 @@ class Test0501to1000(unittest.TestCase):
 
         with self.subTest('Example 6'):
             self.assertEqual(find_error_nums(nums=[2, 3, 2]), [2, 1])
+
+    def test_680(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(valid_palindrome('aba'))
+
+        with self.subTest('Example 2'):
+            self.assertTrue(valid_palindrome('abca'))
+
+        with self.subTest('Example 3'):
+            self.assertFalse(valid_palindrome('abc'))
 
     def test_692(self):
         with self.subTest('Example 1'):
@@ -999,6 +1014,28 @@ class Test0501to1000(unittest.TestCase):
         self.assertTrue(is_alien_sorted(words=["hello", "leetcode"], order="hlabcdefgijkmnopqrstuvwxyz"))
         self.assertFalse(is_alien_sorted(words=["word", "world", "row"], order="worldabcefghijkmnpqstuvxyz"))
         self.assertFalse(is_alien_sorted(words=["apple", "app"], order="abcdefghijklmnopqrstuvwxyz"))
+
+    def test_958(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(is_complete_tree(
+                root=TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5)), TreeNode(3, TreeNode(6)))
+            ))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(is_complete_tree(
+                root=TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5)), TreeNode(3, None, TreeNode(7)))
+            ))
+
+    def test_965(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(is_unival_tree(
+                root=TreeNode(1, TreeNode(1, TreeNode(1), TreeNode(1)), TreeNode(1, None, TreeNode(1)))
+            ))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(is_unival_tree(
+                root=TreeNode(2, TreeNode(2, TreeNode(5), TreeNode(2)), TreeNode(2))
+            ))
 
     def test_973(self):
         self.assertCountEqual(k_closest(points=[[1, 3], [-2, 2]], k=1), [[-2, 2]])
@@ -1536,6 +1573,14 @@ class Test2501to3000(unittest.TestCase):
 
         with self.subTest('Example 2'):
             self.assertEqual(solution.pick_gifts(gifts=[1, 1, 1, 1], k=4), 4)
+
+    def test_2586(self):
+        sol = Solution2501to3000()
+        with self.subTest('Example 1'):
+            self.assertEqual(sol.vowel_strings(words=["are", "amy", "u"], left=0, right=2), 2)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sol.vowel_strings(words=["hey", "aeo", "mu", "ooo", "artro"], left=1, right=4), 3)
 
 
 def list_to_linked_list(nodes: List[int]) -> ListNode:

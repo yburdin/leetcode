@@ -618,3 +618,139 @@ def search_bst(root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
             cur = cur.right
         else:
             return cur
+
+
+# 965. Univalued Binary Tree
+def is_unival_tree(root: Optional[TreeNode]) -> bool:
+    def dfs(node: TreeNode):
+        if node:
+            values.add(node.val)
+            dfs(node.left)
+            dfs(node.right)
+
+    values = set()
+    dfs(root)
+    return len(values) == 1
+
+
+# 701. Insert into a Binary Search Tree
+def insert_into_bst(root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+    if not root:
+        return TreeNode(val)
+
+    cur = root
+    parent = root
+    while cur:
+        parent = cur
+        if val < cur.val:
+            cur = cur.left
+        else:
+            cur = cur.right
+
+    if val < parent.val:
+        parent.left = TreeNode(val)
+    else:
+        parent.right = TreeNode(val)
+
+    return root
+
+
+# 958. Check Completeness of a Binary Tree
+def is_complete_tree(root: Optional[TreeNode]) -> bool:
+    if not root:
+        return True
+
+    none_node_found = False
+    bfs_queue = [root]
+
+    while bfs_queue:
+        node = bfs_queue.pop(0)
+        if not node:
+            none_node_found = True
+        else:
+            if none_node_found:
+                return False
+            else:
+                bfs_queue.append(node.left)
+                bfs_queue.append(node.right)
+
+    return True
+
+
+# 617. Merge Two Binary Trees
+def merge_trees(root1: Optional[TreeNode], root2: Optional[TreeNode]) -> Optional[TreeNode]:
+    def merge_node(node1: Optional[TreeNode], node2: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not node1 and not node2:
+            return
+
+        result_node = TreeNode()
+        if node1:
+            result_node.val += node1.val
+        if node2:
+            result_node.val += node2.val
+
+        if node1 and node2:
+            result_node.left = merge_node(node1.left, node2.left)
+            result_node.right = merge_node(node1.right, node2.right)
+
+        elif node1:
+            result_node.left = node1.left
+            result_node.right = node1.right
+        else:
+            result_node.left = node2.left
+            result_node.right = node2.right
+
+        return result_node
+
+    root = merge_node(root1, root2)
+    return root
+
+
+# 680. Valid Palindrome II
+def valid_palindrome(s: str) -> bool:
+    left = 0
+    right = len(s) - 1
+    
+    while left < right:
+        if s[left] != s[right]:
+            option_1 = s[:left] + s[left+1:]
+            option_2 = s[:right] + s[right+1:]
+            return option_1 == option_1[::-1] or option_2 == option_2[::-1]
+        left += 1
+        right -= 1
+
+    return True
+
+
+# 590. N-ary Tree Postorder Traversal
+def postorder(root: Node) -> List[int]:
+    def traverse(node: Node):
+        if not node:
+            return
+
+        if node.children:
+            for child in node.children:
+                traverse(child)
+        result.append(node.val)
+
+    result = []
+    traverse(root)
+
+    return result
+
+
+# 589. N-ary Tree Preorder Traversal
+def preorder(root: Node) -> List[int]:
+    def traverse(node: Node):
+        if not node:
+            return
+
+        result.append(node.val)
+        if node.children:
+            for child in node.children:
+                traverse(child)
+
+    result = []
+    traverse(root)
+
+    return result

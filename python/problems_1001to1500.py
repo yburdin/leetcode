@@ -435,3 +435,35 @@ def deepest_leaves_sum(root: Optional[TreeNode]) -> int:
 
     max_depth = max(depth_dict.keys())
     return depth_dict[max_depth]
+
+
+# 1325. Delete Leaves With a Given Value
+def remove_leaf_nodes(root: Optional[TreeNode], target: int) -> Optional[TreeNode]:
+    def is_leaf(node_: TreeNode) -> bool:
+        return not node_.left and not node_.right
+
+    if root.left:
+        root.left = remove_leaf_nodes(root.left, target)
+    if root.right:
+        root.right = remove_leaf_nodes(root.right, target)
+
+    if is_leaf(root) and root.val == target:
+        return
+    else:
+        return root
+
+
+# 1008. Construct Binary Search Tree from Preorder Traversal
+def bst_from_preorder(preorder: List[int]) -> Optional[TreeNode]:
+    def build_tree(vals: List[int], max_val) -> Optional[TreeNode]:
+        if not vals or vals[0] > max_val:
+            return None
+
+        node = TreeNode(vals.pop(0))
+        node.left = build_tree(vals, node.val)
+        node.right = build_tree(vals, max_val)
+
+        return node
+
+    bst = build_tree(preorder, 2e3)
+    return bst

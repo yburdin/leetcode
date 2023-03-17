@@ -1177,3 +1177,52 @@ def binary_tree_paths(root: Optional[TreeNode]) -> List[str]:
                 paths.append(path)
 
     return paths
+
+
+# 129. Sum Root to Leaf Numbers
+def sum_numbers(root: Optional[TreeNode]) -> int:
+    queue = [('', root)]
+    result = 0
+    while queue:
+        number, node = queue.pop()
+        if node:
+            number += str(node.val)
+            if not node.left and not node.right:  # leaf
+                result += int(number)
+            else:
+                if node.left:
+                    queue.append((number, node.left))
+                if node.right:
+                    queue.append((number, node.right))
+
+    return result
+
+
+# 106. Construct Binary Tree from Inorder and Postorder Traversal
+def build_tree(inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+    if not inorder or not postorder:
+        return
+
+    root = TreeNode(postorder.pop())
+    inorder_index = inorder.index(root.val)
+
+    root.right = build_tree(inorder[inorder_index+1:], postorder)
+    root.left = build_tree(inorder[:inorder_index], postorder)
+
+    return root
+
+
+# 145. Binary Tree Postorder Traversal
+def postorder_traversal(root: Optional[TreeNode]) -> List[int]:
+    def traverse(node: Optional[TreeNode]):
+        if not node:
+            return
+
+        traverse(node.left)
+        traverse(node.right)
+        result.append(node.val)
+
+    result = []
+    traverse(root)
+
+    return result
