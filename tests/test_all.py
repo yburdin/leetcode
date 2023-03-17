@@ -1530,6 +1530,18 @@ class Test2001to2500(unittest.TestCase):
         with self.subTest('Example 3'):
             self.assertEqual(solution.distinct_names(ideas=["bzklqtbdr", "kaqvdlp", "r", "dk"]), 12)
 
+    def test_2325(self):
+        sol = Solution2001to2500()
+        with self.subTest('Example 1'):
+            self.assertEqual(sol.decode_message(key = "the quick brown fox jumps over the lazy dog",
+                                                message = "vkbs bs t suepuv"),
+                             "this is a secret")
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sol.decode_message(key = "eljuxhpwnyrdgtqkviszcfmabo",
+                                                message = "zwx hnfx lqantp mnoeius ycgk vcnjrdb"),
+                             "the five boxing wizards jump quickly")
+
     def test_2444(self):
         solution = Solution2001to2500()
 
@@ -1573,6 +1585,14 @@ class Test2501to3000(unittest.TestCase):
 
         with self.subTest('Example 2'):
             self.assertEqual(solution.pick_gifts(gifts=[1, 1, 1, 1], k=4), 4)
+
+    def test_2574(self):
+        sol = Solution2501to3000()
+        with self.subTest('Example 1'):
+            self.assertEqual(sol.left_rigth_difference(nums=[10, 4, 8, 3]), [15, 1, 11, 22])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sol.left_rigth_difference(nums=[1]), [0])
 
     def test_2586(self):
         sol = Solution2501to3000()

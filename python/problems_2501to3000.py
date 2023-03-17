@@ -20,3 +20,16 @@ class Solution:
             return word_[0] in 'aeiou' and word_[-1] in 'aeiou'
 
         return sum(map(is_vowel, words[left:right+1]))
+
+    # 2574. Left and Right Sum Differences
+    def left_rigth_difference(self, nums: List[int]) -> List[int]:
+        result = []
+        left_sum = 0
+        right_sum = sum(nums)
+
+        for i, num in enumerate(nums):
+            right_sum -= num
+            result.append(abs(left_sum - right_sum))
+            left_sum += num
+
+        return result
