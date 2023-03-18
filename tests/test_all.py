@@ -839,6 +839,16 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(num_subarray_product_less_than_k(nums=[10, 5, 2, 6], k=100), 8)
         self.assertEqual(num_subarray_product_less_than_k(nums=[1, 2, 3], k=0), 0)
 
+    def test_724(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(pivot_index(nums=[1, 7, 3, 6, 5, 6]), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(pivot_index(nums=[1, 2, 3]), -1)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(pivot_index(nums=[2, 1, -1]), 0)
+
     def test_729(self):
         with self.subTest(msg='Testcase 1'):
             my_calendar = MyCalendar()
@@ -1244,6 +1254,16 @@ class Test1001to1500(unittest.TestCase):
 
         with self.subTest('Example 3'):
             self.assertEqual(shuffle(nums=[1, 1, 2, 2], n=2), [1, 2, 1, 2])
+
+    def test_1480(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(running_sum(nums=[1, 2, 3, 4]), [1, 3, 6, 10])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(running_sum(nums=[1, 1, 1, 1, 1]), [1, 2, 3, 4, 5])
+
+        with self.subTest('Example 3'):
+            self.assertEqual(running_sum(nums=[3, 1, 2, 10, 1]), [3, 4, 6, 16, 17])
 
     def test_1491(self):
         self.assertEqual(average([4000, 3000, 1000, 2000]), 2500.)
