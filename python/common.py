@@ -1,4 +1,4 @@
-from classes import ListNode, Node, TreeNode, QuadNode
+from classes import ListNode, Node, TreeNode, QuadNode, TrieNode
 from typing import List, Optional
 from math import atan, factorial, sqrt
 from heapq import heappush, heappop, heapify

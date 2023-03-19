@@ -369,6 +369,22 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(is_happy(19), True)
         self.assertEqual(is_happy(2), False)
 
+    def test_205(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(is_isomorphic(s="egg", t="add"))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(is_isomorphic(s="foo", t="bar"))
+
+        with self.subTest('Example 3'):
+            self.assertTrue(is_isomorphic(s="paper", t="title"))
+
+        with self.subTest('Example 4'):
+            self.assertFalse(is_isomorphic(s="bbbaaaba", t="aaabbbba"))
+
+        with self.subTest('Example 5'):
+            self.assertFalse(is_isomorphic(s="badc", t="baba"))
+
     def test_217(self):
         self.assertTrue(contains_duplicate([1, 2, 3, 1]))
         self.assertFalse(contains_duplicate([1, 2, 3, 4]))
@@ -461,6 +477,16 @@ class Test0001to0500(unittest.TestCase):
     def test_405(self):
         self.assertEqual(to_hex(26), '1a')
         self.assertEqual(to_hex(-1), 'ffffffff')
+
+    def test_409(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(longest_palindrome(s="abccccdd"), 7)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(longest_palindrome(s="a"), 1)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(longest_palindrome(s="civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"), 983)
 
     def test_413(self):
         with self.subTest('Example 1'):
