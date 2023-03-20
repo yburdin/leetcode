@@ -769,3 +769,57 @@ def pivot_index(nums: List[int]) -> int:
         lsum += num
 
     return -1
+
+
+# 605. Can Place Flowers
+def can_place_flowers(flowerbed: List[int], n: int) -> bool:
+    left = -1
+    right = -1
+
+    possible_flowers = 0
+
+    for i, flower in enumerate(flowerbed):
+        if flower == 1:
+            left = i + 1
+            right = i + 1
+        else:
+            right = i + 1
+
+        if right - left == 3:
+            possible_flowers += 1
+            left = i
+            right = i
+
+        if possible_flowers == n:
+            return True
+
+    if flowerbed[-1] == 0 and right - left == 2:
+        possible_flowers += 1
+
+    return possible_flowers >= n
+
+
+# 509. Fibonacci Number
+def fib(self, n: int) -> int:
+    if n < 2:
+        return n
+
+    fib_array = [0] * (n + 1)
+    fib_array[1] = 1
+
+    for i in range(2, n + 1):
+        fib_array[i] = fib_array[i-1] + fib_array[i-2]
+
+    return fib_array[n]
+
+
+# 746. Min Cost Climbing Stairs
+def min_cost_climbing_stairs(cost: List[int]) -> int:
+    dp = [0] * len(cost)
+    for i, c in enumerate(cost):
+        if i < 2:
+            dp[i] = c
+        else:
+            dp[i] = c + min(dp[i-1], dp[i-2])
+
+    return min(dp[len(cost)-1], dp[len(cost)-2])

@@ -641,6 +641,19 @@ class Test0501to1000(unittest.TestCase):
             root_ = Node(val=1, children=[Node(val=3, children=[Node(5), Node(6)]), Node(val=2), Node(val=4)])
             self.assertEqual(postorder(root_), [5, 6, 3, 2, 4, 1])
 
+    def test_605(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(can_place_flowers(flowerbed=[1, 0, 0, 0, 1], n=1))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(can_place_flowers(flowerbed=[1, 0, 0, 0, 1], n=2))
+
+        with self.subTest('Example 3'):
+            self.assertTrue(can_place_flowers(flowerbed=[0, 0, 1, 0, 1], n=1))
+
+        with self.subTest('Example 4'):
+            self.assertTrue(can_place_flowers(flowerbed=[1, 0, 0, 0, 1, 0, 0], n=2))
+
     def test_637(self):
         with self.subTest('Example 1'):
             result = average_of_levels(
@@ -739,6 +752,13 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(daily_temperatures(temperatures=[30, 60, 90]), [1, 1, 0])
         self.assertEqual(daily_temperatures(temperatures=[89, 62, 70, 58, 47, 47, 46, 76, 100, 70]),
                          [8, 1, 5, 4, 3, 2, 1, 1, 0, 0])
+
+    def test_746(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(min_cost_climbing_stairs(cost=[10, 15, 20]), 15)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(min_cost_climbing_stairs(cost=[1, 100, 1, 1, 1, 100, 1, 1, 100, 1]), 6)
 
     def test_771(self):
         with self.subTest('Example 1'):
