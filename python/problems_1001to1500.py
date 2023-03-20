@@ -467,3 +467,15 @@ def bst_from_preorder(preorder: List[int]) -> Optional[TreeNode]:
 
     bst = build_tree(preorder, 2e3)
     return bst
+
+
+# 1480. Running Sum of 1d Array
+def running_sum(nums: List[int]) -> List[int]:
+    result = []
+    run_sum = 0
+
+    for num in nums:
+        run_sum += num
+        result += [run_sum]
+
+    return result

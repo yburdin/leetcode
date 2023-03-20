@@ -1226,3 +1226,33 @@ def postorder_traversal(root: Optional[TreeNode]) -> List[int]:
     traverse(root)
 
     return result
+
+
+# 205. Isomorphic Strings
+def is_isomorphic(s: str, t: str) -> bool:
+    if len(set(s)) != len(set(t)):
+        return False
+
+    replace_dict = dict(zip(s, t))
+    for i, char in enumerate(s):
+        if replace_dict[char] != t[i]:
+            return False
+
+    return True
+
+
+# 409. Longest Palindrome
+def longest_palindrome(s: str) -> int:
+    counter = Counter(s)
+
+    odd_remainder = 0
+    sum_even = 0
+    for char in counter:
+        char_count = counter[char]
+        if char_count % 2 == 0:
+            sum_even += char_count
+        else:
+            odd_remainder = 1
+            sum_even += char_count - 1
+
+    return sum_even + odd_remainder

@@ -1,11 +1,9 @@
-import unittest
 from python.problems_0001to0500 import *
 from python.problems_0501to1000 import *
 from python.problems_1001to1500 import *
 from python.problems_1501to2000 import Solution as Solution1501to2000
 from python.problems_2001to2500 import Solution as Solution2001to2500
 from python.problems_2501to3000 import Solution as Solution2501to3000
-from classes import *
 
 
 class Test0001to0500(unittest.TestCase):
@@ -371,6 +369,22 @@ class Test0001to0500(unittest.TestCase):
         self.assertEqual(is_happy(19), True)
         self.assertEqual(is_happy(2), False)
 
+    def test_205(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(is_isomorphic(s="egg", t="add"))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(is_isomorphic(s="foo", t="bar"))
+
+        with self.subTest('Example 3'):
+            self.assertTrue(is_isomorphic(s="paper", t="title"))
+
+        with self.subTest('Example 4'):
+            self.assertFalse(is_isomorphic(s="bbbaaaba", t="aaabbbba"))
+
+        with self.subTest('Example 5'):
+            self.assertFalse(is_isomorphic(s="badc", t="baba"))
+
     def test_217(self):
         self.assertTrue(contains_duplicate([1, 2, 3, 1]))
         self.assertFalse(contains_duplicate([1, 2, 3, 4]))
@@ -388,14 +402,6 @@ class Test0001to0500(unittest.TestCase):
 
         with self.subTest('Example 4'):
             self.assertTrue(contains_nearby_duplicate(nums=[99, 99], k=2))
-
-    def test_232(self):
-        my_queue = MyQueue()
-        my_queue.push(1)
-        my_queue.push(2)
-        self.assertEqual(my_queue.peek(), 1)
-        self.assertEqual(my_queue.pop(), 1)
-        self.assertFalse(my_queue.empty())
 
     def test_242(self):
         self.assertTrue(is_anagram(s="anagram", t="nagaram"))
@@ -438,31 +444,6 @@ class Test0001to0500(unittest.TestCase):
         with self.subTest('Example 5'):
             self.assertFalse(word_pattern(pattern="aba", s="cat cat cat dog"))
 
-    def test_303(self):
-        num_array = NumArray([-2, 0, 3, -5, 2, -1])
-        self.assertEqual(num_array.sum_range(0, 2), 1)
-        self.assertEqual(num_array.sum_range(2, 5), -1)
-        self.assertEqual(num_array.sum_range(0, 5), -3)
-
-    def test_304(self):
-        num_matrix = NumMatrix([[3, 0, 1, 4, 2], [5, 6, 3, 2, 1], [1, 2, 0, 1, 5], [4, 1, 0, 1, 7], [1, 0, 3, 0, 5]])
-        param_1 = num_matrix.sumRegion(2, 1, 4, 3)
-        param_2 = num_matrix.sumRegion(1, 1, 2, 2)
-        param_3 = num_matrix.sumRegion(1, 2, 2, 4)
-
-        self.assertEqual(param_1, 8)
-        self.assertEqual(param_2, 11)
-        self.assertEqual(param_3, 12)
-
-        num_matrix = NumMatrix([[-4, -5]])
-        param_1 = num_matrix.sumRegion(0, 0, 0, 0)
-        param_2 = num_matrix.sumRegion(0, 0, 0, 1)
-        param_3 = num_matrix.sumRegion(0, 1, 0, 1)
-
-        self.assertEqual(param_1, -4)
-        self.assertEqual(param_2, -9)
-        self.assertEqual(param_3, -5)
-
     def test_316(self):
         with self.subTest('Example 1'):
             self.assertEqual(remove_duplicate_letters(s="bcabc"), 'abc')
@@ -474,33 +455,6 @@ class Test0001to0500(unittest.TestCase):
         self.assertTrue(is_power_of_four(16))
         self.assertTrue(is_power_of_four(1))
         self.assertFalse(is_power_of_four(5))
-
-    def test_355(self):
-        with self.subTest('Example 1'):
-            twitter = Twitter()
-
-            # User 1 posts a new tweet (id = 5).
-            twitter.postTweet(1, 5)
-
-            # User 1's news feed should return a list with 1 tweet id -> [5]. return [5]
-            twitter.getNewsFeed(1)
-
-            # User 1 follows user 2.
-            twitter.follow(1, 2)
-
-            # User 2 posts a new tweet (id = 6).
-            twitter.postTweet(2, 6)
-
-            # User 1's news feed should return a list with 2 tweet ids -> [6, 5].
-            # Tweet id 6 should precede tweet id 5 because it is posted after tweet id 5.
-            self.assertEqual(twitter.getNewsFeed(1), [6, 5])
-
-            # User 1 unfollows user 2.
-            twitter.unfollow(1, 2)
-
-            # User 1's news feed should return a list with 1 tweet id -> [5],
-            # since user 1 is no longer following user 2.
-            self.assertEqual(twitter.getNewsFeed(1), [5])
 
     def test_389(self):
         self.assertEqual(find_the_difference(s="abcd", t="abcde"), 'e')
@@ -523,6 +477,13 @@ class Test0001to0500(unittest.TestCase):
     def test_405(self):
         self.assertEqual(to_hex(26), '1a')
         self.assertEqual(to_hex(-1), 'ffffffff')
+
+    def test_409(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(longest_palindrome(s="abccccdd"), 7)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(longest_palindrome(s="a"), 1)
 
     def test_413(self):
         with self.subTest('Example 1'):
@@ -744,92 +705,6 @@ class Test0501to1000(unittest.TestCase):
                 top_k_frequent(words=["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"], k=4),
                 ["the", "is", "sunny", "day"])
 
-    def test_703(self):
-        with self.subTest('Example 1'):
-            kth_largest = KthLargest(3, [4, 5, 8, 2])
-            self.assertEqual(kth_largest.add(3), 4)
-            self.assertEqual(kth_largest.add(5), 5)
-            self.assertEqual(kth_largest.add(10), 5)
-            self.assertEqual(kth_largest.add(9), 8)
-            self.assertEqual(kth_largest.add(4), 8)
-
-    def test_706(self):
-        with self.subTest('Example 1'):
-            my_hash_map = MyHashMap()
-            my_hash_map.put(1, 1)  # The map is now [[1,1]]
-            my_hash_map.put(2, 2)  # The map is now [[1,1], [2,2]]
-            self.assertEqual(my_hash_map.get(1), 1)  # return 1, The map is now [[1,1], [2,2]]
-            self.assertEqual(my_hash_map.get(3), -1)  # return -1 (i.e., not found), The map is now [[1,1], [2,2]]
-            my_hash_map.put(2, 1)  # The map is now [[1,1], [2,1]] (i.e., update the existing value)
-            self.assertEqual(my_hash_map.get(2), 1)  # return 1, The map is now [[1,1], [2,1]]
-            my_hash_map.remove(2)  # remove the mapping for 2, The map is now [[1,1]]
-            self.assertEqual(my_hash_map.get(2), -1)  # return -1 (i.e., not found), The map is now [[1,1]]
-
-        with self.subTest('Example 2'):
-            my_hash_map = MyHashMap()
-            my_hash_map.remove(2)
-            my_hash_map.put(3, 11)
-            my_hash_map.put(4, 13)
-            my_hash_map.put(15, 6)
-            my_hash_map.put(6, 15)
-            my_hash_map.put(8, 8)
-            my_hash_map.put(11, 0)
-            self.assertEqual(my_hash_map.get(11), 0)
-            my_hash_map.put(1, 10)
-            my_hash_map.put(12, 4)
-
-    def test_707(self):
-        with self.subTest(msg='Testcase 1'):
-            my_linked_list = MyLinkedList()
-            my_linked_list.addAtHead(1)
-            my_linked_list.addAtTail(3)
-            my_linked_list.addAtIndex(1, 2)                 # linked list becomes 1->2->3
-            self.assertEqual(my_linked_list.get(1), 2)      # return 2
-
-            my_linked_list.deleteAtIndex(1)                 # now the linked list is 1->3
-            self.assertEqual(my_linked_list.get(1), 3)      # return 3
-
-        with self.subTest(msg='Testcase 2'):
-            my_linked_list = MyLinkedList()
-            my_linked_list.addAtHead(7)
-            my_linked_list.addAtHead(2)
-            my_linked_list.addAtHead(1)
-            my_linked_list.addAtIndex(3, 0)
-            my_linked_list.deleteAtIndex(2)
-            my_linked_list.addAtHead(6)
-            my_linked_list.addAtTail(4)
-            self.assertEqual(my_linked_list.get(4), 4)
-
-            my_linked_list.addAtHead(4)
-            my_linked_list.addAtIndex(5, 0)
-            my_linked_list.addAtHead(6)
-
-        with self.subTest(msg='Testcase 3'):
-            my_linked_list = MyLinkedList()
-            my_linked_list.addAtIndex(0, 10)
-            my_linked_list.addAtIndex(0, 20)
-            my_linked_list.addAtIndex(1, 30)
-            self.assertEqual(my_linked_list.get(0), 20)
-
-        with self.subTest(msg='Testcase 4'):
-            my_linked_list = MyLinkedList()
-            my_linked_list.addAtTail(1)
-            self.assertEqual(my_linked_list.get(0), 1)
-
-        with self.subTest(msg='Testcase 5'):
-            my_linked_list = MyLinkedList()
-            my_linked_list.addAtHead(4)
-            self.assertEqual(my_linked_list.get(1), -1)
-            my_linked_list.addAtHead(1)
-            my_linked_list.addAtHead(5)
-            my_linked_list.deleteAtIndex(3)
-            my_linked_list.addAtHead(7)
-            self.assertEqual(my_linked_list.get(3), 4)
-            self.assertEqual(my_linked_list.get(3), 4)
-            self.assertEqual(my_linked_list.get(3), 4)
-            my_linked_list.addAtHead(1)
-            my_linked_list.deleteAtIndex(4)
-
     def test_709(self):
         self.assertEqual(to_lower_case("Hello"), "hello")
         self.assertEqual(to_lower_case("here"), "here")
@@ -839,48 +714,15 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(num_subarray_product_less_than_k(nums=[10, 5, 2, 6], k=100), 8)
         self.assertEqual(num_subarray_product_less_than_k(nums=[1, 2, 3], k=0), 0)
 
-    def test_729(self):
-        with self.subTest(msg='Testcase 1'):
-            my_calendar = MyCalendar()
-            self.assertTrue(my_calendar.book(10, 20))
-            self.assertFalse(my_calendar.book(15, 25))
-            self.assertTrue(my_calendar.book(20, 30))
+    def test_724(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(pivot_index(nums=[1, 7, 3, 6, 5, 6]), 3)
 
-        with self.subTest(msg='Testcase 2'):
-            my_calendar = MyCalendar()
-            self.assertTrue(my_calendar.book(47, 50))
-            self.assertTrue(my_calendar.book(33, 41))
-            self.assertFalse(my_calendar.book(39, 45))
-            self.assertFalse(my_calendar.book(33, 42))
-            self.assertTrue(my_calendar.book(25, 32))
-            self.assertFalse(my_calendar.book(26, 35))
-            self.assertTrue(my_calendar.book(19, 25))
-            self.assertTrue(my_calendar.book(3, 8))
-            self.assertTrue(my_calendar.book(8, 13))
-            self.assertFalse(my_calendar.book(18, 27))
+        with self.subTest('Example 2'):
+            self.assertEqual(pivot_index(nums=[1, 2, 3]), -1)
 
-        with self.subTest(msg='Testcase 3'):
-            my_calendar = MyCalendar()
-            self.assertTrue(my_calendar.book(97, 100))
-            self.assertTrue(my_calendar.book(33, 51))
-            self.assertFalse(my_calendar.book(89, 100))
-            self.assertFalse(my_calendar.book(83, 100))
-            self.assertTrue(my_calendar.book(75, 92))
-            self.assertFalse(my_calendar.book(76, 95))
-            self.assertTrue(my_calendar.book(19, 30))
-            self.assertTrue(my_calendar.book(53, 63))
-            self.assertFalse(my_calendar.book(8, 23))
-            self.assertFalse(my_calendar.book(18, 37))
-            self.assertFalse(my_calendar.book(87, 100))
-            self.assertFalse(my_calendar.book(83, 100))
-            self.assertFalse(my_calendar.book(54, 67))
-            self.assertFalse(my_calendar.book(35, 48))
-            self.assertFalse(my_calendar.book(58, 75))
-            self.assertFalse(my_calendar.book(70, 89))
-            self.assertFalse(my_calendar.book(13, 32))
-            self.assertFalse(my_calendar.book(44, 63))
-            self.assertFalse(my_calendar.book(51, 62))
-            self.assertTrue(my_calendar.book(2, 15))
+        with self.subTest('Example 3'):
+            self.assertEqual(pivot_index(nums=[2, 1, -1]), 0)
 
     def test_733(self):
         with self.subTest('Example 1'):
@@ -987,15 +829,6 @@ class Test0501to1000(unittest.TestCase):
 
         with self.subTest('Example 4'):
             self.assertEqual(sort_array(nums=[-2, 3, -5]), [-5, -2, 3])
-
-    def test_933(self):
-        with self.subTest('Example 1'):
-            recent_counter = RecentCounter()
-            self.assertEqual(recent_counter.ping(1), 1)     # requests = [1], range is [-2999,1], return 1
-            self.assertEqual(recent_counter.ping(100), 2)   # requests = [1, 100], range is [-2900,100], return 2
-            self.assertEqual(recent_counter.ping(3001), 3)  # requests = [1, 100, 3001], range is [1,3001], return 3
-            self.assertEqual(recent_counter.ping(3002),
-                             3)  # requests = [1, 100, 3001, 3002], range is [2,3002], return 3
 
     def test_944(self):
         with self.subTest('Example 1'):
@@ -1245,6 +1078,16 @@ class Test1001to1500(unittest.TestCase):
         with self.subTest('Example 3'):
             self.assertEqual(shuffle(nums=[1, 1, 2, 2], n=2), [1, 2, 1, 2])
 
+    def test_1480(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(running_sum(nums=[1, 2, 3, 4]), [1, 3, 6, 10])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(running_sum(nums=[1, 1, 1, 1, 1]), [1, 2, 3, 4, 5])
+
+        with self.subTest('Example 3'):
+            self.assertEqual(running_sum(nums=[3, 1, 2, 10, 1]), [3, 4, 6, 16, 17])
+
     def test_1491(self):
         self.assertEqual(average([4000, 3000, 1000, 2000]), 2500.)
         self.assertEqual(average([1000, 2000, 3000]), 2000.)
@@ -1333,13 +1176,6 @@ class Test1501to2000(unittest.TestCase):
         self.assertEqual(solution.sum_odd_length_subarrays([1, 4, 2, 5, 3]), 58)
         self.assertEqual(solution.sum_odd_length_subarrays([1, 2]), 3)
         self.assertEqual(solution.sum_odd_length_subarrays([10, 11, 12]), 66)
-
-    def test_1603(self):
-        parking_system = ParkingSystem(1, 1, 0)
-        self.assertTrue(parking_system.add_car(1))
-        self.assertTrue(parking_system.add_car(2))
-        self.assertFalse(parking_system.add_car(3))
-        self.assertFalse(parking_system.add_car(1))
 
     def test_1630(self):
         solution = Solution1501to2000()
@@ -1430,33 +1266,6 @@ class Test1501to2000(unittest.TestCase):
                                   [[1, 2, 2], [2, 2, 2], [4, 3, 2], [4, 3, 3]]),
             [2, 3, 2, 4])
 
-    def test_1845(self):
-        seat_manager = SeatManager(5)  # Initializes a SeatManager with 5 seats.
-
-        # All seats are available, so return the lowest numbered seat, which is 1.
-        self.assertEqual(seat_manager.reserve(), 1)
-
-        # The available seats are [2,3,4,5], so return the lowest of them, which is 2.
-        self.assertEqual(seat_manager.reserve(), 2)
-
-        # Unreserve seat 2, so now the available seats are [2,3,4,5].
-        seat_manager.unreserve(2)
-
-        # The available seats are [2,3,4,5], so return the lowest of them, which is 2.
-        self.assertEqual(seat_manager.reserve(), 2)
-
-        # The available seats are [3,4,5], so return the lowest of them, which is 3.
-        self.assertEqual(seat_manager.reserve(), 3)
-
-        # The available seats are [4,5], so return the lowest of them, which is 4.
-        self.assertEqual(seat_manager.reserve(), 4)
-
-        # The only available seat is seat 5, so return 5.
-        self.assertEqual(seat_manager.reserve(), 5)
-
-        # Unreserve seat 5, so now the available seats are [5].
-        seat_manager.unreserve(5)
-
     def test_1886(self):
         solution = Solution1501to2000()
         self.assertTrue(
@@ -1530,6 +1339,18 @@ class Test2001to2500(unittest.TestCase):
         with self.subTest('Example 3'):
             self.assertEqual(solution.distinct_names(ideas=["bzklqtbdr", "kaqvdlp", "r", "dk"]), 12)
 
+    def test_2325(self):
+        sol = Solution2001to2500()
+        with self.subTest('Example 1'):
+            self.assertEqual(sol.decode_message(key="the quick brown fox jumps over the lazy dog",
+                                                message="vkbs bs t suepuv"),
+                             "this is a secret")
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sol.decode_message(key="eljuxhpwnyrdgtqkviszcfmabo",
+                                                message="zwx hnfx lqantp mnoeius ycgk vcnjrdb"),
+                             "the five boxing wizards jump quickly")
+
     def test_2444(self):
         solution = Solution2001to2500()
 
@@ -1573,6 +1394,14 @@ class Test2501to3000(unittest.TestCase):
 
         with self.subTest('Example 2'):
             self.assertEqual(solution.pick_gifts(gifts=[1, 1, 1, 1], k=4), 4)
+
+    def test_2574(self):
+        sol = Solution2501to3000()
+        with self.subTest('Example 1'):
+            self.assertEqual(sol.left_rigth_difference(nums=[10, 4, 8, 3]), [15, 1, 11, 22])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sol.left_rigth_difference(nums=[1]), [0])
 
     def test_2586(self):
         sol = Solution2501to3000()

@@ -144,3 +144,20 @@ class Solution:
     # 2236. Root Equals Sum of Children
     def check_tree(self, root: Optional[TreeNode]) -> bool:
         return root.val == root.left.val + root.right.val
+
+    # 2325. Decode the Message
+    def decode_message(self, key: str, message: str) -> str:
+        key_dict = {}
+
+        for letter in key:
+            if letter == ' ' or letter in key_dict:
+                continue
+            key_dict[letter] = string.ascii_lowercase[len(key_dict)]
+            if len(key_dict) == len(string.ascii_lowercase):
+                break
+
+        result_string = ''
+        for char in message:
+            result_string += key_dict.get(char, ' ')
+
+        return result_string
