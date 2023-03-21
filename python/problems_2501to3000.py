@@ -33,3 +33,25 @@ class Solution:
             left_sum += num
 
         return result
+
+    # 2525. Categorize Box According to Criteria
+    def categorize_box(self, length: int, width: int, height: int, mass: int) -> str:
+        def is_heavy(mass_):
+            return mass >= 100
+
+        def is_bulky(*args):
+            volume = 1
+            for arg in args:
+                if arg >= 1e4:
+                    return True
+                volume *= arg
+            return volume >= 1e9
+
+        if is_heavy(mass) and is_bulky(length, width, height):
+            return 'Both'
+        elif is_heavy(mass):
+            return 'Heavy'
+        elif is_bulky(length, width, height):
+            return 'Bulky'
+        else:
+            return 'Neither'

@@ -161,3 +161,32 @@ class Solution:
             result_string += key_dict.get(char, ' ')
 
         return result_string
+
+    # 2348. Number of Zero-Filled Subarrays
+    def zero_filled_subarray(self, nums: List[int]) -> int:
+        cur_subarray_len = 0
+        result = 0
+
+        for num in nums:
+            if num == 0:
+                cur_subarray_len += 1
+                result += cur_subarray_len
+            else:
+                cur_subarray_len = 0
+
+        return result
+
+    # 2347. Best Poker Hand
+    def best_hand(self, ranks: List[int], suits: List[str]) -> str:
+        if len(set(suits)) == 1:
+            return 'Flush'
+
+        counter = Counter(ranks)
+        result = 'High Card'
+        for key in counter:
+            if counter[key] >= 3:
+                return 'Three of a Kind'
+            elif counter[key] == 2:
+                result = 'Pair'
+
+        return result

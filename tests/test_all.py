@@ -485,6 +485,18 @@ class Test0001to0500(unittest.TestCase):
         with self.subTest('Example 2'):
             self.assertEqual(longest_palindrome(s="a"), 1)
 
+    def test_412(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(fizz_buzz(3), ["1", "2", "Fizz"])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(fizz_buzz(5), ["1", "2", "Fizz", "4", "Buzz"])
+
+        with self.subTest('Example 3'):
+            self.assertEqual(fizz_buzz(15),
+                             ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14",
+                              "FizzBuzz"])
+
     def test_413(self):
         with self.subTest('Example 1'):
             self.assertEqual(number_of_arithmetic_slices(nums=[1, 2, 3, 4]), 3)
@@ -1371,6 +1383,28 @@ class Test2001to2500(unittest.TestCase):
                                                 message="zwx hnfx lqantp mnoeius ycgk vcnjrdb"),
                              "the five boxing wizards jump quickly")
 
+    def test_2347(self):
+        sol = Solution2001to2500()
+        with self.subTest('Example 1'):
+            self.assertEqual(sol.best_hand(ranks=[13, 2, 3, 1, 9], suits=["a", "a", "a", "a", "a"]), 'Flush')
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sol.best_hand(ranks=[4, 4, 2, 4, 4], suits=["d", "a", "a", "b", "c"]), 'Three of a Kind')
+
+        with self.subTest('Example 3'):
+            self.assertEqual(sol.best_hand(ranks=[10, 10, 2, 12, 9], suits=["a", "b", "c", "a", "d"]), 'Pair')
+
+    def test_2348(self):
+        sol = Solution2001to2500()
+        with self.subTest('Example 1'):
+            self.assertEqual(sol.zero_filled_subarray(nums=[1, 3, 0, 0, 2, 0, 0, 4]), 6)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sol.zero_filled_subarray(nums=[0, 0, 0, 2, 0, 0]), 9)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(sol.zero_filled_subarray(nums=[2, 10, 2019]), 0)
+
     def test_2444(self):
         solution = Solution2001to2500()
 
@@ -1406,6 +1440,17 @@ class Test2001to2500(unittest.TestCase):
 
 
 class Test2501to3000(unittest.TestCase):
+    def test_2525(self):
+        sol = Solution2501to3000()
+        with self.subTest('Example 1'):
+            self.assertEqual(sol.categorize_box(length=1000, width=35, height=700, mass=300), 'Heavy')
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sol.categorize_box(length=200, width=50, height=800, mass=50), 'Neither')
+
+        with self.subTest('Example 3'):
+            self.assertEqual(sol.categorize_box(length=3223, width=1271, height=2418, mass=749), 'Both')
+
     def test_2558(self):
         solution = Solution2501to3000()
 

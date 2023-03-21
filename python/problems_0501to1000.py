@@ -60,10 +60,17 @@ def all_paths_source_target(graph: List[List[int]]) -> List[List[int]]:
 
 # 876. Middle of the Linked List
 def middle_node(head: Optional[ListNode]) -> Optional[ListNode]:
-    arr = [head]
-    while arr[-1].next:
-        arr.append(arr[-1].next)
-    return arr[len(arr) // 2]
+    slow = head
+    fast = head
+
+    while fast.next and fast.next.next:
+        slow = slow.next
+        fast = fast.next.next
+
+    if fast.next:
+        slow = slow.next
+
+    return slow
 
 
 # 896. Monotonic Array
