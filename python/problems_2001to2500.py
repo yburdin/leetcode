@@ -190,3 +190,26 @@ class Solution:
                 result = 'Pair'
 
         return result
+
+    # 2492. Minimum Score of a Path Between Two Cities
+    def min_score(self, n: int, roads: List[List[int]]) -> int:
+        nearby_cities = [[] for _ in range(n + 1)]
+        for road in roads:
+            first_city, second_city, score = road
+            nearby_cities[first_city].append([second_city, score])
+            nearby_cities[second_city].append([first_city, score])
+
+        queue = []
+        visited = set()
+
+        queue.extend(nearby_cities[1])
+
+        result = 1e5
+        while queue:
+            next_city, score = queue.pop(0)
+            if next_city not in visited:
+                queue.extend(nearby_cities[next_city])
+                visited.add(next_city)
+            result = min(result, score)
+
+        return result

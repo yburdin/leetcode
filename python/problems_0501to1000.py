@@ -830,3 +830,17 @@ def min_cost_climbing_stairs(cost: List[int]) -> int:
             dp[i] = c + min(dp[i-1], dp[i-2])
 
     return min(dp[len(cost)-1], dp[len(cost)-2])
+
+
+# 844. Backspace String Compare
+def backspace_compare(s: str, t: str) -> bool:
+    def convert_string(a: str):
+        stack = []
+        for char in a:
+            if char == '#' and len(stack) > 0:
+                stack.pop()
+            elif char != '#':
+                stack.append(char)
+        return stack
+
+    return convert_string(s) == convert_string(t)

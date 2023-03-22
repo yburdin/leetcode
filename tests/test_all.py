@@ -805,6 +805,19 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(unique_morse_representations(["gin", "zen", "gig", "msg"]), 2)
         self.assertEqual(unique_morse_representations(["a"]), 1)
 
+    def test_844(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(backspace_compare(s="ab#c", t="ad#c"))
+
+        with self.subTest('Example 2'):
+            self.assertTrue(backspace_compare(s="ab##", t="c#d#"))
+
+        with self.subTest('Example 3'):
+            self.assertFalse(backspace_compare(s="a#c", t="b"))
+
+        with self.subTest('Example 4'):
+            self.assertTrue(backspace_compare(s="y#fo##f", t="y#f#o##f"))
+
     def test_860(self):
         self.assertTrue(lemonade_change([5, 5, 5, 10, 20]))
         self.assertFalse(lemonade_change([5, 5, 10, 10, 20]))
@@ -948,6 +961,16 @@ class Test1001to1500(unittest.TestCase):
 
         with self.subTest('Example 3'):
             self.assertEqual(sum_root_to_leaf(root=TreeNode(1, TreeNode(1))), 3)
+
+    def test_1046(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(last_stone_weight(stones=[2, 7, 4, 1, 8, 1]), 1)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(last_stone_weight(stones=[1]), 1)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(last_stone_weight(stones=[2, 2]), 0)
 
     def test_1071(self):
         with self.subTest('Example 1'):
@@ -1437,6 +1460,14 @@ class Test2001to2500(unittest.TestCase):
         with self.subTest('Example 3'):
             solution = Solution2001to2500()
             self.assertEqual(solution.minimum_fuel_cost(roads=[], seats=1), 0)
+
+    def test_2492(self):
+        sol = Solution2001to2500()
+        with self.subTest('Example 1'):
+            self.assertEqual(sol.min_score(n=4, roads=[[1, 2, 9], [2, 3, 6], [2, 4, 5], [1, 4, 7]]), 5)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sol.min_score(n=4, roads=[[1, 2, 2], [1, 3, 4], [3, 4, 7]]), 2)
 
 
 class Test2501to3000(unittest.TestCase):
