@@ -1280,3 +1280,24 @@ def fizz_buzz(n: int) -> List[str]:
             result.append(str(i))
 
     return result
+
+
+# 102. Binary Tree Level Order Traversal
+def level_order(root: Optional[TreeNode]) -> List[List[int]]:
+    result = []
+
+    if not root:
+        return result
+
+    queue = [(0, root)]
+    while queue:
+        cur_level, node = queue.pop(0)
+        if node:
+            if len(result) < cur_level + 1:
+                result.append([])
+
+            result[cur_level].append(node.val)
+            queue.append((cur_level + 1, node.left))
+            queue.append((cur_level + 1, node.right))
+
+    return result

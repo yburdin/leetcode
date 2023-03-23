@@ -498,3 +498,30 @@ def last_stone_weight(stones: List[int]) -> int:
         return -heapq[0]
     else:
         return 0
+
+
+# 1319. Number of Operations to Make Network Connected
+def make_connected(n: int, connections: List[List[int]]) -> int:
+    def dfs(node_: int, adj_: List[List[int]], visited_: set):
+        visited_.add(node_)
+        for neighbor in adj_[node_]:
+            if neighbor not in visited_:
+                dfs(neighbor, adj_, visited_)
+
+    if len(connections) < n - 1:
+        return -1
+
+    adj = [[] for _ in range(n)]
+    for edge in connections:
+        adj[edge[0]].append(edge[1])
+        adj[edge[1]].append(edge[0])
+
+    number_of_connected_components = 0
+    visited = set()
+
+    for node in range(n):
+        if node not in visited:
+            number_of_connected_components += 1
+            dfs(node, adj, visited)
+
+    return number_of_connected_components - 1

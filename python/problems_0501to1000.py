@@ -844,3 +844,24 @@ def backspace_compare(s: str, t: str) -> bool:
         return stack
 
     return convert_string(s) == convert_string(t)
+
+
+# 993. Cousins in Binary Tree
+def is_cousins(root: Optional[TreeNode], x: int, y: int) -> bool:
+    if not root:
+        return False
+
+    node_level_dict = {}
+    queue = [(0, root)]
+    while queue:
+        cur_level, node = queue.pop(0)
+        if node:
+            node_level_dict[node.val] = cur_level
+            queue.append((cur_level + 1, node.left))
+            queue.append((cur_level + 1, node.right))
+
+            if node.left and node.right:
+                if (node.left.val == x or node.left.val == y) and (node.right.val == x or node.right.val == y):
+                    return False
+
+    return node_level_dict[x] == node_level_dict[y]

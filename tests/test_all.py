@@ -209,6 +209,12 @@ class Test0001to0500(unittest.TestCase):
             root = TreeNode(1)
             self.assertTrue(is_symmetric(root))
 
+    def test_102(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(level_order(
+                root=TreeNode(3, TreeNode(9), TreeNode(20, TreeNode(15), TreeNode(7)))),
+                [[3], [9, 20], [15, 7]])
+
     def test_103(self):
         with self.subTest('Example 1'):
             self.assertEqual(zigzag_level_order(
@@ -1060,6 +1066,16 @@ class Test1001to1500(unittest.TestCase):
     def test_1309(self):
         self.assertEqual(freq_alphabets("10#11#12"), "jkab")
         self.assertEqual(freq_alphabets("1326#"), "acz")
+
+    def test_1319(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(make_connected(n=4, connections=[[0, 1], [0, 2], [1, 2]]), 1)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(make_connected(n=6, connections=[[0, 1], [0, 2], [0, 3], [1, 2], [1, 3]]), 2)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(make_connected(n=6, connections=[[0, 1], [0, 2], [0, 3], [1, 2]]), -1)
 
     def test_1323(self):
         with self.subTest('Example 1'):
