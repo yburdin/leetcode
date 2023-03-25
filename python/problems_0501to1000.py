@@ -60,10 +60,17 @@ def all_paths_source_target(graph: List[List[int]]) -> List[List[int]]:
 
 # 876. Middle of the Linked List
 def middle_node(head: Optional[ListNode]) -> Optional[ListNode]:
-    arr = [head]
-    while arr[-1].next:
-        arr.append(arr[-1].next)
-    return arr[len(arr) // 2]
+    slow = head
+    fast = head
+
+    while fast.next and fast.next.next:
+        slow = slow.next
+        fast = fast.next.next
+
+    if fast.next:
+        slow = slow.next
+
+    return slow
 
 
 # 896. Monotonic Array
@@ -769,3 +776,92 @@ def pivot_index(nums: List[int]) -> int:
         lsum += num
 
     return -1
+
+
+# 605. Can Place Flowers
+def can_place_flowers(flowerbed: List[int], n: int) -> bool:
+    left = -1
+    right = -1
+
+    possible_flowers = 0
+
+    for i, flower in enumerate(flowerbed):
+        if flower == 1:
+            left = i + 1
+            right = i + 1
+        else:
+            right = i + 1
+
+        if right - left == 3:
+            possible_flowers += 1
+            left = i
+            right = i
+
+        if possible_flowers == n:
+            return True
+
+    if flowerbed[-1] == 0 and right - left == 2:
+        possible_flowers += 1
+
+    return possible_flowers >= n
+
+
+# 509. Fibonacci Number
+def fib(self, n: int) -> int:
+    if n < 2:
+        return n
+
+    fib_array = [0] * (n + 1)
+    fib_array[1] = 1
+
+    for i in range(2, n + 1):
+        fib_array[i] = fib_array[i-1] + fib_array[i-2]
+
+    return fib_array[n]
+
+
+# 746. Min Cost Climbing Stairs
+def min_cost_climbing_stairs(cost: List[int]) -> int:
+    dp = [0] * len(cost)
+    for i, c in enumerate(cost):
+        if i < 2:
+            dp[i] = c
+        else:
+            dp[i] = c + min(dp[i-1], dp[i-2])
+
+    return min(dp[len(cost)-1], dp[len(cost)-2])
+
+
+# 844. Backspace String Compare
+def backspace_compare(s: str, t: str) -> bool:
+    def convert_string(a: str):
+        stack = []
+        for char in a:
+            if char == '#' and len(stack) > 0:
+                stack.pop()
+            elif char != '#':
+                stack.append(char)
+        return stack
+
+    return convert_string(s) == convert_string(t)
+
+
+# 993. Cousins in Binary Tree
+def is_cousins(root: Optional[TreeNode], x: int, y: int) -> bool:
+    if not root:
+        return False
+
+    node_level_dict = {}
+    queue = [(0, root)]
+    while queue:
+        cur_level, node = queue.pop(0)
+        if node:
+            node_level_dict[node.val] = cur_level
+            queue.append((cur_level + 1, node.left))
+            queue.append((cur_level + 1, node.right))
+
+            if node.left and node.right:
+                if (node.left.val == x or node.left.val == y) and (node.right.val == x or node.right.val == y):
+                    return False
+
+    return node_level_dict[x] == node_level_dict[y]

@@ -80,13 +80,6 @@ def next_greater_element(nums1: List[int], nums2: List[int]) -> List[int]:
 def find_the_difference(s: str, t: str) -> str:
     return chr(sum([ord(x) for x in t]) - sum([ord(x) for x in s]))
 
-  
-# 70. Climbing Stairs
-def climb_stairs(n: int) -> int:
-    n += 1
-    phi = (1 + sqrt(5)) / 2
-    return int((phi ** n - (-phi) ** (-n)) / (2 * phi - 1))
-
 
 # 28. Implement strStr() / Find the Index of the First Occurrence in a String
 def str_str(haystack: str, needle: str) -> int:
@@ -1256,3 +1249,55 @@ def longest_palindrome(s: str) -> int:
             sum_even += char_count - 1
 
     return sum_even + odd_remainder
+
+
+# 70. Climbing Stairs
+def climb_stairs(n: int) -> int:
+    if n < 3:
+        return n
+
+    dp = [0] * (n + 1)
+    for i in range(n + 1):
+        if i < 3:
+            dp[i] = i
+        else:
+            dp[i] = dp[i - 1] + dp[i - 2]
+
+    return dp[n]
+
+
+# 412. Fizz Buzz
+def fizz_buzz(n: int) -> List[str]:
+    result = []
+    for i in range(1, n+1):
+        if i % 3 == 0 and i % 5 == 0:
+            result.append('FizzBuzz')
+        elif i % 3 == 0:
+            result.append('Fizz')
+        elif i % 5 == 0:
+            result.append('Buzz')
+        else:
+            result.append(str(i))
+
+    return result
+
+
+# 102. Binary Tree Level Order Traversal
+def level_order(root: Optional[TreeNode]) -> List[List[int]]:
+    result = []
+
+    if not root:
+        return result
+
+    queue = [(0, root)]
+    while queue:
+        cur_level, node = queue.pop(0)
+        if node:
+            if len(result) < cur_level + 1:
+                result.append([])
+
+            result[cur_level].append(node.val)
+            queue.append((cur_level + 1, node.left))
+            queue.append((cur_level + 1, node.right))
+
+    return result

@@ -209,6 +209,12 @@ class Test0001to0500(unittest.TestCase):
             root = TreeNode(1)
             self.assertTrue(is_symmetric(root))
 
+    def test_102(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(level_order(
+                root=TreeNode(3, TreeNode(9), TreeNode(20, TreeNode(15), TreeNode(7)))),
+                [[3], [9, 20], [15, 7]])
+
     def test_103(self):
         with self.subTest('Example 1'):
             self.assertEqual(zigzag_level_order(
@@ -485,6 +491,18 @@ class Test0001to0500(unittest.TestCase):
         with self.subTest('Example 2'):
             self.assertEqual(longest_palindrome(s="a"), 1)
 
+    def test_412(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(fizz_buzz(3), ["1", "2", "Fizz"])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(fizz_buzz(5), ["1", "2", "Fizz", "4", "Buzz"])
+
+        with self.subTest('Example 3'):
+            self.assertEqual(fizz_buzz(15),
+                             ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14",
+                              "FizzBuzz"])
+
     def test_413(self):
         with self.subTest('Example 1'):
             self.assertEqual(number_of_arithmetic_slices(nums=[1, 2, 3, 4]), 3)
@@ -641,6 +659,19 @@ class Test0501to1000(unittest.TestCase):
             root_ = Node(val=1, children=[Node(val=3, children=[Node(5), Node(6)]), Node(val=2), Node(val=4)])
             self.assertEqual(postorder(root_), [5, 6, 3, 2, 4, 1])
 
+    def test_605(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(can_place_flowers(flowerbed=[1, 0, 0, 0, 1], n=1))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(can_place_flowers(flowerbed=[1, 0, 0, 0, 1], n=2))
+
+        with self.subTest('Example 3'):
+            self.assertTrue(can_place_flowers(flowerbed=[0, 0, 1, 0, 1], n=1))
+
+        with self.subTest('Example 4'):
+            self.assertTrue(can_place_flowers(flowerbed=[1, 0, 0, 0, 1, 0, 0], n=2))
+
     def test_637(self):
         with self.subTest('Example 1'):
             result = average_of_levels(
@@ -740,6 +771,13 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(daily_temperatures(temperatures=[89, 62, 70, 58, 47, 47, 46, 76, 100, 70]),
                          [8, 1, 5, 4, 3, 2, 1, 1, 0, 0])
 
+    def test_746(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(min_cost_climbing_stairs(cost=[10, 15, 20]), 15)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(min_cost_climbing_stairs(cost=[1, 100, 1, 1, 1, 100, 1, 1, 100, 1]), 6)
+
     def test_771(self):
         with self.subTest('Example 1'):
             self.assertEqual(num_jewels_in_stones(jewels="aA", stones="aAAbbbb"), 3)
@@ -772,6 +810,19 @@ class Test0501to1000(unittest.TestCase):
     def test_804(self):
         self.assertEqual(unique_morse_representations(["gin", "zen", "gig", "msg"]), 2)
         self.assertEqual(unique_morse_representations(["a"]), 1)
+
+    def test_844(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(backspace_compare(s="ab#c", t="ad#c"))
+
+        with self.subTest('Example 2'):
+            self.assertTrue(backspace_compare(s="ab##", t="c#d#"))
+
+        with self.subTest('Example 3'):
+            self.assertFalse(backspace_compare(s="a#c", t="b"))
+
+        with self.subTest('Example 4'):
+            self.assertTrue(backspace_compare(s="y#fo##f", t="y#f#o##f"))
 
     def test_860(self):
         self.assertTrue(lemonade_change([5, 5, 5, 10, 20]))
@@ -917,6 +968,16 @@ class Test1001to1500(unittest.TestCase):
         with self.subTest('Example 3'):
             self.assertEqual(sum_root_to_leaf(root=TreeNode(1, TreeNode(1))), 3)
 
+    def test_1046(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(last_stone_weight(stones=[2, 7, 4, 1, 8, 1]), 1)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(last_stone_weight(stones=[1]), 1)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(last_stone_weight(stones=[2, 2]), 0)
+
     def test_1071(self):
         with self.subTest('Example 1'):
             self.assertEqual(gcd_of_strings(str1="ABCABC", str2="ABC"), 'ABC')
@@ -1005,6 +1066,16 @@ class Test1001to1500(unittest.TestCase):
     def test_1309(self):
         self.assertEqual(freq_alphabets("10#11#12"), "jkab")
         self.assertEqual(freq_alphabets("1326#"), "acz")
+
+    def test_1319(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(make_connected(n=4, connections=[[0, 1], [0, 2], [1, 2]]), 1)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(make_connected(n=6, connections=[[0, 1], [0, 2], [0, 3], [1, 2], [1, 3]]), 2)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(make_connected(n=6, connections=[[0, 1], [0, 2], [0, 3], [1, 2]]), -1)
 
     def test_1323(self):
         with self.subTest('Example 1'):
@@ -1351,6 +1422,28 @@ class Test2001to2500(unittest.TestCase):
                                                 message="zwx hnfx lqantp mnoeius ycgk vcnjrdb"),
                              "the five boxing wizards jump quickly")
 
+    def test_2347(self):
+        sol = Solution2001to2500()
+        with self.subTest('Example 1'):
+            self.assertEqual(sol.best_hand(ranks=[13, 2, 3, 1, 9], suits=["a", "a", "a", "a", "a"]), 'Flush')
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sol.best_hand(ranks=[4, 4, 2, 4, 4], suits=["d", "a", "a", "b", "c"]), 'Three of a Kind')
+
+        with self.subTest('Example 3'):
+            self.assertEqual(sol.best_hand(ranks=[10, 10, 2, 12, 9], suits=["a", "b", "c", "a", "d"]), 'Pair')
+
+    def test_2348(self):
+        sol = Solution2001to2500()
+        with self.subTest('Example 1'):
+            self.assertEqual(sol.zero_filled_subarray(nums=[1, 3, 0, 0, 2, 0, 0, 4]), 6)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sol.zero_filled_subarray(nums=[0, 0, 0, 2, 0, 0]), 9)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(sol.zero_filled_subarray(nums=[2, 10, 2019]), 0)
+
     def test_2444(self):
         solution = Solution2001to2500()
 
@@ -1384,8 +1477,27 @@ class Test2001to2500(unittest.TestCase):
             solution = Solution2001to2500()
             self.assertEqual(solution.minimum_fuel_cost(roads=[], seats=1), 0)
 
+    def test_2492(self):
+        sol = Solution2001to2500()
+        with self.subTest('Example 1'):
+            self.assertEqual(sol.min_score(n=4, roads=[[1, 2, 9], [2, 3, 6], [2, 4, 5], [1, 4, 7]]), 5)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sol.min_score(n=4, roads=[[1, 2, 2], [1, 3, 4], [3, 4, 7]]), 2)
+
 
 class Test2501to3000(unittest.TestCase):
+    def test_2525(self):
+        sol = Solution2501to3000()
+        with self.subTest('Example 1'):
+            self.assertEqual(sol.categorize_box(length=1000, width=35, height=700, mass=300), 'Heavy')
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sol.categorize_box(length=200, width=50, height=800, mass=50), 'Neither')
+
+        with self.subTest('Example 3'):
+            self.assertEqual(sol.categorize_box(length=3223, width=1271, height=2418, mass=749), 'Both')
+
     def test_2558(self):
         solution = Solution2501to3000()
 
