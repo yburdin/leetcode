@@ -1170,6 +1170,17 @@ class Test1501to2000(unittest.TestCase):
         self.assertEqual(solution.can_make_arithmetic_progression([3, 5, 1]), True)
         self.assertEqual(solution.can_make_arithmetic_progression([1, 2, 4]), False)
 
+    def test_1512(self):
+        sol = Solution1501to2000()
+        with self.subTest('Example 1'):
+            self.assertEqual(sol.num_identical_pairs(nums=[1, 2, 3, 1, 1, 3]), 4)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sol.num_identical_pairs(nums=[1, 1, 1, 1]), 6)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(sol.num_identical_pairs(nums=[1, 2, 3]), 0)
+
     def test_1523(self):
         solution = Solution1501to2000()
         self.assertEqual(solution.count_odds(3, 7), 3)

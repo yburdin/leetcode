@@ -278,3 +278,14 @@ class Solution:
                 right = mid
 
         return left + k
+
+    # 1512. Number of Good Pairs
+    def num_identical_pairs(self, nums: List[int]) -> int:
+        result = 0
+        counter = Counter(nums)
+
+        for num in counter:
+            n = counter[num]
+            result += n * (n - 1) // 2
+
+        return result

@@ -1301,3 +1301,29 @@ def level_order(root: Optional[TreeNode]) -> List[List[int]]:
             queue.append((cur_level + 1, node.right))
 
     return result
+
+
+# 98. Validate Binary Search Tree
+def is_valid_bst(root: Optional[TreeNode]) -> bool:
+    def dfs(node: Optional[TreeNode], min_value, max_value) -> bool:
+        if not node:
+            return True
+
+        if node.val <= min_value or node.val >= max_value:
+            return False
+
+        return dfs(node.left, min_value, node.val) and dfs(node.right, node.val, max_value)
+
+    return dfs(root, float('-inf'), float('inf'))
+
+
+# 235. Lowest Common Ancestor of a Binary Search Tree
+def lowest_common_ancestor(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+    while True:
+        if root.val < p.val and root.val < q.val:
+            root = root.right
+        if root.val > p.val and root.val > q.val:
+            root = root.left
+
+        if min(p.val, q.val) <= root.val <= max(p.val, q.val):
+            return root
