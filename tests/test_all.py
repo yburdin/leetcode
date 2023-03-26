@@ -1455,6 +1455,22 @@ class Test2001to2500(unittest.TestCase):
         with self.subTest('Example 3'):
             self.assertEqual(sol.zero_filled_subarray(nums=[2, 10, 2019]), 0)
 
+    def test_2360(self):
+        with self.subTest('Example 1'):
+            sol = Solution2001to2500()
+            res = sol.longest_cycle(edges=[3, 3, 4, 2, 3])
+            self.assertEqual(res, 3)
+
+        with self.subTest('Example 2'):
+            sol = Solution2001to2500()
+            res = sol.longest_cycle(edges=[2, -1, 3, 1])
+            self.assertEqual(res, -1)
+
+        with self.subTest('Example 3'):
+            sol = Solution2001to2500()
+            res = sol.longest_cycle(edges=[3, 4, 0, 2, -1, 2])
+            self.assertEqual(res, 3)
+
     def test_2444(self):
         solution = Solution2001to2500()
 

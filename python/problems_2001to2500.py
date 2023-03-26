@@ -2,6 +2,9 @@ from common import *
 
 
 class Solution:
+    def __init__(self):
+        self.longest_cycle_answer = -1
+
     # 2053. Kth Distinct String in an Array
     @staticmethod
     def kth_distinct(arr: List[str], k: int) -> str:
@@ -213,3 +216,23 @@ class Solution:
             result = min(result, score)
 
         return result
+
+    # 2360. Longest Cycle in a Graph
+    def longest_cycle(self, edges: List[int]) -> int:
+        def dfs(node_: int, edges_: List[int], dist_: dict, visited_nodes_: set):
+            visited_nodes_.add(node_)
+            next_node = edges_[node_]
+            if next_node >= 0 and next_node not in visited_nodes_:
+                dist_[next_node] = dist_.get(node_, 0) + 1
+                dfs(next_node, edges_, dist_, visited_nodes_)
+            elif next_node >= 0 and next_node in dist_:
+                self.longest_cycle_answer = max(self.longest_cycle_answer, dist_[node_] - dist_[next_node] + 1)
+
+        n_nodes = len(edges)
+        visited_nodes = set()
+        for node in range(n_nodes):
+            if node not in visited_nodes:
+                dist = {node: 0}
+                dfs(node, edges, dist, visited_nodes)
+
+        return self.longest_cycle_answer
