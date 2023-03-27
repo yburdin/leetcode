@@ -289,3 +289,11 @@ class Solution:
             result += n * (n - 1) // 2
 
         return result
+
+    # 1528. Shuffle String
+    def restore_string(self, s: str, indices: List[int]) -> str:
+        result_list = ['' for _ in range(len(s))]
+        for source_index, target_index in enumerate(indices):
+            result_list[target_index] = s[source_index]
+
+        return ''.join(result_list)

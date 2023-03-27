@@ -525,3 +525,12 @@ def make_connected(n: int, connections: List[List[int]]) -> int:
             dfs(node, adj, visited)
 
     return number_of_connected_components - 1
+
+
+# 1389. Create Target Array in the Given Order
+def create_target_array(nums: List[int], index: List[int]) -> List[int]:
+    target = []
+    for source_index, target_index in enumerate(index):
+        target.insert(target_index, nums[source_index])
+
+    return target

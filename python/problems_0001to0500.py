@@ -1327,3 +1327,19 @@ def lowest_common_ancestor(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode
 
         if min(p.val, q.val) <= root.val <= max(p.val, q.val):
             return root
+
+
+# 64. Minimum Path Sum
+def min_path_sum(grid: List[List[int]]) -> int:
+    path_sum = [[0 for _ in range(len(grid[0]))] for _ in range(len(grid))]
+    path_sum[0][0] = grid[0][0]
+
+    for row, col in product(range(len(grid)), range(len(grid[0]))):
+        if row == 0 and col != 0:
+            path_sum[row][col] = grid[row][col] + path_sum[row][col - 1]
+        elif row != 0 and col == 0:
+            path_sum[row][col] = grid[row][col] + path_sum[row - 1][col]
+        elif row != 0 and col != 0:
+            path_sum[row][col] = grid[row][col] + min(path_sum[row][col - 1], path_sum[row - 1][col])
+
+    return path_sum[-1][-1]
