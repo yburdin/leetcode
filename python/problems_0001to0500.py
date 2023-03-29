@@ -1343,3 +1343,12 @@ def min_path_sum(grid: List[List[int]]) -> int:
             path_sum[row][col] = grid[row][col] + min(path_sum[row][col - 1], path_sum[row - 1][col])
 
     return path_sum[-1][-1]
+
+
+# 338. Counting Bits
+def count_bits(n: int) -> List[int]:
+    dp = [0 for _ in range(n + 1)]
+    for i in range(n + 1):
+        dp[i] = dp[i // 2] + i % 2
+
+    return dp

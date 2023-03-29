@@ -467,6 +467,13 @@ class Test0001to0500(unittest.TestCase):
         with self.subTest('Example 2'):
             self.assertEqual(remove_duplicate_letters(s="cbacdcbc"), 'acdb')
 
+    def test_338(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(count_bits(2), [0, 1, 1])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(count_bits(5), [0, 1, 1, 2, 1, 2])
+
     def test_342(self):
         self.assertTrue(is_power_of_four(16))
         self.assertTrue(is_power_of_four(1))
@@ -942,6 +949,13 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(largest_perimeter([1, 2, 1]), 0)
         self.assertEqual(largest_perimeter([2, 6, 2, 5, 4, 15, 1]), 15)
 
+    def test_983(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(min_cost_tickets(days=[1, 4, 6, 7, 8, 20], costs=[2, 7, 15]), 11)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(min_cost_tickets(days=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 30, 31], costs=[2, 7, 15]), 17)
+
     def test_989(self):
         self.assertEqual(add_to_array_form(num=[1, 2, 0, 0], k=34), [1, 2, 3, 4])
         self.assertEqual(add_to_array_form(num=[2, 7, 4], k=181), [4, 5, 5])
@@ -1008,6 +1022,13 @@ class Test1001to1500(unittest.TestCase):
 
         with self.subTest('Example 2'):
             self.assertEqual(shortest_alternating_paths(n=3, redEdges=[[0, 1]], blueEdges=[[2, 1]]), [0, 1, -1])
+
+    def test_1137(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(tribonacci(4), 4)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(tribonacci(25), 1389537)
 
     def test_1160(self):
         with self.subTest('Example 1'):
