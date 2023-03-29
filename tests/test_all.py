@@ -992,6 +992,13 @@ class Test1001to1500(unittest.TestCase):
         with self.subTest('Example 3'):
             self.assertEqual(sum_root_to_leaf(root=TreeNode(1, TreeNode(1))), 3)
 
+    def test_1025(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(divisor_game(2))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(divisor_game(3))
+
     def test_1046(self):
         with self.subTest('Example 1'):
             self.assertEqual(last_stone_weight(stones=[2, 7, 4, 1, 8, 1]), 1)
@@ -1162,6 +1169,16 @@ class Test1001to1500(unittest.TestCase):
         with self.subTest('Example 2'):
             self.assertEqual(create_target_array(nums=[1, 2, 3, 4, 0], index=[0, 1, 2, 3, 0]), [0, 1, 2, 3, 4])
 
+    def test_1402(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(max_satisfaction(satisfaction=[-1, -8, 0, 5, -9]), 14)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(max_satisfaction(satisfaction=[4, 3, 2]), 20)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(max_satisfaction(satisfaction=[-1, -4, -5]), 0)
+
     def test_1437(self):
         self.assertEqual(k_length_apart([1, 0, 0, 0, 1, 0, 0, 1], 2), True)
         self.assertEqual(k_length_apart([1, 0, 0, 1, 0, 1], 2), False)
@@ -1317,6 +1334,17 @@ class Test1501to2000(unittest.TestCase):
                                                 l=[0, 1, 6, 4, 8, 7],
                                                 r=[4, 4, 9, 7, 9, 10]
                                                 ), [False, True, False, False, True, True])
+
+    def test_1646(self):
+        sol = Solution1501to2000()
+        with self.subTest('Example 1'):
+            self.assertEqual(sol.get_maximum_generated(7), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sol.get_maximum_generated(2), 1)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(sol.get_maximum_generated(3), 2)
 
     def test_1672(self):
         solution = Solution1501to2000()

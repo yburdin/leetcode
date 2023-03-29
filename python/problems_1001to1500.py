@@ -546,3 +546,25 @@ def tribonacci(n: int) -> int:
             dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3]
 
     return dp[-1]
+
+
+# 1402. Reducing Dishes
+def max_satisfaction(satisfaction: List[int]) -> int:
+    satisfaction = sorted(satisfaction)
+
+    result_max_satisfaction = 0
+    suffix_sum = 0
+
+    for sat in satisfaction[::-1]:
+        if suffix_sum + sat > 0:
+            suffix_sum += sat
+            result_max_satisfaction += suffix_sum
+        else:
+            break
+
+    return result_max_satisfaction
+
+
+# 1025. Divisor Game
+def divisor_game(n: int) -> bool:
+    return n % 2 == 0
