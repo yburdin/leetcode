@@ -170,6 +170,16 @@ class Test0001to0500(unittest.TestCase):
         with self.subTest('Example 2'):
             self.assertEqual(min_distance(word1="intention", word2="execution"), 5)
 
+    def test_087(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(is_scramble(s1="great", s2="rgeat"))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(is_scramble(s1="abcde", s2="caebd"))
+
+        with self.subTest('Example 3'):
+            self.assertTrue(is_scramble(s1="a", s2="a"))
+
     def test_094(self):
         with self.subTest('Example 1'):
             self.assertEqual(inorder_traversal(
@@ -526,6 +536,13 @@ class Test0001to0500(unittest.TestCase):
 
         with self.subTest('Example 2'):
             self.assertEqual(number_of_arithmetic_slices(nums=[1]), 0)
+
+    def test_424(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(character_replacement(s="ABAB", k=2), 4)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(character_replacement(s="AABABBA", k=1), 4)
 
     def test_438(self):
         self.assertEqual(find_anagrams(s="cbaebabacd", p="abc"), [0, 6])

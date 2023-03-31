@@ -880,3 +880,24 @@ def min_cost_tickets(days: List[int], costs: List[int]) -> int:
                         )
 
     return dp[-1]
+
+
+# 894. All Possible Full Binary Trees
+def all_possible_fbt(n: int) -> List[Optional[TreeNode]]:
+    if n % 2 == 0:
+        return []
+
+    dp = [[] for _ in range(n + 1)]
+    dp[1].append(TreeNode())
+
+    for k in range(3, n + 1, 2):
+        for i in range(1, k, 2):
+            j = k - 1 - i
+            for left in dp[i]:
+                for right in dp[j]:
+                    root = TreeNode()
+                    root.left = left
+                    root.right = right
+                    dp[k].append(root)
+
+    return dp[-1]
