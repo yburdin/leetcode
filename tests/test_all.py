@@ -450,6 +450,13 @@ class Test0001to0500(unittest.TestCase):
         with self.subTest('Example 5'):
             self.assertFalse(word_pattern(pattern="aba", s="cat cat cat dog"))
 
+    def test_299(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(get_hint(secret="1807", guess="7810"), "1A3B")
+
+        with self.subTest('Example 2'):
+            self.assertEqual(get_hint(secret="1123", guess="0111"), "1A1B")
+
     def test_316(self):
         with self.subTest('Example 1'):
             self.assertEqual(remove_duplicate_letters(s="bcabc"), 'abc')
@@ -479,6 +486,16 @@ class Test0001to0500(unittest.TestCase):
 
         with self.subTest('Example 4'):
             self.assertFalse(is_subsequence(s="axc", t=""))
+
+    def test_394(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(decode_string(s="3[a]2[bc]"), "aaabcbc")
+
+        with self.subTest('Example 2'):
+            self.assertEqual(decode_string(s="3[a2[c]]"), "accaccacc")
+
+        with self.subTest('Example 3'):
+            self.assertEqual(decode_string(s="2[abc]3[cd]ef"), "abcabccdcdcdef")
 
     def test_405(self):
         self.assertEqual(to_hex(26), '1a')

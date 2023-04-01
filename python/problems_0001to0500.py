@@ -1327,3 +1327,40 @@ def lowest_common_ancestor(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode
 
         if min(p.val, q.val) <= root.val <= max(p.val, q.val):
             return root
+
+
+# 394. Decode String
+def decode_string(s: str) -> str:
+    stack = []
+    cur_num = 0
+    cur_string = ''
+
+    for c in s:
+        if c == '[':
+            stack.append(cur_string)
+            stack.append(cur_num)
+            cur_string = ''
+            cur_num = 0
+        elif c == ']':
+            num = stack.pop()
+            prev_string = stack.pop()
+            cur_string = prev_string + num * cur_string
+        elif c.isdigit():
+            cur_num = cur_num * 10 + int(c)
+        else:
+            cur_string += c
+    return cur_string
+
+
+# 299. Bulls and Cows
+def get_hint(secret: str, guess: str) -> str:
+    bulls = sum([x == y for x, y in zip(secret, guess)])
+    cows = 0
+
+    counter_secret = Counter(secret)
+    counter_guess = Counter(guess)
+
+    for char in counter_secret:
+        cows += min(counter_guess[char], counter_secret[char])
+
+    return f'{bulls}A{cows - bulls}B'
