@@ -525,3 +525,13 @@ def make_connected(n: int, connections: List[List[int]]) -> int:
             dfs(node, adj, visited)
 
     return number_of_connected_components - 1
+
+
+# 1431. Kids With the Greatest Number of Candies
+def kids_with_candies(candies: List[int], extraCandies: int) -> List[bool]:
+    max_candies = max(candies)
+    result = []
+    for candie in candies:
+        result.append(candie + extraCandies >= max_candies)
+
+    return result

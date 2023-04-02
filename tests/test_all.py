@@ -392,9 +392,14 @@ class Test0001to0500(unittest.TestCase):
             self.assertFalse(is_isomorphic(s="badc", t="baba"))
 
     def test_217(self):
-        self.assertTrue(contains_duplicate([1, 2, 3, 1]))
-        self.assertFalse(contains_duplicate([1, 2, 3, 4]))
-        self.assertTrue(contains_duplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]))
+        with self.subTest('Example 1'):
+            self.assertTrue(contains_duplicate([1, 2, 3, 1]))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(contains_duplicate([1, 2, 3, 4]))
+
+        with self.subTest('Example 3'):
+            self.assertTrue(contains_duplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]))
 
     def test_219(self):
         with self.subTest('Example 1'):
@@ -1141,6 +1146,15 @@ class Test1001to1500(unittest.TestCase):
         self.assertEqual(sort_by_bits([1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1]),
                          [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024])
 
+    def test_1431(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(kids_with_candies(candies=[2, 3, 5, 1, 3], extraCandies=3),
+                             [True, True, True, False, True])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(kids_with_candies(candies=[4, 2, 1, 1, 2], extraCandies=1),
+                             [True, False, False, False, False])
+
     def test_1437(self):
         self.assertEqual(k_length_apart([1, 0, 0, 0, 1, 0, 0, 1], 2), True)
         self.assertEqual(k_length_apart([1, 0, 0, 1, 0, 1], 2), False)
@@ -1426,6 +1440,14 @@ class Test2001to2500(unittest.TestCase):
 
         with self.subTest('Example 2'):
             self.assertEqual(solution.minimum_rounds(tasks=[2, 3, 3]), -1)
+
+    def test_2300(self):
+        sol = Solution2001to2500()
+        with self.subTest('Example 1'):
+            self.assertEqual(sol.successful_pairs(spells=[5, 1, 3], potions=[1, 2, 3, 4, 5], success=7), [4, 0, 3])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sol.successful_pairs(spells=[3, 1, 2], potions=[8, 5, 8], success=16), [2, 0, 2])
 
     def test_2306(self):
         solution = Solution2001to2500()

@@ -236,3 +236,31 @@ class Solution:
                 dfs(node, edges, dist, visited_nodes)
 
         return self.longest_cycle_answer
+
+    # 2300. Successful Pairs of Spells and Potions
+    def successful_pairs(self, spells: List[int], potions: List[int], success: int) -> List[int]:
+        result = []
+        sorted_potions = sorted(potions)
+
+        for spell in spells:
+            if spell * sorted_potions[0] >= success:
+                result.append(len(potions))
+                continue
+
+            if spell * sorted_potions[-1] < success:
+                result.append(0)
+                continue
+
+            left = 0
+            right = len(potions) - 1
+            while spell * sorted_potions[left] < success:
+                mid = (left + right) // 2
+                if spell * sorted_potions[mid] >= success:
+                    right = mid
+                else:
+                    left = mid + 1
+
+            result.append(len(potions) - left)
+
+        return result
+
