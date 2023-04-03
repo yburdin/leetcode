@@ -864,6 +864,16 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(linked_list_to_list(middle_node(list_to_linked_list([1, 2, 3, 4, 5]))), [3, 4, 5])
         self.assertEqual(linked_list_to_list(middle_node(list_to_linked_list([1, 2, 3, 4, 5, 6]))), [4, 5, 6])
 
+    def test_881(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(num_rescue_boats(people=[1, 2], limit=3), 1)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(num_rescue_boats(people=[3, 2, 2, 1], limit=3), 3)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(num_rescue_boats(people=[3, 5, 3, 4], limit=5), 4)
+
     def test_896(self):
         self.assertTrue(is_monotonic([1, 2, 2, 3]))
         self.assertTrue(is_monotonic([6, 5, 4, 4]))
