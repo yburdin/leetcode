@@ -861,8 +861,8 @@ class Test0501to1000(unittest.TestCase):
             self.assertEqual(min_eating_speed(piles=[30, 11, 23, 4, 20], h=6), 23)
 
     def test_876(self):
-        self.assertEqual(linked_list_to_list(middle_node(list_to_linked_list([1, 2, 3, 4, 5]))), [3, 4, 5])
-        self.assertEqual(linked_list_to_list(middle_node(list_to_linked_list([1, 2, 3, 4, 5, 6]))), [4, 5, 6])
+        self.assertEqual(middle_node(ListNode.from_list([1, 2, 3, 4, 5])), ListNode.from_list([3, 4, 5]))
+        self.assertEqual(middle_node(ListNode.from_list([1, 2, 3, 4, 5, 6])), ListNode.from_list([4, 5, 6]))
 
     def test_881(self):
         with self.subTest('Example 1'):
@@ -1069,9 +1069,9 @@ class Test1001to1500(unittest.TestCase):
         self.assertEqual(subtract_product_and_sum(4421), 21)
 
     def test_1290(self):
-        self.assertEqual(get_decimal_value(list_to_linked_list([1, 0, 1])), 5)
-        self.assertEqual(get_decimal_value(list_to_linked_list([0])), 0)
-        self.assertEqual(get_decimal_value(list_to_linked_list([1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0])), 18880)
+        self.assertEqual(get_decimal_value(ListNode.from_list([1, 0, 1])), 5)
+        self.assertEqual(get_decimal_value(ListNode.from_list([0])), 0)
+        self.assertEqual(get_decimal_value(ListNode.from_list([1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0])), 18880)
 
     def test_1295(self):
         with self.subTest('Example 1'):
@@ -1598,23 +1598,6 @@ class Test2501to3000(unittest.TestCase):
 
         with self.subTest('Example 2'):
             self.assertEqual(sol.vowel_strings(words=["hey", "aeo", "mu", "ooo", "artro"], left=1, right=4), 3)
-
-
-def list_to_linked_list(nodes: List[int]) -> ListNode:
-    result = ListNode(val=nodes.pop(-1), next_=None)
-    while len(nodes) > 0:
-        result = ListNode(val=nodes.pop(-1), next_=result)
-
-    return result
-
-
-def linked_list_to_list(head: ListNode) -> List:
-    result = [head.val]
-    while head.next:
-        result.append(head.next.val)
-        head = head.next
-
-    return result
 
 
 if __name__ == '__main__':

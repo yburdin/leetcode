@@ -1,3 +1,6 @@
+from typing import List, Optional
+
+
 class ListNode:
     def __init__(self, val=0, next_=None):
         self.val = val
@@ -12,6 +15,32 @@ class ListNode:
 
     def __repr__(self):
         return f'ListNode({self.val})'
+
+    def __eq__(self, other: 'ListNode'):
+        a = self
+        b = other
+        while a is not None and b is not None:
+            if a.val != b.val:
+                return False
+
+            a = a.next
+            b = b.next
+
+        return a is None and b is None
+
+    @classmethod
+    def from_list(cls, vals: List[int]) -> Optional['ListNode']:
+        if not vals:
+            return
+
+        new_head = ListNode()
+        cur_node = new_head
+
+        while len(vals) > 0:
+            cur_node.next = ListNode(vals.pop(0))
+            cur_node = cur_node.next
+
+        return new_head.next
 
 
 class TreeNode:
