@@ -1327,3 +1327,91 @@ def lowest_common_ancestor(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode
 
         if min(p.val, q.val) <= root.val <= max(p.val, q.val):
             return root
+
+
+# 64. Minimum Path Sum
+def min_path_sum(grid: List[List[int]]) -> int:
+    path_sum = [[0 for _ in range(len(grid[0]))] for _ in range(len(grid))]
+    path_sum[0][0] = grid[0][0]
+
+    for row, col in product(range(len(grid)), range(len(grid[0]))):
+        if row == 0 and col != 0:
+            path_sum[row][col] = grid[row][col] + path_sum[row][col - 1]
+        elif row != 0 and col == 0:
+            path_sum[row][col] = grid[row][col] + path_sum[row - 1][col]
+        elif row != 0 and col != 0:
+            path_sum[row][col] = grid[row][col] + min(path_sum[row][col - 1], path_sum[row - 1][col])
+
+    return path_sum[-1][-1]
+
+
+# 338. Counting Bits
+def count_bits(n: int) -> List[int]:
+    dp = [0 for _ in range(n + 1)]
+    for i in range(n + 1):
+        dp[i] = dp[i // 2] + i % 2
+
+    return dp
+
+
+# 87 Scramble String
+def is_scramble(s1: str, s2: str) -> bool:
+    n = len(s1)
+
+    dp = [[[False for _ in range(n)] for _ in range(n)] for _ in range(n + 1)]
+    for i, j in product(range(n), range(n)):
+        dp[1][i][j] = s1[i] == s2[j]
+
+    for length in range(2, n + 1):
+        for i, j in product(range(n + 1 - length), range(n + 1 - length)):
+            for new_length in range(1, length):
+                dp1 = dp[new_length][i]
+                dp2 = dp[length - new_length][i + new_length]
+                dp[length][i][j] |= dp1[j] and dp2[j + new_length]
+                dp[length][i][j] |= dp1[j + length - new_length] and dp2[j]
+
+    return dp[n][0][0]
+
+
+# 1. Two Sum
+def two_sum(nums: List[int], target: int) -> List[int]:
+    res_dict = {}
+    for i, num in enumerate(nums):
+        complement = target - nums[i]
+        if complement in res_dict:
+            return [i, res_dict[complement]]
+        res_dict[nums[i]] = i
+
+
+# 424. Longest Repeating Character Replacement
+def character_replacement(s: str, k: int) -> int:
+    start = 0
+    max_frequency = 0
+    result = 0
+
+    frequency_map = {char: 0 for char in set(s)}
+    for end in range(len(s)):
+        frequency_map[s[end]] += 1
+        max_frequency = max(max_frequency, frequency_map[s[end]])
+
+        is_valid_ = (end + 1 - start - max_frequency <= k)
+        if not is_valid_:
+            frequency_map[s[start]] -= 1
+            start += 1
+
+        result = end - start + 1
+
+    return result
+
+
+# 22. Generate Parentheses
+def generate_parenthesis(n: int) -> List[str]:
+    if not n:
+        return ['']
+
+    ans = []
+    for c in range(n):
+        for left in generate_parenthesis(c):
+            for right in generate_parenthesis(n - 1 - c):
+                ans.append(f'({left}){right}')
+    return ans

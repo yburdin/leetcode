@@ -138,6 +138,16 @@ class Test0001to0500(unittest.TestCase):
         with self.subTest('Example 5'):
             self.assertEqual(unique_paths_with_obstacles([[0, 0], [1, 1], [0, 0]]), 0)
 
+    def test_064(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(min_path_sum(grid=[[1, 3, 1], [1, 5, 1], [4, 2, 1]]), 7)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(min_path_sum(grid=[[1, 2, 3], [4, 5, 6]]), 12)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(min_path_sum(grid=[[1]]), 1)
+
     def test_066(self):
         self.assertEqual(plus_one([1, 2, 3]), [1, 2, 4])
         self.assertEqual(plus_one([4, 3, 2, 1]), [4, 3, 2, 2])
@@ -159,6 +169,16 @@ class Test0001to0500(unittest.TestCase):
 
         with self.subTest('Example 2'):
             self.assertEqual(min_distance(word1="intention", word2="execution"), 5)
+
+    def test_087(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(is_scramble(s1="great", s2="rgeat"))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(is_scramble(s1="abcde", s2="caebd"))
+
+        with self.subTest('Example 3'):
+            self.assertTrue(is_scramble(s1="a", s2="a"))
 
     def test_094(self):
         with self.subTest('Example 1'):
@@ -457,6 +477,13 @@ class Test0001to0500(unittest.TestCase):
         with self.subTest('Example 2'):
             self.assertEqual(remove_duplicate_letters(s="cbacdcbc"), 'acdb')
 
+    def test_338(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(count_bits(2), [0, 1, 1])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(count_bits(5), [0, 1, 1, 2, 1, 2])
+
     def test_342(self):
         self.assertTrue(is_power_of_four(16))
         self.assertTrue(is_power_of_four(1))
@@ -509,6 +536,13 @@ class Test0001to0500(unittest.TestCase):
 
         with self.subTest('Example 2'):
             self.assertEqual(number_of_arithmetic_slices(nums=[1]), 0)
+
+    def test_424(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(character_replacement(s="ABAB", k=2), 4)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(character_replacement(s="AABABBA", k=1), 4)
 
     def test_438(self):
         self.assertEqual(find_anagrams(s="cbaebabacd", p="abc"), [0, 6])
@@ -932,6 +966,13 @@ class Test0501to1000(unittest.TestCase):
         self.assertEqual(largest_perimeter([1, 2, 1]), 0)
         self.assertEqual(largest_perimeter([2, 6, 2, 5, 4, 15, 1]), 15)
 
+    def test_983(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(min_cost_tickets(days=[1, 4, 6, 7, 8, 20], costs=[2, 7, 15]), 11)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(min_cost_tickets(days=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 30, 31], costs=[2, 7, 15]), 17)
+
     def test_989(self):
         self.assertEqual(add_to_array_form(num=[1, 2, 0, 0], k=34), [1, 2, 3, 4])
         self.assertEqual(add_to_array_form(num=[2, 7, 4], k=181), [4, 5, 5])
@@ -968,6 +1009,13 @@ class Test1001to1500(unittest.TestCase):
         with self.subTest('Example 3'):
             self.assertEqual(sum_root_to_leaf(root=TreeNode(1, TreeNode(1))), 3)
 
+    def test_1025(self):
+        with self.subTest('Example 1'):
+            self.assertTrue(divisor_game(2))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(divisor_game(3))
+
     def test_1046(self):
         with self.subTest('Example 1'):
             self.assertEqual(last_stone_weight(stones=[2, 7, 4, 1, 8, 1]), 1)
@@ -998,6 +1046,13 @@ class Test1001to1500(unittest.TestCase):
 
         with self.subTest('Example 2'):
             self.assertEqual(shortest_alternating_paths(n=3, redEdges=[[0, 1]], blueEdges=[[2, 1]]), [0, 1, -1])
+
+    def test_1137(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(tribonacci(4), 4)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(tribonacci(25), 1389537)
 
     def test_1160(self):
         with self.subTest('Example 1'):
@@ -1124,6 +1179,23 @@ class Test1001to1500(unittest.TestCase):
         self.assertEqual(sort_by_bits([1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1]),
                          [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024])
 
+    def test_1389(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(create_target_array(nums=[0, 1, 2, 3, 4], index=[0, 1, 2, 2, 1]), [0, 4, 1, 3, 2])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(create_target_array(nums=[1, 2, 3, 4, 0], index=[0, 1, 2, 3, 0]), [0, 1, 2, 3, 4])
+
+    def test_1402(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(max_satisfaction(satisfaction=[-1, -8, 0, 5, -9]), 14)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(max_satisfaction(satisfaction=[4, 3, 2]), 20)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(max_satisfaction(satisfaction=[-1, -4, -5]), 0)
+
     def test_1437(self):
         self.assertEqual(k_length_apart([1, 0, 0, 0, 1, 0, 0, 1], 2), True)
         self.assertEqual(k_length_apart([1, 0, 0, 1, 0, 1], 2), False)
@@ -1185,6 +1257,16 @@ class Test1501to2000(unittest.TestCase):
         solution = Solution1501to2000()
         self.assertEqual(solution.count_odds(3, 7), 3)
         self.assertEqual(solution.count_odds(8, 10), 1)
+
+    def test_1528(self):
+        sol = Solution1501to2000()
+        with self.subTest('Example 1'):
+            res = sol.restore_string(s="codeleet", indices=[4, 5, 6, 7, 0, 2, 1, 3])
+            self.assertEqual(res, "leetcode")
+
+        with self.subTest('Example 2'):
+            res = sol.restore_string(s = "abc", indices = [0,1,2])
+            self.assertEqual(res, "abc")
 
     def test_1539(self):
         solution = Solution1501to2000()
@@ -1269,6 +1351,17 @@ class Test1501to2000(unittest.TestCase):
                                                 l=[0, 1, 6, 4, 8, 7],
                                                 r=[4, 4, 9, 7, 9, 10]
                                                 ), [False, True, False, False, True, True])
+
+    def test_1646(self):
+        sol = Solution1501to2000()
+        with self.subTest('Example 1'):
+            self.assertEqual(sol.get_maximum_generated(7), 3)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sol.get_maximum_generated(2), 1)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(sol.get_maximum_generated(3), 2)
 
     def test_1672(self):
         solution = Solution1501to2000()

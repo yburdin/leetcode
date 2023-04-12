@@ -525,3 +525,46 @@ def make_connected(n: int, connections: List[List[int]]) -> int:
             dfs(node, adj, visited)
 
     return number_of_connected_components - 1
+
+
+# 1389. Create Target Array in the Given Order
+def create_target_array(nums: List[int], index: List[int]) -> List[int]:
+    target = []
+    for source_index, target_index in enumerate(index):
+        target.insert(target_index, nums[source_index])
+
+    return target
+
+
+# 1137. N-th Tribonacci Number
+def tribonacci(n: int) -> int:
+    dp = [0 for _ in range(n + 1)]
+    for i in range(1, n + 1):
+        if i < 3:
+            dp[i] = 1
+        else:
+            dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3]
+
+    return dp[-1]
+
+
+# 1402. Reducing Dishes
+def max_satisfaction(satisfaction: List[int]) -> int:
+    satisfaction = sorted(satisfaction)
+
+    result_max_satisfaction = 0
+    suffix_sum = 0
+
+    for sat in satisfaction[::-1]:
+        if suffix_sum + sat > 0:
+            suffix_sum += sat
+            result_max_satisfaction += suffix_sum
+        else:
+            break
+
+    return result_max_satisfaction
+
+
+# 1025. Divisor Game
+def divisor_game(n: int) -> bool:
+    return n % 2 == 0
