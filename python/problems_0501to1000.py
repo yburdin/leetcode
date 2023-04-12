@@ -867,6 +867,22 @@ def is_cousins(root: Optional[TreeNode], x: int, y: int) -> bool:
     return node_level_dict[x] == node_level_dict[y]
 
 
+# 881. Boats to Save People
+def num_rescue_boats(people: List[int], limit: int) -> int:
+    people.sort()
+    left = 0
+    right = len(people) - 1
+    result = 0
+
+    while left <= right:
+        result += 1
+        if people[left] + people[right] <= limit:
+            left += 1
+        right -= 1
+
+    return result
+
+
 # 983. Minimum Cost For Tickets
 def min_cost_tickets(days: List[int], costs: List[int]) -> int:
     dp = [0 for _ in range(days[-1] + 1)]

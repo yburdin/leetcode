@@ -20,11 +20,3 @@ class LinkedListRandom:
                 cur_value = cur.val
 
         return cur_value
-
-
-class TestLinkedListRandom(unittest.TestCase):
-    pass
-
-
-if __name__ == '__main__':
-    unittest.main()

@@ -412,9 +412,14 @@ class Test0001to0500(unittest.TestCase):
             self.assertFalse(is_isomorphic(s="badc", t="baba"))
 
     def test_217(self):
-        self.assertTrue(contains_duplicate([1, 2, 3, 1]))
-        self.assertFalse(contains_duplicate([1, 2, 3, 4]))
-        self.assertTrue(contains_duplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]))
+        with self.subTest('Example 1'):
+            self.assertTrue(contains_duplicate([1, 2, 3, 1]))
+
+        with self.subTest('Example 2'):
+            self.assertFalse(contains_duplicate([1, 2, 3, 4]))
+
+        with self.subTest('Example 3'):
+            self.assertTrue(contains_duplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]))
 
     def test_219(self):
         with self.subTest('Example 1'):
@@ -470,6 +475,13 @@ class Test0001to0500(unittest.TestCase):
         with self.subTest('Example 5'):
             self.assertFalse(word_pattern(pattern="aba", s="cat cat cat dog"))
 
+    def test_299(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(get_hint(secret="1807", guess="7810"), "1A3B")
+
+        with self.subTest('Example 2'):
+            self.assertEqual(get_hint(secret="1123", guess="0111"), "1A1B")
+
     def test_316(self):
         with self.subTest('Example 1'):
             self.assertEqual(remove_duplicate_letters(s="bcabc"), 'abc')
@@ -506,6 +518,16 @@ class Test0001to0500(unittest.TestCase):
 
         with self.subTest('Example 4'):
             self.assertFalse(is_subsequence(s="axc", t=""))
+
+    def test_394(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(decode_string(s="3[a]2[bc]"), "aaabcbc")
+
+        with self.subTest('Example 2'):
+            self.assertEqual(decode_string(s="3[a2[c]]"), "accaccacc")
+
+        with self.subTest('Example 3'):
+            self.assertEqual(decode_string(s="2[abc]3[cd]ef"), "abcabccdcdcdef")
 
     def test_405(self):
         self.assertEqual(to_hex(26), '1a')
@@ -873,8 +895,18 @@ class Test0501to1000(unittest.TestCase):
             self.assertEqual(min_eating_speed(piles=[30, 11, 23, 4, 20], h=6), 23)
 
     def test_876(self):
-        self.assertEqual(linked_list_to_list(middle_node(list_to_linked_list([1, 2, 3, 4, 5]))), [3, 4, 5])
-        self.assertEqual(linked_list_to_list(middle_node(list_to_linked_list([1, 2, 3, 4, 5, 6]))), [4, 5, 6])
+        self.assertEqual(middle_node(ListNode.from_list([1, 2, 3, 4, 5])), ListNode.from_list([3, 4, 5]))
+        self.assertEqual(middle_node(ListNode.from_list([1, 2, 3, 4, 5, 6])), ListNode.from_list([4, 5, 6]))
+
+    def test_881(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(num_rescue_boats(people=[1, 2], limit=3), 1)
+
+        with self.subTest('Example 2'):
+            self.assertEqual(num_rescue_boats(people=[3, 2, 2, 1], limit=3), 3)
+
+        with self.subTest('Example 3'):
+            self.assertEqual(num_rescue_boats(people=[3, 5, 3, 4], limit=5), 4)
 
     def test_896(self):
         self.assertTrue(is_monotonic([1, 2, 2, 3]))
@@ -1092,9 +1124,9 @@ class Test1001to1500(unittest.TestCase):
         self.assertEqual(subtract_product_and_sum(4421), 21)
 
     def test_1290(self):
-        self.assertEqual(get_decimal_value(list_to_linked_list([1, 0, 1])), 5)
-        self.assertEqual(get_decimal_value(list_to_linked_list([0])), 0)
-        self.assertEqual(get_decimal_value(list_to_linked_list([1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0])), 18880)
+        self.assertEqual(get_decimal_value(ListNode.from_list([1, 0, 1])), 5)
+        self.assertEqual(get_decimal_value(ListNode.from_list([0])), 0)
+        self.assertEqual(get_decimal_value(ListNode.from_list([1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0])), 18880)
 
     def test_1295(self):
         with self.subTest('Example 1'):
@@ -1178,6 +1210,15 @@ class Test1001to1500(unittest.TestCase):
         self.assertEqual(sort_by_bits([0, 1, 2, 3, 4, 5, 6, 7, 8]), [0, 1, 2, 4, 8, 3, 5, 6, 7])
         self.assertEqual(sort_by_bits([1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1]),
                          [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024])
+
+    def test_1431(self):
+        with self.subTest('Example 1'):
+            self.assertEqual(kids_with_candies(candies=[2, 3, 5, 1, 3], extraCandies=3),
+                             [True, True, True, False, True])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(kids_with_candies(candies=[4, 2, 1, 1, 2], extraCandies=1),
+                             [True, False, False, False, False])
 
     def test_1389(self):
         with self.subTest('Example 1'):
@@ -1503,6 +1544,14 @@ class Test2001to2500(unittest.TestCase):
         with self.subTest('Example 2'):
             self.assertEqual(solution.minimum_rounds(tasks=[2, 3, 3]), -1)
 
+    def test_2300(self):
+        sol = Solution2001to2500()
+        with self.subTest('Example 1'):
+            self.assertEqual(sol.successful_pairs(spells=[5, 1, 3], potions=[1, 2, 3, 4, 5], success=7), [4, 0, 3])
+
+        with self.subTest('Example 2'):
+            self.assertEqual(sol.successful_pairs(spells=[3, 1, 2], potions=[8, 5, 8], success=16), [2, 0, 2])
+
     def test_2306(self):
         solution = Solution2001to2500()
         with self.subTest('Example 1'):
@@ -1642,23 +1691,6 @@ class Test2501to3000(unittest.TestCase):
 
         with self.subTest('Example 2'):
             self.assertEqual(sol.vowel_strings(words=["hey", "aeo", "mu", "ooo", "artro"], left=1, right=4), 3)
-
-
-def list_to_linked_list(nodes: List[int]) -> ListNode:
-    result = ListNode(val=nodes.pop(-1), next_=None)
-    while len(nodes) > 0:
-        result = ListNode(val=nodes.pop(-1), next_=result)
-
-    return result
-
-
-def linked_list_to_list(head: ListNode) -> List:
-    result = [head.val]
-    while head.next:
-        result.append(head.next.val)
-        head = head.next
-
-    return result
 
 
 if __name__ == '__main__':
